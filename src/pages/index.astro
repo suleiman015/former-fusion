@@ -1,0 +1,345 @@
+---
+import UeberUns from '../components/UeberUns.astro';
+import Lesitungen from '../components/Lesitungen.astro';
+import TechnologienUndInvestitionen from '../components/TechnologienUndInvestitionen.astro';
+---
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AImpacts – AI ready for business</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Inter', Arial, sans-serif;
+        background: #111827;
+        color: white;
+        min-height: 100vh;
+        overflow-x: hidden;
+        width: 100%;guck mal weiter!
+      }
+      nav {
+        width: 100%;
+        background: rgba(17,24,39,0.98);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 2.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-left {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #60a5fa; 
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        color: #e0e7ef;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #60a5fa;
+      }
+      .nav-btn {
+        background: #2563eb;
+        color: white;
+        padding: 0.7rem 1.3rem;
+        border-radius: 6px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background 0.2s;
+      }
+      .nav-btn:hover {
+        background: #1e40af;
+      }
+      .hero-bg {
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 70vh;
+        z-index: 0;
+        pointer-events: none;
+        background: none;
+      }
+      .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        min-height: 400px;
+        text-align: center;
+        z-index: 1;
+      }
+      .hero-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-bottom: 0.7rem;
+        letter-spacing: -2px;
+      }
+      .hero-sub {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        color: #cbd5e1;
+      }
+      .hero-link {
+        color: #60a5fa;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.2s;
+      }
+      .hero-link:hover {
+        color: #fff;
+      }
+      main {
+        position: relative;
+        z-index: 2;
+        margin-top: -60px;
+      }
+      section {
+        scroll-margin-top: 90px;
+      }
+      @media (max-width: 800px) {
+        nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+        .nav-links { gap: 1rem; }
+        .hero-title { font-size: 2.2rem; }
+        .hero { height: 50vh; min-height: 250px; }
+        header { padding: 0.4rem 1rem; }
+        .nav-btn { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container" style="min-height:100vh;background:linear-gradient(120deg, #1e3a8a 0%, #111827 100%);">
+    <header style="width:100%;background:#fff;padding:0.4rem 1.5rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+      <div style="display:flex;align-items:center;">
+        <img src="/images/logo.svg" alt="AImpacts Logo" style="height:42px;width:auto;display:block;" />
+      </div>
+      <a href="#kontakt" class="nav-btn" style="margin-left:auto;margin-right:0.5rem;background:#2563eb;color:#fff;padding:0.4rem 1.1rem;font-size:0.95rem;">AI-Beratung</a>
+    </header>
+    <div class="hero-bg">
+      <!-- Netzwerk-Optik als SVG-Background, minimalistisch -->
+      <svg width="100%" height="100%" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;z-index:0;">
+        <g opacity="0.18" stroke="#60a5fa">
+          <circle cx="250" cy="110" r="3"/>
+          <circle cx="400" cy="200" r="2"/>
+          <circle cx="700" cy="90" r="4"/>
+          <circle cx="1100" cy="150" r="3"/>
+          <circle cx="900" cy="250" r="2"/>
+          <circle cx="1300" cy="90" r="3"/>
+          <line x1="250" y1="110" x2="400" y2="200"/>
+          <line x1="400" y1="200" x2="700" y2="90"/>
+          <line x1="700" y1="90" x2="1100" y2="150"/>
+          <line x1="1100" y1="150" x2="900" y2="250"/>
+          <line x1="900" y1="250" x2="1300" y2="90"/>
+        </g>
+      </svg>
+    </div>
+    <section class="hero" id="home" style="background:linear-gradient(120deg,#0a1733 0%,#162447 100%);border-bottom-left-radius:48px;border-bottom-right-radius:48px;box-shadow:0 6px 32px #0002;">
+      <h1 class="hero-title">AI ready for business</h1>
+      <div class="hero-sub">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
+      <a href="#kontakt" class="nav-btn">Ihr Weg mit AI beginnt hier →</a>
+    </section>
+    <main>
+      <section id="leistungen">
+        <Lesitungen />
+      </section>
+      <section id="technologien">
+        <TechnologienUndInvestitionen />
+      </section>
+      <section id="ueber-uns">
+        <UeberUns />
+      </section>
+
+      <!-- Kommentare -->
+      <section style="background:#111827;padding:4rem 2rem;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+          <!-- Julius Kommentar -->
+          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
+            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+              <img src="/images/julius.jpg" alt="Julius" style="width:40px;height:40px;border-radius:50%;"/>
+              <div>
+                <h3 style="color:white;font-size:1.1rem;margin:0;">Julius</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">Tech and HR Consultant</p>
+              </div>
+            </div>
+            <p style="color:#94a3b8;line-height:1.6;margin:0;">Für unsere Kunden spielt künstliche Intelligenz eine entscheidende Rolle, da sie eine Vielzahl an Möglichkeiten bietet, um ihre Geschäftsprozesse zu optimieren. Eine datenbasierte Analyse hilft zu steigern und bessere Entscheidungen auf der Grundlage von Daten zu treffen. Als erfahrene Berater helfen wir unseren Unternehmen dabei, unsere Kunden über die Potenziale von KI zu informieren und maßgeschneiderte Lösungen zu entwickeln, die zu den jeweiligen Anforderungen der Kunden passt. Unser Ziel ist es dabei stets, dass unsere Kunden maximalen Vorteil aus der Nutzung von KI ziehen.</p>
+          </div>
+
+          <!-- Negar Kommentar -->
+          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
+            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+              <img src="/images/negar.jpg" alt="Negar" style="width:40px;height:40px;border-radius:50%;"/>
+              <div>
+                <h3 style="color:white;font-size:1.1rem;margin:0;">Negar</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">KI & KI-Entwicklung</p>
+              </div>
+            </div>
+            <p style="color:#94a3b8;line-height:1.6;margin:0;">Ich bin Negar, ich bin begeistert von Künstlicher Intelligenz. Ich glaube, dass KI unser Leben verbessern kann, indem sie uns hilft, Probleme schneller und effizienter zu lösen und neue Ideen zu entwickeln.</p>
+            <a href="#" style="color:#60a5fa;text-decoration:none;display:block;margin-top:1rem;">Über Negars Engagement zum Thema Künstliche Intelligenz hier</a>
+          </div>
+
+          <!-- Aileen Kommentar -->
+          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
+            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+              <img src="/images/aileen.jpg" alt="Aileen" style="width:40px;height:40px;border-radius:50%;"/>
+              <div>
+                <h3 style="color:white;font-size:1.1rem;margin:0;">Aileen</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">Berät mich zu</p>
+              </div>
+            </div>
+            <p style="color:#94a3b8;line-height:1.6;margin:0;">Hi, ich bin Aileen und ich bin 25 Jahre alt. Ich mache gerade ein Praktikum bei AImpacts und ich bin sehr begeistert von der Arbeit mit KI. KI hilft mir viel darüber was wir zu vermeiden, automatisieren bei Menschen. Die Tools die sind und Chat geben dir einen schnellen Überblick über das Thema, neue Umstände und eine Meinung ich kann mir sehr mehr vorstellen, aber es zu lernen aber zu denken. Allerdings ist es gefährlich, Unternehmen, weil die Tools entwickeln kann es einen manchmal ist Handel ersetzen, ich hoffe nicht, im Gegenteil, das wir einen Auftrag zu verstehen und mit dieser innovativen Community zu sein.</p>
+          </div>
+
+          <!-- Osborn Kommentar -->
+          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
+            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+              <img src="/images/osborn.jpg" alt="Osborn" style="width:40px;height:40px;border-radius:50%;"/>
+              <div>
+                <h3 style="color:white;font-size:1.1rem;margin:0;">Osborn</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">KI Experte</p>
+              </div>
+            </div>
+            <p style="color:#94a3b8;line-height:1.6;margin:0;">Die AI-Branche treibt mich durch ihre rasante Weiterentwicklung ständig an, weiter zu lernen und zu begreifen, welche Arbeitsschritte, die jetzt oder selbstständigen, vereinfacht und verbessert werden können. Die Community trägt maßgeblich neue Ideen und Werkzeuge zum Vorschein, die mich und den Rest des Teams begeistern und auf weiterführende Gedanken bringen. Es ist möglich hier deinen Impulsen folgen und sie mit anderen Team gemeinsam entwickeln zu können. Ist das, was ich an der Arbeit bei AImpacts am besten gefällt. Wir leben im Strom der Änderung und greifen mit beiden Händen nach neuen Möglichkeiten.</p>
+          </div>
+
+          <!-- Mai Kommentar -->
+          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
+            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+              <img src="/images/mai.jpg" alt="Mai" style="width:40px;height:40px;border-radius:50%;"/>
+              <div>
+                <h3 style="color:white;font-size:1.1rem;margin:0;">Mai</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">Berät auf Mathematik und KI</p>
+              </div>
+            </div>
+            <p style="color:#94a3b8;line-height:1.6;margin:0;">Ich bin besonders beeindruckt wie die Möglichkeiten, die KI bietet Menschen individuell zu unterstützen. Ich glaube, dass KI verwendet werden kann, um Menschen dabei zu helfen, ihre Ziele zu erreichen, ihre Produktivität zu steigern und ihr Leben zu verbessern.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video (extern) -->
+      <section style="background:#181f2a;padding:4rem 2rem;text-align:center;">
+        <h2 style="font-size:2rem;margin-bottom:2rem;">Erleben Sie KI in Aktion</h2>
+        <div style="display:flex;justify-content:center;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube Video" frameborder="0" allowfullscreen style="border-radius:12px;box-shadow:0 2px 12px #0004;"></iframe>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section style="background:#000000;padding:4rem 2rem;">
+        <div style="max-width:1200px;margin:0 auto;">
+          <h2 style="color:white;font-size:2.5rem;margin-bottom:3rem;text-align:center;">Frequently Asked Questions</h2>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="background:#111827;padding:2rem;border-radius:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" class="faq-question">
+                <h3 style="color:white;font-size:1.25rem;margin:0;">Wie lassen sich Ängste und Vorbehalte in den Unternehmen gegenüber KI abbauen?</h3>
+                <span style="color:white;font-size:1.5rem;transition:transform 0.3s;">^</span>
+              </div>
+              <div style="color:#94a3b8;margin-top:1rem;line-height:1.6;display:none;" class="faq-answer">
+                <p>Ängste und Vorbehalte lassen sich durch kluges Agieren und einen professionellen Umgang abbauen. Wichtig sind Transparenz, Bildung, eine intelligente Implementierung sowie eine intensive Kommunikation.</p>
+                <p style="margin-top:1rem;">Je besser die Mitarbeitenden im Vorfeld und auch während der Implementierung einer auf KI-basierten Lösung mitgenommen werden, desto höher die Akzeptanz der neuen Lösung. Wichtig ist umfassende Transparenz von Beginn an. Jeder sollte wissen, was ihn erwartet und was von ihm verlangt wird. Je intensiver miteinander gesprochen wird, desto höher die Akzeptanz. KI ist nur dann der Schlüssel in die Zukunft, wenn diese genutzt wird. Und genau dafür ist es unabdingbar, dass ihr Nutzen auch erkannt wird. Deshalb sollte die Einführung schrittweise erfolgen und von Schulungen begleitet werden.</p>
+              </div>
+            </div>
+            <div style="background:#111827;padding:2rem;border-radius:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" class="faq-question">
+                <h3 style="color:white;font-size:1.25rem;margin:0;">Wie funktioniert maschinelles Lernen?</h3>
+                <span style="color:white;font-size:1.5rem;transition:transform 0.3s;">^</span>
+              </div>
+              <div style="color:#94a3b8;margin-top:1rem;line-height:1.6;display:none;" class="faq-answer">
+                <p>Maschinelles Lernen ist eine Technik, die es Computern ermöglicht, aus Daten zu lernen, Muster zu erkennen und Vorhersagen zu treffen. Im ersten Schritt werden daten gesammelt, die für das Problem von Interesse sind. Diese Daten werden für den Lernprozess vorbereitet. Danach beginnt der Prozess des Lernens, es wird ein Modell erstellt, dass mit en vorhandenen Daten trainiert und auch validiert wird.</p>
+                <p style="margin-top:1rem;">Der Schlüssel zum Erfolg im maschinellen Lernen liegt in der Qualität der Daten, der Auswahl des richtigen Algorithmus und der richtigen Modellparameter sowie in der sorgfältigen Validierung und Anpassung des Modells. Die kontinuierliche Verbesserung und das Feintuning des Modells können erforderlich sein, um optimale Ergebnisse zu erzielen</p>
+              </div>
+            </div>
+
+            <div style="background:#111827;padding:2rem;border-radius:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" class="faq-question">
+                <h3 style="color:white;font-size:1.25rem;margin:0;">In welchen Bereichen werden KI-Systeme bereits eingesetzt?</h3>
+                <span style="color:white;font-size:1.5rem;transition:transform 0.3s;">^</span>
+              </div>
+              <div style="color:#94a3b8;margin-top:1rem;line-height:1.6;display:none;" class="faq-answer">
+                <p>Es gibt bereits eine Vielzahl von Anwendungen für künstliche Intelligenz (KI). Zu den bekanntesten gehören Bilderkennungssysteme, die Bilder und Videos analysieren, um Objekte, Gesichter, Emotionen und andere Merkmale zu erkennen. Anwendungen reichen von automatischer Bildbeschriftung bis zur medizinischen Diagnose.</p>
+                <p style="margin-top:1rem;">In der Automobilindustrie werden KI-Algorithmen verwendet, um autonome Fahrzeuge zu steuern und Verkehrssituationen zu analysieren.</p>
+                <p style="margin-top:1rem;">Online-Plattformen nutzen KI, um das Verhalten von Nutzern zu analysieren und personalisierte Produktvorschläge zu machen.</p>
+                <p style="margin-top:1rem;">Im Bildungsbereich kann KI personalisierte Lernpfade erstellen, automatische Bewertungen durchführen und Lernende bei ihren Lernprozessen unterstützen.</p>
+                <p style="margin-top:1rem;">Im Bereich der Spracherkennung können KI-Systeme wie Chatbots und Übersetzungstools menschliche Sprache verstehen, übersetzen und generieren. Sie werden in der Kundenbetreuung, der Kommunikation und der Übersetzung eingesetzt.</p>
+              </div>
+            </div>
+
+            <div style="background:#111827;padding:2rem;border-radius:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" class="faq-question">
+                <h3 style="color:white;font-size:1.25rem;margin:0;">Wie wird KI trainiert?</h3>
+                <span style="color:white;font-size:1.5rem;transition:transform 0.3s;">^</span>
+              </div>
+              <div style="color:#94a3b8;margin-top:1rem;line-height:1.6;display:none;" class="faq-answer">
+                <p>Künstliche Intelligenz (KI) erfolgt durch Training grundlegender Modelle. Der Trainingsprozess variiert je nach der Art der KI und des Lernalgorithmus, den man verwendet.</p>
+                <p style="margin-top:1rem;">Zu den grundlegenden Schritten gehört das Sammeln von Daten und deren Aufbereitung. Je nach Problemstellung werden relevante Merkmale aus den daten extrahiert. Bei der Bilderkennung können dies z.B. visuelle Eigenschaften wie die Augenfarbe sein. Nach der Auswahl des Lernalgorithmus erfolgt das Training des grundlegenden Modells. Hierzu gehört auch, dass das Modell seine Parameter anpasst, um die Beziehung zwischen den Eingabedaten und den Ausgaben zu erlernen. Dies geschieht durch Optimierungsalgorithmen, die die Fehler zwischen den vorhergesagten Ausgaben (Labels) und den tatsächlichen Ausgaben (Labels) minimieren. Nach umfangreichen Validierungen erfolgen Test und entsprechenden Optimierungen und Feinabstimmungen, bevor das Tool in der Praxis eingesetzt wird.</p>
+              </div>
+            </div>
+
+            <div style="background:#111827;padding:2rem;border-radius:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" class="faq-question">
+                <h3 style="color:white;font-size:1.25rem;margin:0;">Ist KI eine Bedrohung für Arbeitsplätze?</h3>
+                <span style="color:white;font-size:1.5rem;transition:transform 0.3s;">^</span>
+              </div>
+              <div style="color:#94a3b8;margin-top:1rem;line-height:1.6;display:none;" class="faq-answer">
+                <p>Die Auswirkungen von künstlicher Intelligenz (KI) oder auch AI (Artificial Intelligence) auf Arbeitsplätze sind ein viel diskutiertes Thema. Hier eine eindeutige Aussage zu treffen, ist kaum möglich. KI zu verhindern oder abzulehnen, ist keine Lösung, genauer hinschauen hilft.</p>
+                <p style="margin-top:1rem;">KI-Technologien können sich wiederholende, vorhersehbare und zeitaufwändige Aufgaben in vielen Branchen automatisieren. Während hier Jobs wegfallen können, entstehen in anderen Bereichen neue, die sich auf die Entwicklung von KI, ihrer Implementierung und Wartung konzentrieren.</p>
+                <p style="margin-top:1rem;">KI-Technologien können auch dazu führen, dass sich Aufgaben verändern, weg von ausführenden hin zu kreativen, strategischen, zwischenmenschlichen und komplexen Aufgaben, die schwer zu automatisieren sind.</p>
+                <p style="margin-top:1rem;">Um sich für die Zukunft gut aufzustellen, ist lebenslanges Lernen unabdingbar. Offen für Neuerungen sein, hinterfragen und sich dem steigen Wandel anpassen.</p>
+                <p style="margin-top:1rem;">Für die Unternehmen bedeutet dies: ausgewogen an das Thema herangehen, die technologische Innovation mit sozialer Verantwortung verbinden, um die Herausforderungen anzugehen, die mit der Veränderung des Arbeitsumfelds durch KI verbunden sind und ihre Mitarbeitenden mitzunehmen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        // Add click handlers to toggle FAQ answers
+        document.addEventListener('DOMContentLoaded', () => {
+          const questions = document.querySelectorAll('.faq-question');
+          
+          questions.forEach(question => {
+            const answer = question.nextElementSibling;
+            const arrow = question.querySelector('span');
+            
+            question.addEventListener('click', () => {
+              const isOpen = answer.style.display === 'block';
+              
+              // Toggle answer visibility
+              answer.style.display = isOpen ? 'none' : 'block';
+              
+              // Rotate arrow
+              arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+          });
+        });
+      </script>
+
+      <!-- Kontakt -->
+      <section id="kontakt" style="background:#1e293b;padding:4rem 2rem;text-align:center;">
+        <h2 style="font-size:2rem;margin-bottom:1rem;">Kontakt</h2>
+        <p style="max-width:700px;margin:0 auto 2rem;">Sie möchten mehr erfahren oder direkt ein Beratungsgespräch vereinbaren? Schreiben Sie uns eine E-Mail an <a href="mailto:info@aimpacts.de" style="color:#60a5fa;font-weight:bold;">info@aimpacts.de</a> oder nutzen Sie das Kontaktformular (folgt demnächst).</p>
+        <a href="mailto:info@aimpacts.de" class="nav-btn">E-Mail senden</a>
+      </section>
+
+      <!-- Footer -->
+      <footer style="background:#111827;color:#cbd5e1;text-align:center;padding:2rem 1rem;font-size:1rem;">
+        <div>AImpacts &ndash; AI ready for business &copy; 2025</div>
+        <div style="margin-top:0.5rem;font-size:0.95em;">Impressum | Datenschutz (folgt)</div>
+      </footer>
+    </div>
+  </body>
+</html>
