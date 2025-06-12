@@ -1,303 +1,140 @@
 ---
-import UeberUns from '../components/UeberUns.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Lesitungen from '../components/Lesitungen.astro';
 import TechnologienUndInvestitionen from '../components/TechnologienUndInvestitionen.astro';
 import FAQ from '../components/FAQ.astro';
+import Comments from '../components/comments.astro';
+import UeberUns from '../components/UeberUns.astro';
 ---
-<html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <title>AImpacts – AI ready for business</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        font-family: 'Inter', Arial, sans-serif;
-        background: #111827;
-        color: white;
-        min-height: 100vh;
-        overflow-x: hidden;
-        width: 100%;guck mal weiter!
-      }
-      nav {
-        width: 100%;
-        background: rgba(17,24,39,0.98);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.2rem 2.5rem;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .nav-left {
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: -1px;
-        color: #60a5fa; 
-      }
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-      .nav-links a {
-        color: #e0e7ef;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover {
-        color: #60a5fa;
-      }
-      .nav-btn {
-        background: #2563eb;
-        color: white;
-        padding: 0.7rem 1.3rem;
-        border-radius: 6px;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 1rem;
-        transition: background 0.2s;
-      }
-      .nav-btn:hover {
-        background: #1e40af;
-      }
-      .hero-bg {
-        position: absolute;
-        top: 0; left: 0; right: 0; height: 70vh;
-        z-index: 0;
-        pointer-events: none;
-        background: none;
-      }
-      .hero {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 70vh;
-        min-height: 400px;
-        text-align: center;
-        z-index: 1;
-      }
-      .hero-title {
-        font-size: 3.2rem;
-        font-weight: 800;
-        margin-bottom: 0.7rem;
-        letter-spacing: -2px;
-      }
-      .hero-sub {
-        font-size: 1.3rem;
-        margin-bottom: 2.5rem;
-        color: #cbd5e1;
-      }
-      .hero-link {
-        color: #60a5fa;
-        font-weight: 700;
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: color 0.2s;
-      }
-      .hero-link:hover {
-        color: #fff;
-      }
-      main {
-        position: relative;
-        z-index: 2;
-        margin-top: -60px;
-      }
-      section {
-        scroll-margin-top: 90px;
-      }
-      @media (max-width: 800px) {
-        nav { flex-direction: column; gap: 1rem; padding: 1rem; }
-        .nav-links { gap: 1rem; }
-        .hero-title { font-size: 2.2rem; }
-        .hero { height: 50vh; min-height: 250px; }
-        header { padding: 0.4rem 1rem; }
-        .nav-btn { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page-container" style="min-height:100vh;background:linear-gradient(120deg, #1e3a8a 0%, #111827 100%);">
-    <header style="width:100%;background:#fff;padding:0.4rem 1.5rem;position:sticky;top:0;z-index:100;display:flex;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-      <div style="display:flex;align-items:center;">
-        <img src="/images/logo.svg" alt="AImpacts Logo" style="height:42px;width:auto;display:block;" />
+<BaseLayout>
+  <section
+    class="hero"
+    id="home"
+    style="background:linear-gradient(120deg,#0a1733 0%,#162447 100%);
+           /* border-bottom-left-radius:48px; */
+           /* border-bottom-right-radius:48px; */
+           box-shadow:0 6px 32px #0002;
+           padding:6rem 1rem 4rem 1rem;
+           text-align:center;">
+    <h1 style="color:white;font-size:3.2rem;font-weight:800;margin-bottom:1.2rem;letter-spacing:-2px;">AI ready for business</h1>
+    <div style="color:#cbd5e1;font-size:1.3rem;margin-bottom:2.5rem;">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
+    <a id="ai-weg-btn" href="#" style="display:inline-block;background:#2563eb;color:white;padding:0.8rem 2rem;border-radius:0.375rem;text-decoration:none;font-size:1.1rem;font-weight:700;box-shadow:0 2px 8px #0002;">Ihr Weg mit AI beginnt hier →</a>
+  </section>
+  <div id="ai-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:9999;justify-content:center;align-items:center;">
+    <div style="background:#fff;color:#111827;max-width:700px;width:95vw;padding:2.5rem 2rem 2rem 2rem;border-radius:6px;box-shadow:0 4px 32px #0008;position:relative;">
+      <button id="ai-modal-close" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;font-size:2rem;line-height:1;cursor:pointer;color:#111827;">&times;</button>
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <img src="/images/logo.svg" alt="AImpacts Logo" style="height:54px;width:auto;display:inline-block;" />
       </div>
-      <a href="#kontakt" class="nav-btn" style="margin-left:auto;margin-right:0.5rem;background:#2563eb;color:#fff;padding:0.4rem 1.1rem;font-size:0.95rem;">AI-Beratung</a>
-    </header>
-    <div class="hero-bg">
-      <!-- Netzwerk-Optik als SVG-Background, minimalistisch -->
-      <svg width="100%" height="100%" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;z-index:0;">
-        <g opacity="0.18" stroke="#60a5fa">
-          <circle cx="250" cy="110" r="3"/>
-          <circle cx="400" cy="200" r="2"/>
-          <circle cx="700" cy="90" r="4"/>
-          <circle cx="1100" cy="150" r="3"/>
-          <circle cx="900" cy="250" r="2"/>
-          <circle cx="1300" cy="90" r="3"/>
-          <line x1="250" y1="110" x2="400" y2="200"/>
-          <line x1="400" y1="200" x2="700" y2="90"/>
-          <line x1="700" y1="90" x2="1100" y2="150"/>
-          <line x1="1100" y1="150" x2="900" y2="250"/>
-          <line x1="900" y1="250" x2="1300" y2="90"/>
-        </g>
-      </svg>
+      <div style="font-size:1.25rem;font-weight:700;margin-bottom:1.2rem;">Sie möchten mehr wissen und haben Fragen dazu, wie sich AI für Ihr Unternehmen und Ihre Anwendungen nutzen lässt?</div>
+      <div style="font-size:1.15rem;font-weight:700;margin-bottom:1.2rem;">Dann vereinbaren Sie eine 30-minütigen kostenlosen AI Beratung.</div>
+      <div style="font-size:1rem;margin-bottom:2.2rem;">In dieser Beratung erfahren Sie mehr dazu, wie sich AI für Ihr Unternehmen nutzen lässt und wie wir arbeiten.<br><br>Reservieren Sie noch heute Ihren persönlichen Beratungstermin mit einem unserer Experten und Expertinnen.</div>
+      <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#2563eb;color:white;padding:1.1rem 2.5rem;border-radius:0.5rem;text-decoration:none;font-size:1.15rem;font-weight:700;box-shadow:0 2px 8px #2563eb55;">Zur kostenlosen AI Beratung</a>
     </div>
-    <section class="hero" id="home" style="background:linear-gradient(120deg,#0a1733 0%,#162447 100%);border-bottom-left-radius:48px;border-bottom-right-radius:48px;box-shadow:0 6px 32px #0002;">
-      <h1 class="hero-title">AI ready for business</h1>
-      <div class="hero-sub">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
-      <a href="#kontakt" class="nav-btn">Ihr Weg mit AI beginnt hier →</a>
+  </div>
+  <main>
+    <!-- AI Check Section -->
+    <section style="background:#000000;padding:4rem 2rem;">
+      <div style="max-width:900px;margin:0 auto;">
+        <h2 style="font-size:2rem;color:white;text-align:left;margin-bottom:2rem;">Starten Sie Ihren AI Check</h2>
+        <p style="text-align:left;color:#cbd5e1;font-size:1rem;margin-bottom:0;">
+          Wir definieren gemeinsam Ihre Anforderungen und entwickeln die erforderlichen Umsetzungsschritte. Wir begleiten Sie und Ihr Team Schritt für Schritt.<br><br>
+          Wir sind Ihr Ansprechpartner, auch wenn Sie noch keine klare Richtung haben. Sortieren Sie mit uns Ihre Gedanken und definieren Sie Ihre Ziele. Wir arbeiten von Anfang an transparent und auf Augenhöhe.
+        </p>
+        <div style="display:flex;gap:2rem;align-items:center;margin-top:3rem;">
+          <div style="flex:1;display:flex;justify-content:flex-end;">
+            <video src="/videos/Start_Ai.mp4" autoplay muted loop style="width:100%;max-width:480px;border-radius:12px;box-shadow:0 2px 12px #0002;"></video>
+          </div>
+          <div style="flex:1;display:flex;justify-content:flex-end;padding-right:3.0rem;">
+            <a id="ai-check-btn" href="https://calendly.com/julius-kaeck/30min?month=2025-06" style="display:inline-block;background:#2563eb;color:white;padding:0.8rem 2rem;border-radius:0.375rem;text-decoration:none;font-size:1.1rem;font-weight:700;box-shadow:0 2px 8px #0002;">AI Check mit AImpacts starten →</a>
+          </div>
+        </div>
+      </div>
     </section>
-    <main>
-            <!-- AI Check Section -->
-            <section style="background:#000000;padding:4rem 2rem;">
-              <div style="max-width:900px;margin:0 auto;">
-                <h2 style="font-size:2rem;color:white;text-align:left;margin-bottom:2rem;">Starten Sie Ihren AI Check</h2>
-                <p style="text-align:left;color:#cbd5e1;font-size:1rem;margin-bottom:0;">
-                  Wir definieren gemeinsam Ihre Anforderungen und entwickeln die erforderlichen Umsetzungsschritte. Wir begleiten Sie und Ihr Team Schritt für Schritt.<br><br>
-                  Wir sind Ihr Ansprechpartner, auch wenn Sie noch keine klare Richtung haben. Sortieren Sie mit uns Ihre Gedanken und definieren Sie Ihre Ziele. Wir arbeiten von Anfang an transparent und auf Augenhöhe.
-                </p>
-                <div style="display:flex;gap:2rem;align-items:center;margin-top:3rem;">
-                  <div style="flex:1;display:flex;justify-content:flex-end;">
-                    <video src="/videos/Start_Ai.mp4" autoplay muted loop style="width:100%;max-width:480px;border-radius:12px;box-shadow:0 2px 12px #0002;"></video>
-                  </div>
-                  <div style="flex:1;display:flex;justify-content:flex-end;padding-right:3.0rem;">
-                    <a href="#kontakt" class="nav-btn" style="background:#2563eb;color:#fff;padding:0.6rem 1.2rem;font-size:1rem;font-weight:600;border-radius:6px;">AI Check mit AImpacts starten</a>
-                  </div>
-                </div>
-              </div>
-            </section>
-      
-      <section id="leistungen">
-        <Lesitungen />
-      </section>
-      <section id="technologien">
-        <TechnologienUndInvestitionen />
-      </section>
-      <section id="ueber-uns">
-        <UeberUns />
-      </section>
-
-
-      <!-- Kommentare -->
-      <section style="background:#111827;padding:4rem 2rem;">
-        <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
-          <!-- Julius Kommentar -->
-          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
-            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
-              <img src="/images/julius.jpg" alt="Julius" style="width:40px;height:40px;border-radius:50%;"/>
-              <div>
-                <h3 style="color:white;font-size:1.1rem;margin:0;">Julius</h3>
-                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">Herz und Hirn von AImpacts</p>
-              </div>
-            </div>
-            <p style="color:#94a3b8;line-height:1.6;margin:0;">Für unsere Kunden spielt Künstliche Intelligenz eine entscheidende Rolle, da sie eine Vielzahl von Möglichkeiten bietet, um ihre Geschäftsprozesse zu optimieren, ihre Wettbewerbsfähigkeit zu steigern und bessere Entscheidungen auf der Grundlage von Daten zu treffen. Als erfahrene Berater sehen wir unsere Verantwortung darin, unsere Kunden über die Potenziale von KI zu informieren und maßgeschneiderte Lösungen zu entwickeln, die zu den jeweiligen Anforderungen der Kunden passt. Unser Ziel ist in der Zusammenarbeit ist es, dass unsere Kunden maximalen Vorteile aus der Nutzung von KI ziehen.</p>
-          </div>
-
-          <!-- Negin Kommentar -->
-          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
-            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
-              <img src="/images/negar.jpg" alt="Negin" style="width:40px;height:40px;border-radius:50%;"/>
-              <div>
-                <h3 style="color:white;font-size:1.1rem;margin:0;">Negin</h3>
-                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">KI als Problemlöser</p>
-              </div>
-            </div>
-            <p style="color:#94a3b8;line-height:1.6;margin:0;">Ich bin Negin, ich bin begeistert von Künstlicher Intelligenz. Ich glaube, dass KI unser Leben verbessern kann, indem sie uns hilft, Probleme schneller und effizienter zu lösen und neue Ideen zu entwickeln.</p>
-            <a href="#" style="color:#60a5fa;text-decoration:none;display:block;margin-top:1rem;">Hier Negins Blogbeitrag zum Thema "Künstliche Intelligenz" lesen!</a>
-          </div>
-
-          <!-- Aileen Kommentar -->
-          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
-            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
-              <img src="/images/aileen.jpg" alt="Aileen" style="width:40px;height:40px;border-radius:50%;"/>
-              <div>
-                <h3 style="color:white;font-size:1.1rem;margin:0;">Aileen</h3>
-                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">KI treibt mich an</p>
-              </div>
-            </div>
-            <p style="color:#94a3b8;line-height:1.6;margin:0;">Hi, ich bin Aileen und ich bin 22 Jahre alt. Ich mache gerade ein Praktikum bei AImpacts und habe total begeistert von der Arbeit mit KI. KI hilft mir viel direkter zum Ziel zu kommen, insbesondere bei Recherche. Die Tools wie Bard und Chat geben mir einen schnellen Überblick oder eine Richtung, ohne Umschweife und ohne Werbung. Ich kann mir nicht mehr vorstellen, ohne KI zu lernen oder zu arbeiten. AImpacts ist ein großartiges Unternehmen, weil wir als Teams innovative Ideen in einem mindblowing IT-Umfeld entwickeln. Ich freue mich, im Grafikdesign einen Ideen Auftrieb zu verwirklichen und Teil einer innovativen Community zu sein.</p>
-          </div>
-
-          <!-- Gideon Kommentar -->
-          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
-            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
-              <img src="/images/osborn.jpg" alt="Gideon" style="width:40px;height:40px;border-radius:50%;"/>
-              <div>
-                <h3 style="color:white;font-size:1.1rem;margin:0;">Gideon</h3>
-                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">arbeitet mit KI</p>
-              </div>
-            </div>
-            <p style="color:#94a3b8;line-height:1.6;margin:0;">Die AI-Branche treibt mich durch ihre rasante Weiterentwicklung ständig an, weiter zu denken und zu überlegen, welche Arbeitsschritte, ob privat oder arbeitsbezogen, vereinfacht und verbessert werden können. Die Community bringt unaufhörlich neue Ideen und Werkzeuge zum Vorschein, die mich und den Rest des Teams begeistern und auf weiterführende Gedanken bringen. Die Möglichkeit, diesen Impulsen folgen zu dürfen und sie mit meinem Team gemeinsam erforschen zu können, ist das, was mir an der Arbeit bei AImpacts am besten gefällt. Wir leben im Strom der Änderung und greifen mit beiden Händen nach neuen Möglichkeiten.</p>
-          </div>
-
-          <!-- Mali Kommentar -->
-          <div style="background:#1e293b;padding:2rem;border-radius:0.5rem;flex:1;min-width:300px;max-width:400px;">
-            <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
-              <img src="/images/mai.jpg" alt="Mali" style="width:40px;height:40px;border-radius:50%;"/>
-              <div>
-                <h3 style="color:white;font-size:1.1rem;margin:0;">Mali</h3>
-                <p style="color:#94a3b8;font-size:0.9rem;margin:0;">setzt auf Mathematik und KI</p>
-              </div>
-            </div>
-            <p style="color:#94a3b8;line-height:1.6;margin:0;">Ich bin besonders beeindruckt von den Möglichkeiten, die KI bietet, Menschen individuell zu unterstützen. Ich glaube, dass KI verwendet werden kann, um Menschen dabei zu helfen, ihre Ziele zu erreichen, ihre Produktivität zu steigern und ihr Leben zu verbessern.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Video (extern) -->
-      <section style="background:#181f2a;padding:4rem 2rem;text-align:center;">
-        <h2 style="font-size:2rem;margin-bottom:2rem;">Erleben Sie KI in Aktion</h2>
-        <div style="display:flex;justify-content:center;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube Video" frameborder="0" allowfullscreen style="border-radius:12px;box-shadow:0 2px 12px #0004;"></iframe>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <FAQ /> 
-
-     
-      <script>
-        // Add click handlers to toggle FAQ answers
-        document.addEventListener('DOMContentLoaded', () => {
-          const questions = document.querySelectorAll('.faq-question');
-          
-          questions.forEach(question => {
-            const answer = question.nextElementSibling;
-            const arrow = question.querySelector('span');
-            
-            question.addEventListener('click', () => {
-              const isOpen = answer.style.display === 'block';
-              
-              // Toggle answer visibility
-              answer.style.display = isOpen ? 'none' : 'block';
-              
-              // Rotate arrow
-              arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-              
-            });
-          });
-        });
-      </script>
-
-      <!-- Kontakt -->
-      <section id="kontakt" style="background:#1e293b;padding:4rem 2rem;text-align:center;">
-        <h2 style="font-size:2rem;margin-bottom:1rem;">Kontakt</h2>
-        <p style="max-width:700px;margin:0 auto 2rem;">Sie möchten mehr erfahren oder direkt ein Beratungsgespräch vereinbaren? Schreiben Sie uns eine E-Mail an <a href="mailto:info@aimpacts.de" style="color:#60a5fa;font-weight:bold;">info@aimpacts.de</a> oder nutzen Sie das Kontaktformular (folgt demnächst).</p>
-        <a href="mailto:info@aimpacts.de" class="nav-btn">E-Mail senden</a>
-      </section>
-
-      <!-- Footer -->
-      <footer style="background:#111827;color:#cbd5e1;text-align:center;padding:2rem 1rem;font-size:1rem;">
-        <div>AImpacts &ndash; AI ready for business &copy; 2025</div>
-        <div style="margin-top:0.5rem;font-size:0.95em;">Impressum | Datenschutz (folgt)</div>
-      </footer>
+      <section id="ueber-uns"><UeberUns /></section>
+<section id="leistungen"><Lesitungen /></section>
+<section id="technologien"><TechnologienUndInvestitionen /></section>
+<section id="team"><Comments /></section>
+<section id="faq"><FAQ /></section>
+  </main>
+</BaseLayout>
+<div id="ai-check-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:9999;justify-content:center;align-items:center;">
+  <div style="position:relative;max-width:800px;width:95vw;min-height:320px;border-radius:8px;box-shadow:0 4px 32px #0008;overflow:hidden;background:url('/images/ai.jpg') center center / cover no-repeat;display:flex;align-items:flex-start;justify-content:flex-end;">
+    <button id="ai-check-modal-close" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;font-size:2rem;line-height:1;cursor:pointer;color:#222;z-index:2;">&times;</button>
+    <div id="ai-check-modal-content" style="background:rgba(255,255,255,0.85);box-shadow:0 4px 24px #0003;border-radius:8px;padding:1.5rem 1.2rem;max-width:340px;width:100%;margin:2.5rem 2.5rem 2.5rem 0;display:flex;flex-direction:column;align-items:flex-start;">
+      <h2 style="font-size:1.5rem;font-weight:600;margin-bottom:1.2rem;">Ihr AI-Check in nur wenigen Minuten!</h2>
+      <div id="ai-check-date" style="font-size:1rem;color:#444;margin-bottom:0.7rem;"></div>
+      <div style="font-size:1rem;color:#222;margin-bottom:1.5rem;">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
+      <a id="show-pdf-btn" href="#" style="display:inline-block;background:#222;color:white;padding:0.7rem 1.5rem;border-radius:0.3rem;text-decoration:none;font-size:1rem;font-weight:600;">Jetzt starten</a>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ai-weg-btn');
+    var modal = document.getElementById('ai-modal');
+    var close = document.getElementById('ai-modal-close');
+    if (btn && modal && close) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (modal) modal.style.display = 'flex';
+      });
+      close.addEventListener('click', function() {
+        if (modal) modal.style.display = 'none';
+      });
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal) modal.style.display = 'none';
+      });
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    }
+    // AI-Check Modal
+    var aiCheckBtn = document.getElementById('ai-check-btn');
+    var aiCheckModal = document.getElementById('ai-check-modal');
+    var aiCheckClose = document.getElementById('ai-check-modal-close');
+    var aiCheckContent = document.getElementById('ai-check-modal-content');
+    if (aiCheckBtn && aiCheckModal && aiCheckClose && aiCheckContent) {
+      aiCheckBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (aiCheckModal && aiCheckContent) {
+          aiCheckModal.style.display = 'flex';
+          // Reset content to original when opening
+          aiCheckContent.innerHTML = `
+            <h2 style=\"font-size:1.5rem;font-weight:600;margin-bottom:1.2rem;\">Ihr AI-Check in nur wenigen Minuten!</h2>
+            <div id=\"ai-check-date\" style=\"font-size:1rem;color:#444;margin-bottom:0.7rem;\"></div>
+            <div style=\"font-size:1rem;color:#222;margin-bottom:1.5rem;\">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
+            <a id=\"show-pdf-btn\" href=\"#\" style=\"display:inline-block;background:#222;color:white;padding:0.7rem 1.5rem;border-radius:0.3rem;text-decoration:none;font-size:1rem;font-weight:600;\">Jetzt starten</a>
+          `;
+          // Set today's date again after content reset
+          setTimeout(function() {
+            var dateElem = document.getElementById('ai-check-date');
+            if (dateElem) {
+              var today = new Date();
+              var options = { day: '2-digit', month: 'long', year: 'numeric' };
+              dateElem.textContent = today.toLocaleDateString('de-DE', options);
+            }
+            var showPdfBtn = document.getElementById('show-pdf-btn');
+            if (showPdfBtn && aiCheckContent) {
+              showPdfBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open('https://calendly.com/julius-kaeck/30min?month=2025-06', '_blank');
+              });
+            }
+          }, 10);
+        }
+      });
+      aiCheckClose.addEventListener('click', function() {
+        if (aiCheckModal) aiCheckModal.style.display = 'none';
+      });
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && aiCheckModal) aiCheckModal.style.display = 'none';
+      });
+      aiCheckModal.addEventListener('click', function(e) {
+        if (e.target === aiCheckModal) aiCheckModal.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+
