@@ -24,7 +24,7 @@ import UeberUns from '../components/UeberUns.astro';
     <div style="background:#fff;color:#111827;max-width:700px;width:95vw;padding:2.5rem 2rem 2rem 2rem;border-radius:6px;box-shadow:0 4px 32px #0008;position:relative;">
       <button id="ai-modal-close" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;font-size:2rem;line-height:1;cursor:pointer;color:#111827;">&times;</button>
       <div style="text-align:center;margin-bottom:1.5rem;">
-        <img src="/images/logo.svg" alt="AImpacts Logo" style="height:54px;width:auto;display:inline-block;" />
+        <img src="/images/logo.jpg" alt="AImpacts Logo" style="height:54px;width:auto;display:inline-block;" />
       </div>
       <div style="font-size:1.25rem;font-weight:700;margin-bottom:1.2rem;">Sie möchten mehr wissen und haben Fragen dazu, wie sich AI für Ihr Unternehmen und Ihre Anwendungen nutzen lässt?</div>
       <div style="font-size:1.15rem;font-weight:700;margin-bottom:1.2rem;">Dann vereinbaren Sie eine 30-minütigen kostenlosen AI Beratung.</div>
@@ -85,9 +85,11 @@ import UeberUns from '../components/UeberUns.astro';
       window.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal) modal.style.display = 'none';
       });
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) modal.style.display = 'none';
-      });
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) modal.style.display = 'none';
+        });
+      }
     }
     // AI-Check Modal
     var aiCheckBtn = document.getElementById('ai-check-btn');
