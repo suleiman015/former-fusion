@@ -2,43 +2,343 @@
 // src/components/UeberUns.astro
 const { url } = Astro;
 ---
-<section style="background:#000000;padding:4rem 2rem;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:flex;gap:4rem;align-items:flex-start;">
-      <div style="flex:1;">
-        <h2 style="font-size:2.5rem;color:white;margin:0 0 2rem 0;text-align:left;font-family:inherit;">Über uns</h2>
-        <p style="color:#94a3b8;font-size:1rem;line-height:1.6;margin-bottom:2rem;text-align:left;padding-left:2rem;font-family:inherit;">
-          Wir sind seit 25 Jahren in unterschiedlichen Branchen zu Hause, wissen um die jeweiligen Besonderheiten und kennen uns aus, wenn es um Ihre IT-Projekte geht. Fragen Sie nach unserer Kompetenz in Ihrer Branche. Wir verfügen über umfassendes Know-how, wenn es um Projekte mit operativen, technischen und fachlichen Fragestellungen rund um Ihre IT geht.        </p>
+<section class="ueber-uns-section">
+  <div class="ueber-uns-container">
+    <div class="ueber-uns-content">
+      <div class="ueber-uns-text">
+        <h2 class="ueber-uns-title">Über uns</h2>
+        <p class="ueber-uns-description">
+          Wir sind seit 25 Jahren in unterschiedlichen Branchen zu Hause, wissen um die jeweiligen Besonderheiten und kennen uns aus, wenn es um Ihre IT-Projekte geht. Fragen Sie nach unserer Kompetenz in Ihrer Branche. Wir verfügen über umfassendes Know-how, wenn es um Projekte mit operativen, technischen und fachlichen Fragestellungen rund um Ihre IT geht.
+        </p>
       </div>
-      <div style="flex:0 0 300px;">
-        <img src="/images/Ueber_uns_.jpg" alt="Über uns" style="width:100%;border-radius:0.5rem;margin-bottom:1.5rem;" />
-        <div style="text-align:center;">
-            <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" style="display:inline-block;background:#1e40af;color:white;padding:0.75rem 1.5rem;border-radius:0.375rem;text-decoration:none;font-size:0.9rem;">mehr über uns</a>
+      <div class="ueber-uns-image-container">
+        <img src="/images/Ueber_uns_.jpg" alt="Über uns" class="ueber-uns-image" />
+        <div class="ueber-uns-button-container">
+          <a href="/impressum" class="ueber-uns-btn">mehr über uns</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="background:#000000;margin:3rem 0 0;padding:1rem 0;width:100%;">
-    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:8rem;">
-    <div style="text-align:center;">
-      <div class="countup" data-target="25" style="font-size:4rem;color:white;font-weight:bold;display:inline-block;font-family:inherit;">0</div><span style="font-size:2rem;color:white;font-weight:bold;font-family:inherit;"> +</span>
-      <div style="color:#94a3b8;font-size:1.2rem;margin-top:0.5rem;font-family:inherit;">Jahre am Markt</div>
-    </div>
-    <div style="text-align:center;">
-      <div class="countup" data-target="40000" style="font-size:4rem;color:white;font-weight:bold;">0</div>
-      <div style="color:#94a3b8;font-size:1.2rem;margin-top:0.5rem;">Beraterstunden</div>
-    </div>
-    <div style="text-align:center;">
-      <div class="countup" data-target="95" style="font-size:4rem;color:white;font-weight:bold;">0</div>
-      <div style="color:#94a3b8;font-size:1.2rem;margin-top:0.5rem;">% Kundenzufriedenheit</div>
+  <div class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="countup" data-target="25">0</div>
+        <span class="stat-plus">+</span>
+        <div class="stat-label">Jahre am Markt</div>
+      </div>
+      <div class="stat-item">
+        <div class="countup" data-target="40000">0</div>
+        <div class="stat-label">Beraterstunden</div>
+      </div>
+      <div class="stat-item">
+        <div class="countup" data-target="95">0</div>
+        <div class="stat-label">% Kundenzufriedenheit</div>
+      </div>
     </div>
   </div>
-
-</div>
-
-
 </section>
+
+<section class="ki-aktion-section">
+  <div class="ki-aktion-container">
+    <h2 class="ki-aktion-title">Erleben Sie KI in Aktion</h2>
+    <div class="ki-aktion-video-wrapper">
+      <video controls poster="/images/logo.jpg" class="ki-aktion-video">
+        <source src="/images/Aktuelle Version Video Burg Stahleck.mp4" type="video/mp4" />
+        Ihr Browser unterstützt das Video-Tag nicht.
+      </video>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Über uns Section Styles */
+  .ueber-uns-section {
+    background: #000000;
+    padding: 4rem 2rem;
+  }
+
+  .ueber-uns-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .ueber-uns-content {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .ueber-uns-text {
+    flex: 1;
+  }
+
+  .ueber-uns-title {
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 0 2rem 0;
+    text-align: left;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .ueber-uns-description {
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-left: 2rem;
+    font-family: inherit;
+  }
+
+  .ueber-uns-image-container {
+    flex: 0 0 300px;
+  }
+
+  .ueber-uns-image {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .ueber-uns-button-container {
+    text-align: center;
+  }
+
+  .ueber-uns-btn {
+    display: inline-block;
+    background: #1e40af;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .ueber-uns-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+  }
+
+  /* Stats Section */
+  .stats-section {
+    background: #000000;
+    margin: 3rem 0 0;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .countup {
+    font-size: 4rem;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    font-family: inherit;
+    line-height: 1;
+  }
+
+  .stat-plus {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    font-family: inherit;
+  }
+
+  .stat-label {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    font-family: inherit;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .ueber-uns-section {
+      padding: 3rem 1rem;
+    }
+
+    .ueber-uns-container {
+      padding: 0 1rem;
+    }
+
+    .ueber-uns-content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .ueber-uns-title {
+      font-size: 2rem;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
+    .ueber-uns-description {
+      padding-left: 0;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .ueber-uns-image-container {
+      flex: none;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .ueber-uns-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .stats-container {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .countup {
+      font-size: 3rem;
+    }
+
+    .stat-plus {
+      font-size: 1.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ueber-uns-section {
+      padding: 2rem 1rem;
+    }
+
+    .ueber-uns-container {
+      padding: 0 1rem;
+    }
+
+    .ueber-uns-title {
+      font-size: 1.8rem;
+      text-align: left;
+    }
+
+    .ueber-uns-description {
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .ueber-uns-image-container {
+      max-width: 300px;
+    }
+
+    .ueber-uns-btn {
+      padding: 0.9rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .countup {
+      font-size: 2.5rem;
+    }
+
+    .stat-plus {
+      font-size: 1.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Touch-friendly improvements */
+  @media (hover: none) and (pointer: coarse) {
+    .ueber-uns-btn {
+      min-height: 48px;
+    }
+  }
+
+  .ki-aktion-section {
+    background: #000;
+    padding: 4rem 2rem;
+    color: white;
+  }
+  .ki-aktion-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .ki-aktion-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-align: left;
+  }
+  .ki-aktion-video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ki-aktion-video {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #0002;
+    background: none;
+  }
+  @media (max-width: 1024px) {
+    .ki-aktion-video {
+      max-width: 700px;
+    }
+  }
+  @media (max-width: 768px) {
+    .ki-aktion-section {
+      padding: 3rem 1rem;
+    }
+    .ki-aktion-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .ki-aktion-video {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  }
+  @media (max-width: 480px) {
+    .ki-aktion-section {
+      padding: 2rem 0.8rem;
+    }
+    .ki-aktion-title {
+      font-size: 1.2rem;
+    }
+  }
+</style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {

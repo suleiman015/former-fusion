@@ -1,67 +1,272 @@
 ---
 // src/components/Leistungen.astro
 ---
-<section style="background:#000000;padding:4rem 2rem;">
-  <div style="width:calc(300px * 3 + 2rem * 2);margin:0 auto;">
-    <div style="margin-bottom:3rem;">
-      <h2 style="font-size:2rem;color:white;text-align:left;margin-bottom:2rem;font-family:inherit;">Leistungen</h2>
-      <p style="text-align:left;color:#cbd5e1;font-family:inherit;">
-Nutzen Sie unsere Expertise für Ihre Erfolge. Wir kennen die Performance unterschiedlicher Anbieter und wissen, welche Lösungen bei welchen Aufgabenstellungen erfolgversprechend sind. Wir beraten Sie von Beginn an und begleiten Sie, kompetente Schulungen auf Augenhöhe gehören selbstverständlich dazu.    </div>
-    <div style="display:flex;gap:2rem;justify-content:flex-start;flex-wrap:wrap;">
-    
-    <div style="background:#111827;border-radius:12px;overflow:hidden;max-width:300px;box-shadow:0 0 10px #0005;">
-      <div style="background:#0f172a;padding:1.2rem;color:#fff;font-weight:bold;font-size:1rem;text-align:center;border-bottom:1px solid #1f2937;font-family:inherit;">BPM – Beratung</div>
-      <div style="text-align:center;">
-        <img src="/images/leistung_bpm_.jpg" alt="BPM" style="width:80%;height:250px;object-fit:cover;object-position:center;"/>
-      </div>
-      <div style="padding:1rem;color:#e2e8f0;font-size:0.75rem;text-align:left;">
-        Ganzheitliche Beratung zur Optimierung Ihrer Geschäftsprozesse, im Hinblick auf eine Automatisierung und möglichen KI-Unterstützung.
-     </div>
+<section class="leistungen-section">
+  <div class="leistungen-container">
+    <div class="leistungen-header">
+      <h2 class="leistungen-title">Leistungen</h2>
+      <p class="leistungen-description">
+        Nutzen Sie unsere Expertise für Ihre Erfolge. Wir kennen die Performance unterschiedlicher Anbieter und wissen, welche Lösungen bei welchen Aufgabenstellungen erfolgversprechend sind. Wir beraten Sie von Beginn an und begleiten Sie, kompetente Schulungen auf Augenhöhe gehören selbstverständlich dazu.
+      </p>
     </div>
-
-    <div style="background:#111827;border-radius:12px;overflow:hidden;max-width:300px;box-shadow:0 0 10px #0005;">
-      <div style="background:#0f172a;padding:1.2rem;color:#fff;font-weight:bold;font-size:1rem;text-align:center;border-bottom:1px solid #1f2937;font-family:inherit;">AI – Beratung</div>
-      <div style="text-align:center;">
-        <img src="/images/leistung_ai_beratung_.jpg" alt="AI" style="width:80%;height:250px;object-fit:cover;object-position:center;"/>
-      </div>
-      <div style="padding:1rem;color:#e2e8f0;font-size:0.75rem;text-align:left;">
-        Beratung zur Implementierung und Nutzung von KI-Technologien, Identifikation von Business Use Cases mit Fokus auf QuickWins.
-
-
-
-      </div>
-    </div>
-
-    <div style="background:#111827;border-radius:12px;overflow:hidden;max-width:300px;box-shadow:0 0 10px #0005;">
-      <div style="background:#0f172a;padding:1.2rem;color:#fff;font-weight:bold;font-size:1rem;text-align:center;border-bottom:1px solid #1f2937;font-family:inherit;">Schulung</div>
-      <div style="text-align:center;">
-        <img src="/images/leistung_schulung_.jpg" alt="Schulung" style="width:80%;height:250px;object-fit:cover;object-position:center;"/>
-      </div>
-      <div style="padding:1rem;color:#e2e8f0;font-size:0.75rem;text-align:left;">
-        Mit Know-how verfügen wir über eine professionelle Expertise in Methodik und Didaktik.
-
-      </div>
-    </div>
-
-    <div style="margin-top:4rem;">
-      <div style="display:flex;justify-content:center;gap:8rem;align-items:flex-start;margin-bottom:6rem;">
-        <p style="color:#94a3b8;font-size:1.2rem;margin:0;padding-top:0.7rem;">In diesen Branchen haben wir überzeugt:
-        </p>
-        <div style="text-align:center;">
-          <img src="/images/bankensektor.svg" alt="Bankensektor" style="width:48px;height:48px;filter:invert(40%) sepia(98%) saturate(1000%) hue-rotate(190deg) brightness(90%);margin-bottom:0.5rem;"/>
-          <p style="color:#94a3b8;font-size:0.8rem;margin:0;">Bankensektor</p>
+    <div class="leistungen-list">
+      <div class="leistung-card">
+        <div class="leistung-card-title">BPM – Beratung</div>
+        <div class="leistung-card-image-container">
+          <img src="/images/leistung_bpm_.jpg" alt="BPM" class="leistung-card-image" />
         </div>
-        <div style="text-align:center;">
-          <img src="/images/automotive.svg" alt="Automotive" style="width:48px;height:48px;filter:invert(40%) sepia(98%) saturate(1000%) hue-rotate(190deg) brightness(90%);margin-bottom:0.5rem;"/>
-          <p style="color:#94a3b8;font-size:0.8rem;margin:0;">Automotive</p>
+        <div class="leistung-card-description">
+          Ganzheitliche Beratung zur Optimierung Ihrer Geschäftsprozesse, im Hinblick auf eine Automatisierung und möglichen KI-Unterstützung.
         </div>
-        <div style="text-align:center;">
-          <img src="/images/medizintechnik.svg" alt="Medizintechnik" style="width:48px;height:48px;filter:invert(40%) sepia(98%) saturate(1000%) hue-rotate(190deg) brightness(90%);margin-bottom:0.5rem;"/>
-          <p style="color:#94a3b8;font-size:0.8rem;margin:0;">Medizintechnik</p>
+      </div>
+      <div class="leistung-card">
+        <div class="leistung-card-title">AI – Beratung</div>
+        <div class="leistung-card-image-container">
+          <img src="/images/leistung_ai_beratung_.jpg" alt="AI" class="leistung-card-image" />
+        </div>
+        <div class="leistung-card-description">
+          Beratung zur Implementierung und Nutzung von KI-Technologien, Identifikation von Business Use Cases mit Fokus auf QuickWins.
+        </div>
+      </div>
+      <div class="leistung-card">
+        <div class="leistung-card-title">Schulung</div>
+        <div class="leistung-card-image-container">
+          <img src="/images/leistung_schulung_.jpg" alt="Schulung" class="leistung-card-image" />
+        </div>
+        <div class="leistung-card-description">
+          Mit Know-how verfügen wir über eine professionelle Expertise in Methodik und Didaktik.
         </div>
       </div>
     </div>
-
+    <div class="branchen-section">
+      <div class="branchen-header">In diesen Branchen haben wir überzeugt:</div>
+      <div class="branchen-list">
+        <div class="branche">
+          <img src="/images/bankensektor.svg" alt="Bankensektor" class="branche-icon" />
+          <p class="branche-label">Bankensektor</p>
+        </div>
+        <div class="branche">
+          <img src="/images/automotive.svg" alt="Automotive" class="branche-icon" />
+          <p class="branche-label">Automotive</p>
+        </div>
+        <div class="branche">
+          <img src="/images/medizintechnik.svg" alt="Medizintechnik" class="branche-icon" />
+          <p class="branche-label">Medizintechnik</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .leistungen-section {
+    background: #000000;
+    padding: 4rem 2rem;
+  }
+  .leistungen-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .leistungen-header {
+    margin-bottom: 3rem;
+  }
+  .leistungen-title {
+    font-size: 2.5rem;
+    color: white;
+    text-align: left;
+    margin-bottom: 2rem;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+  .leistungen-description {
+    text-align: left;
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .leistungen-list {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .leistung-card {
+    background: #111827;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 300px;
+    box-shadow: 0 0 10px #0005;
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .leistung-card-title {
+    background: #0f172a;
+    padding: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #1f2937;
+    font-family: inherit;
+  }
+  .leistung-card-image-container {
+    width: 100%;
+    text-align: left;
+  }
+  .leistung-card-image {
+    width: 80%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+    margin: 0.5rem auto 0.5rem auto;
+    display: block;
+  }
+  .leistung-card-description {
+    padding: 1rem;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    text-align: left;
+    flex: 1;
+    font-family: inherit;
+  }
+  .branchen-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .branchen-header {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-top: 0.7rem;
+    font-family: inherit;
+  }
+  .branchen-list {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .branche {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .branche-icon {
+    width: 48px;
+    height: 48px;
+    filter: invert(40%) sepia(98%) saturate(1000%) hue-rotate(190deg) brightness(90%);
+    margin-bottom: 0.5rem;
+  }
+  .branche-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin: 0;
+    font-family: inherit;
+  }
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .leistungen-list {
+      gap: 1.2rem;
+    }
+    .branchen-list {
+      gap: 1.2rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .leistungen-section {
+      padding: 3rem 1rem;
+    }
+    .leistungen-container {
+      padding: 0 1rem;
+    }
+    .leistungen-title {
+      font-size: 2rem;
+      text-align: left;
+    }
+    .leistungen-description {
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .leistungen-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .leistung-card {
+      max-width: 100%;
+      width: 100%;
+      flex: 1 1 100%;
+      border-radius: 12px;
+    }
+    .leistung-card-image-container {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    .leistung-card-image {
+      width: 80%;
+      height: 180px;
+      margin: 0.5rem auto;
+      border-radius: 0.5rem;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+    .branchen-header {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .branchen-list {
+      gap: 1rem;
+    }
+    .branche-label {
+      font-size: 0.85rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .leistungen-section {
+      padding: 2rem 1rem;
+    }
+    .leistungen-container {
+      padding: 0 1rem;
+    }
+    .leistungen-title {
+      font-size: 1.8rem;
+      text-align: left;
+    }
+    .leistungen-description {
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .leistung-card-image {
+      width: 80%;
+      height: 120px;
+      margin: 0.5rem auto;
+      border-radius: 0.5rem;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+    .branchen-header {
+      font-size: 0.9rem;
+    }
+    .branche-label {
+      font-size: 0.8rem;
+    }
+  }
+  /* Touch-friendly improvements */
+  @media (hover: none) and (pointer: coarse) {
+    .leistung-card-title {
+      min-height: 48px;
+    }
+  }
+</style>

@@ -1,0 +1,14 @@
+# Erlaube allen Crawlern den Zugang zur gesamten Website
+User-agent: *
+Allow: /
+Disallow: /images/aileen.jpg
+Disallow: /images/gideon.jpg
+Disallow: /images/julius.jpg
+
+# Google-Verifizierungsdatei
+Allow: /google347897e992d8fc4d.html
+
+# Sitemap
+Sitemap: https://aimpacts.de/sitemap-index.xml
+  
+
