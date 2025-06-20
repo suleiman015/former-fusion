@@ -33,7 +33,9 @@ import UeberUns from '../components/UeberUns.astro';
     }
 
     .hero-btn {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #2563eb;
       color: white;
       padding: 0.8rem 2rem;
@@ -44,8 +46,6 @@ import UeberUns from '../components/UeberUns.astro';
       box-shadow: 0 2px 8px #0002;
       transition: all 0.3s ease;
       min-height: 48px;
-      align-items: center;
-      justify-content: center;
       width: auto;
       max-width: 320px;
       margin: 0 auto;
@@ -113,7 +113,9 @@ import UeberUns from '../components/UeberUns.astro';
     }
 
     .ai-check-btn {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #2563eb;
       color: white;
       padding: 1.1rem 2.8rem;
@@ -124,8 +126,6 @@ import UeberUns from '../components/UeberUns.astro';
       box-shadow: 0 2px 8px #0002;
       transition: all 0.3s ease;
       min-height: 50px;
-      align-items: center;
-      justify-content: center;
       white-space: nowrap;
       width: auto;
       max-width: 350px;
@@ -214,7 +214,9 @@ import UeberUns from '../components/UeberUns.astro';
     }
 
     .modal-btn {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #2563eb;
       color: white;
       padding: 1.1rem 2.8rem;
@@ -225,11 +227,9 @@ import UeberUns from '../components/UeberUns.astro';
       box-shadow: 0 2px 8px #0002;
       transition: all 0.3s ease;
       min-height: 50px;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
       width: auto;
       max-width: 350px;
+      white-space: nowrap;
     }
 
     .modal-btn:hover {
@@ -287,7 +287,9 @@ import UeberUns from '../components/UeberUns.astro';
     }
 
     .ai-check-modal-btn {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #222;
       color: white;
       padding: 0.7rem 1.5rem;
@@ -297,9 +299,8 @@ import UeberUns from '../components/UeberUns.astro';
       font-weight: 600;
       transition: all 0.3s ease;
       min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: auto;
+      white-space: nowrap;
     }
 
     .ai-check-modal-btn:hover {
@@ -521,20 +522,22 @@ import UeberUns from '../components/UeberUns.astro';
 <section id="faq"><FAQ /></section>
   </main>
 
-  <div id="ai-check-modal" class="modal">
+  <!-- EINDEUTIGE IDs für das zweite Modal -->
+  <div id="ai-check-modal-2" class="modal">
     <div class="ai-check-modal-content">
-      <button id="ai-check-modal-close" class="modal-close">&times;</button>
-      <div id="ai-check-modal-content" class="ai-check-modal-inner">
+      <button id="ai-check-modal-close-2" class="modal-close">&times;</button>
+      <div id="ai-check-modal-content-2" class="ai-check-modal-inner">
         <h2 class="ai-check-modal-title">Ihr AI-Check in nur wenigen Minuten!</h2>
-        <div id="ai-check-date" class="ai-check-modal-date"></div>
+        <div id="ai-check-date-2" class="ai-check-modal-date"></div>
         <div class="ai-check-modal-description">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
-        <a id="show-pdf-btn" href="#" class="ai-check-modal-btn">Jetzt starten</a>
+        <a id="show-pdf-btn-2" href="#" class="ai-check-modal-btn">Jetzt starten</a>
       </div>
     </div>
   </div>
 
-<script>
+<script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
+    // Erstes Modal (AI Weg)
     var btn = document.getElementById('ai-weg-btn');
     var modal = document.getElementById('ai-modal');
     var close = document.getElementById('ai-modal-close');
@@ -572,10 +575,11 @@ import UeberUns from '../components/UeberUns.astro';
       }
     }
 
+    // Zweites Modal (AI Check)
     var aiCheckBtn = document.getElementById('ai-check-btn');
-    var aiCheckModal = document.getElementById('ai-check-modal');
-    var aiCheckClose = document.getElementById('ai-check-modal-close');
-    var aiCheckContent = document.getElementById('ai-check-modal-content');
+    var aiCheckModal = document.getElementById('ai-check-modal-2');
+    var aiCheckClose = document.getElementById('ai-check-modal-close-2');
+    var aiCheckContent = document.getElementById('ai-check-modal-content-2');
       
     if (aiCheckBtn && aiCheckModal && aiCheckClose && aiCheckContent) {
       aiCheckBtn.addEventListener('click', function(e) {
@@ -585,21 +589,19 @@ import UeberUns from '../components/UeberUns.astro';
           // Reset content to original when opening
           aiCheckContent.innerHTML = `
               <h2 class="ai-check-modal-title">Ihr AI-Check in nur wenigen Minuten!</h2>
-              <div id="ai-check-date" class="ai-check-modal-date"></div>
+              <div id="ai-check-date-2" class="ai-check-modal-date"></div>
               <div class="ai-check-modal-description">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
-              <a id="show-pdf-btn" href="#" class="ai-check-modal-btn">Jetzt starten</a>
+              <a id="show-pdf-btn-2" href="#" class="ai-check-modal-btn">Jetzt starten</a>
             `;
-            
           // Set today's date again after content reset
           setTimeout(function() {
-            var dateElem = document.getElementById('ai-check-date');
+            var dateElem = document.getElementById('ai-check-date-2');
             if (dateElem) {
               var today = new Date();
-                var options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'long', year: 'numeric' };
+              var options = { day: '2-digit', month: 'long', year: 'numeric' };
               dateElem.textContent = today.toLocaleDateString('de-DE', options);
             }
-              
-            var showPdfBtn = document.getElementById('show-pdf-btn');
+            var showPdfBtn = document.getElementById('show-pdf-btn-2');
             if (showPdfBtn && aiCheckContent) {
               showPdfBtn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -609,20 +611,17 @@ import UeberUns from '../components/UeberUns.astro';
           }, 10);
         }
       });
-        
       aiCheckClose.addEventListener('click', function() {
         if (aiCheckModal) aiCheckModal.style.display = 'none';
       });
-        
       window.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && aiCheckModal) aiCheckModal.style.display = 'none';
       });
-        
-        if (aiCheckModal) {
-      aiCheckModal.addEventListener('click', function(e) {
-        if (e.target === aiCheckModal) aiCheckModal.style.display = 'none';
-      });
-        }
+      if (aiCheckModal) {
+        aiCheckModal.addEventListener('click', function(e) {
+          if (e.target === aiCheckModal) aiCheckModal.style.display = 'none';
+        });
+      }
     }
   });
 </script>
