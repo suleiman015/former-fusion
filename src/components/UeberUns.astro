@@ -14,7 +14,7 @@ const { url } = Astro;
       <div class="ueber-uns-image-container">
         <img src="/images/Ueber_uns_.jpg" alt="Über uns" class="ueber-uns-image" />
         <div class="ueber-uns-button-container">
-          <a href="/impressum" class="ueber-uns-btn">mehr über uns</a>
+          <a href="#stahleck-video" class="ueber-uns-btn">mehr über uns</a>
         </div>
       </div>
     </div>
@@ -39,12 +39,12 @@ const { url } = Astro;
   </div>
 </section>
 
-<section class="ki-aktion-section">
+<section class="ki-aktion-section" id="stahleck-video">
   <div class="ki-aktion-container">
     <h2 class="ki-aktion-title">Erleben Sie KI in Aktion</h2>
     <div class="ki-aktion-video-wrapper">
       <video controls poster="/images/logo.jpg" class="ki-aktion-video">
-        <source src="/images/Aktuelle Version Video Burg Stahleck.mp4" type="video/mp4" />
+        <source src="/videos/Stahleck.mp4" type="video/mp4" />
         Ihr Browser unterstützt das Video-Tag nicht.
       </video>
     </div>
@@ -310,6 +310,7 @@ const { url } = Astro;
     border-radius: 12px;
     box-shadow: 0 2px 12px #0002;
     background: none;
+    object-fit: contain;
   }
   @media (max-width: 1024px) {
     .ki-aktion-video {

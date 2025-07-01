@@ -8,23 +8,23 @@ import CookieBanner from '../components/CookieBanner.astro';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Primary Meta Tags -->
-    <title>AImpacts – AI Solutions Ready for Your Business</title>
-    <meta name="title" content="AImpacts – AI Solutions Ready for Your Business" />
+    <!-- Primary Meta Tags -->  
+    <title>AImpacts – AI Solutions & Services for Business Growth</title>
+    <meta name="title" content="AImpacts – AI Solutions & Services for Business Growth" />
     <meta name="description" content="KI-Lösungen für Unternehmen: Wir beraten Sie professionell und entwickeln gemeinsam Ihre individuelle KI-Strategie – in Bonn und deutschlandweit." />
     <meta name="keywords" content="KI Beratung für Unternehmen, KI Beratung Bonn, KI Beratung Deutschland, KI-Lösungen, KI-Beratung, KI-Strategie, Künstliche Intelligenz, AI Consulting, Digitalisierung, Unternehmen, Bonn, JUKABO" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aimpacts.de/" />
-    <meta property="og:title" content="AImpacts - AI ready for business" />
+    <meta property="og:title" content="AImpacts - AI Solutions & Services for Business Growth" />
     <meta property="og:description" content="KI-Lösungen für Unternehmen: Wir bieten professionelle KI-Beratung und entwickeln gemeinsam mit Ihnen eine individuelle KI-Strategie. Ihre Experten für KI-Beratung in Bonn und ganz Deutschland." />
     <meta property="og:image" content="/images/logo.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://aimpacts.de/" />
-    <meta property="twitter:title" content="AImpacts - AI ready for business" />
+    <meta property="twitter:title" content="AImpacts - AI Solutions & Services for Business Growth" />
     <meta property="twitter:description" content="KI-Lösungen für Unternehmen: Wir bieten professionelle KI-Beratung und entwickeln gemeinsam mit Ihnen eine individuelle KI-Strategie. Ihre Experten für KI-Beratung in Bonn und ganz Deutschland." />
     <meta property="twitter:image" content="/images/logo.jpg" />
 
@@ -78,14 +78,14 @@ import CookieBanner from '../components/CookieBanner.astro';
         z-index: 100;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
+        position: relative;
       }
 
       .header-container {
+        flex: 0 0 auto;
         display: flex;
         align-items: center;
-        gap: 1.2rem;
-        flex: 0 0 auto;
       }
 
       .logo-link {
@@ -102,28 +102,24 @@ import CookieBanner from '../components/CookieBanner.astro';
       }
 
       .nav-container {
+        flex: 0 1 auto;
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin: 0 auto;
+        margin-left: 6rem;
       }
 
       .main-nav {
         display: flex;
-        gap: 1.7rem;
+        gap: 2.5rem;
         align-items: center;
-        flex: 1;
-        justify-content: center;
-        max-width: 100%;
-        flex-wrap: wrap;
-        flex-shrink: 1;
+        justify-content: flex-start;
       }
 
       .main-nav a {
         color: #111827;
         text-decoration: none;
         font-weight: 500;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         position: relative;
         padding: 0.2rem 0.5rem;
         transition: color 0.2s, font-weight 0.2s;
@@ -264,6 +260,15 @@ import CookieBanner from '../components/CookieBanner.astro';
         margin-bottom: 1rem;
         line-height: 1.2;
         font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .footer-section p,
+      .footer-section a,
+      .contact-links {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
       }
 
       .footer-section p {
@@ -322,6 +327,14 @@ import CookieBanner from '../components/CookieBanner.astro';
 
         .mobile-menu-toggle {
           display: block;
+          position: absolute;
+          right: 1.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .header-container {
+          justify-content: flex-start;
         }
 
         .header-btn {
@@ -379,7 +392,100 @@ import CookieBanner from '../components/CookieBanner.astro';
           min-height: 48px;
         }
       }
+
+      /* Scroll to Top Button */
+      .scroll-to-top-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .scroll-to-top-btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+      }
+
+      .scroll-to-top-btn.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .scroll-to-top-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .scroll-to-top-btn {
+          bottom: 1.5rem;
+          right: 1.5rem;
+          width: 45px;
+          height: 45px;
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .scroll-to-top-btn {
+          bottom: 1rem;
+          right: 1rem;
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+      }
     </style>
+
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "JUKABO",
+      "url": "https://aimpacts.de",
+      "logo": "https://aimpacts.de/images/logo.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Hauptbahnhof 6",
+        "addressLocality": "Bonn",
+        "postalCode": "53111",
+        "addressCountry": "DE"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+49-228-6200033",
+        "contactType": "customer service",
+        "email": "Kontakt@AImpacts.de"
+      }
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SR0P6X737M"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SR0P6X737M');
+    </script>
   </head>
   <body>
     <header>
@@ -391,14 +497,16 @@ import CookieBanner from '../components/CookieBanner.astro';
       
       <div class="nav-container">
         <nav class="main-nav">
-          <a href="#home">Home</a>
-          <a href="#ueber-uns">Über uns</a>
-          <a href="#leistungen">Leistungen</a>
-          <a href="#technologien">Technologien</a>
-          <a href="#team">Team</a>
-          <a href="#faq">FAQ</a>
+          <a href="/">Home</a>
+          <a href="/#ueber-uns">Über uns</a>
+          <a href="/#leistungen">Leistungen</a>
+          <a href="/#technologien">Technologien</a>
+          <a href="/#team">Team</a>
+          <a href="/#faq">FAQ</a>
         </nav>
-        <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" class="header-btn">Zur kostenlosen AI Beratung</a>
+      <!--
+  <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" class="header-btn">Zur kostenlosen AI Beratung</a>-->
+
       </div>
 
       <button class="mobile-menu-toggle" id="mobile-menu-toggle">
@@ -409,13 +517,13 @@ import CookieBanner from '../components/CookieBanner.astro';
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
       <button class="mobile-menu-close" id="mobile-menu-close">×</button>
-      <a href="#home" onclick="closeMobileMenu()">Home</a>
-      <a href="#ueber-uns" onclick="closeMobileMenu()">Über uns</a>
-      <a href="#leistungen" onclick="closeMobileMenu()">Leistungen</a>
-      <a href="#technologien" onclick="closeMobileMenu()">Technologien</a>
-      <a href="#team" onclick="closeMobileMenu()">Team</a>
-      <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-      <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" onclick="closeMobileMenu()">Zur kostenlosen AI Beratung</a>
+      <a href="/#home" onclick="closeMobileMenu()">Home</a>
+      <a href="/#ueber-uns" onclick="closeMobileMenu()">Über uns</a>
+      <a href="/#leistungen" onclick="closeMobileMenu()">Leistungen</a>
+      <a href="/#technologien" onclick="closeMobileMenu()">Technologien</a>
+      <a href="/#team" onclick="closeMobileMenu()">Team</a>
+      <a href="/#faq" onclick="closeMobileMenu()">FAQ</a>
+     <!-- <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" onclick="closeMobileMenu()">Zur kostenlosen AI Beratung</a>-->
     </div>
 
     <main>
@@ -436,6 +544,7 @@ import CookieBanner from '../components/CookieBanner.astro';
           <div class="contact-links">
             <a href="https://www.google.com/maps?q=Am+Hauptbahnhof+6,+53111+Bonn" target="_blank">Am Hauptbahnhof 6, 53111 Bonn</a>
             <a href="tel:+492286200033">+49 (0)228 62 000 33</a>
+            
             <a href="mailto:Kontakt@AImpacts.de">Kontakt@AImpacts.de</a>
           </div>
         </div>
@@ -500,9 +609,53 @@ import CookieBanner from '../components/CookieBanner.astro';
             closeMobileMenu();
           }
         });
+
+        // --- NEU: Menü-Anker-Links immer auf Startseite umleiten ---
+        document.querySelectorAll('.main-nav a').forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('/#')) {
+            link.addEventListener('click', function(e) {
+              if (window.location.pathname !== '/') {
+                e.preventDefault();
+                window.location.href = href;
+              }
+            });
+          }
+        });
+      });
+
+      // Scroll to Top functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        if (scrollToTopBtn) {
+          // Show button when scrolling down
+          window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+              scrollToTopBtn.classList.add('show');
+            } else {
+              scrollToTopBtn.classList.remove('show');
+            }
+          });
+          
+          // Smooth scroll to top when clicked
+          scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          });
+        }
       });
     </script>
 
     <CookieBanner />
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Nach oben scrollen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
   </body>
 </html> 

@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import UeberUns from '../components/UeberUns.astro';
+import Lesitungen from '../components/Lesitungen.astro';
+import TechnologienUndInvestitionen from '../components/TechnologienUndInvestitionen.astro';
+import Comments from '../components/comments.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 <style>
 .datenschutz-section {
@@ -30,4 +35,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2 class="datenschutz-h2">Quelle</h2>
     <p>Diese Seite entstand unter Zuhilfenahme der Dienste von<br>Impressumgenerator <a href="https://www.e-recht24.de/" style="color:#60a5fa;text-decoration:underline;">e-recht24.de</a></p>
   </section>
+  <section id="ueber-uns"><UeberUns /></section>
+  <section id="leistungen"><Lesitungen /></section>
+  <section id="technologien"><TechnologienUndInvestitionen /></section>
+  <section id="team"><Comments /></section>
+  <section id="faq"><FAQ /></section>
+  <section id="home"></section>
 </BaseLayout> 

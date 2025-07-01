@@ -509,7 +509,7 @@ import UeberUns from '../components/UeberUns.astro';
             <video src="/videos/Start_Ai.mp4" autoplay muted loop></video>
           </div>
           <div class="ai-check-button-container">
-            <a id="ai-check-btn" href="https://calendly.com/julius-kaeck/30min?month=2025-06" class="ai-check-btn">AI Check mit AImpacts starten →</a>
+            <a id="ai-check-btn" href="https://forms.office.com/e/ExtrgZHDBh" target="_blank" rel="noopener noreferrer" class="ai-check-btn">AI Check mit AImpacts starten →</a>
           </div>
         </div>
       </div>
@@ -521,19 +521,6 @@ import UeberUns from '../components/UeberUns.astro';
 <section id="team"><Comments /></section>
 <section id="faq"><FAQ /></section>
   </main>
-
-  <!-- EINDEUTIGE IDs für das zweite Modal -->
-  <div id="ai-check-modal-2" class="modal">
-    <div class="ai-check-modal-content">
-      <button id="ai-check-modal-close-2" class="modal-close">&times;</button>
-      <div id="ai-check-modal-content-2" class="ai-check-modal-inner">
-        <h2 class="ai-check-modal-title">Ihr AI-Check in nur wenigen Minuten!</h2>
-        <div id="ai-check-date-2" class="ai-check-modal-date"></div>
-        <div class="ai-check-modal-description">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
-        <a id="show-pdf-btn-2" href="#" class="ai-check-modal-btn">Jetzt starten</a>
-      </div>
-    </div>
-  </div>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
@@ -571,55 +558,6 @@ import UeberUns from '../components/UeberUns.astro';
             modal.style.display = 'none';
             enableBodyScroll();
           }
-        });
-      }
-    }
-
-    // Zweites Modal (AI Check)
-    var aiCheckBtn = document.getElementById('ai-check-btn');
-    var aiCheckModal = document.getElementById('ai-check-modal-2');
-    var aiCheckClose = document.getElementById('ai-check-modal-close-2');
-    var aiCheckContent = document.getElementById('ai-check-modal-content-2');
-      
-    if (aiCheckBtn && aiCheckModal && aiCheckClose && aiCheckContent) {
-      aiCheckBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (aiCheckModal && aiCheckContent) {
-          aiCheckModal.style.display = 'flex';
-          // Reset content to original when opening
-          aiCheckContent.innerHTML = `
-              <h2 class="ai-check-modal-title">Ihr AI-Check in nur wenigen Minuten!</h2>
-              <div id="ai-check-date-2" class="ai-check-modal-date"></div>
-              <div class="ai-check-modal-description">Nachdem Sie die Checkliste ausgefüllt haben, schicken wir Ihnen eine Einladung zu einem kostenlosen unverbindlichen Online-Termin zu. Wir freuen uns. Sie können loslegen!</div>
-              <a id="show-pdf-btn-2" href="#" class="ai-check-modal-btn">Jetzt starten</a>
-            `;
-          // Set today's date again after content reset
-          setTimeout(function() {
-            var dateElem = document.getElementById('ai-check-date-2');
-            if (dateElem) {
-              var today = new Date();
-              var options = { day: '2-digit', month: 'long', year: 'numeric' };
-              dateElem.textContent = today.toLocaleDateString('de-DE', options);
-            }
-            var showPdfBtn = document.getElementById('show-pdf-btn-2');
-            if (showPdfBtn && aiCheckContent) {
-              showPdfBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.open('https://calendly.com/julius-kaeck/30min?month=2025-06', '_blank');
-              });
-            }
-          }, 10);
-        }
-      });
-      aiCheckClose.addEventListener('click', function() {
-        if (aiCheckModal) aiCheckModal.style.display = 'none';
-      });
-      window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && aiCheckModal) aiCheckModal.style.display = 'none';
-      });
-      if (aiCheckModal) {
-        aiCheckModal.addEventListener('click', function(e) {
-          if (e.target === aiCheckModal) aiCheckModal.style.display = 'none';
         });
       }
     }
