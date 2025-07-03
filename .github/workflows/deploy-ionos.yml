@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          protocol: sftp
+          protocol: ftp
           local-dir: ./dist/
           server-dir: /
           # delete_remote_files: true   # <- erstmal auskommentieren oder löschen
