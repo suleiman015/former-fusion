@@ -43,7 +43,7 @@ const { url } = Astro;
   <div class="ki-aktion-container">
     <h2 class="ki-aktion-title">Erleben Sie KI in Aktion</h2>
     <div class="ki-aktion-video-wrapper">
-      <video controls poster="/images/logo.jpg" class="ki-aktion-video">
+      <video controls poster="/images/logo2.jpg" class="ki-aktion-video">
         <source src="/videos/Stahleck.mp4" type="video/mp4" />
         Ihr Browser unterstützt das Video-Tag nicht.
       </video>
@@ -85,12 +85,11 @@ const { url } = Astro;
 
   .ueber-uns-description {
     color: #94a3b8;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
     text-align: left;
-    padding-left: 2rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
     font-family: inherit;
+    line-height: 1.5;
   }
 
   .ueber-uns-image-container {
@@ -311,6 +310,8 @@ const { url } = Astro;
     box-shadow: 0 2px 12px #0002;
     background: none;
     object-fit: contain;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
   @media (max-width: 1024px) {
     .ki-aktion-video {
