@@ -25,12 +25,13 @@ jobs:
         run: npm run build
 
       - name: Deploy to IONOS via SFTP
-        uses: presslabs/sftp-deploy@v2.2.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: ./dist/
-          remote_path: /
+          protocol: sftp
+          local-dir: ./dist/
+          server-dir: /
           # delete_remote_files: true   # <- erstmal auskommentieren oder löschen
