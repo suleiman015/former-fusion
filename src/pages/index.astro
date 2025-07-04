@@ -5,9 +5,23 @@ import TechnologienUndInvestitionen from '../components/TechnologienUndInvestiti
 import FAQ from '../components/FAQ.astro';
 import Comments from '../components/comments.astro';
 import UeberUns from '../components/UeberUns.astro';
+import { getCollection } from 'astro:content';
+const posts = await getCollection('blog');
+const sorted = posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const latest = sorted[0];
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}.${month}.${year}`;
+}
 ---
 <BaseLayout>
   <style>
+    body {
+      background: #000 !important;
+    }
     /* Hero Section Mobile Styles */
     .hero {
       background: linear-gradient(120deg, #0a1733 0%, #162447 100%);
@@ -64,7 +78,7 @@ import UeberUns from '../components/UeberUns.astro';
     }
 
     .ai-check-container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
     }
@@ -109,7 +123,7 @@ import UeberUns from '../components/UeberUns.astro';
       flex: 1;
       display: flex;
       justify-content: flex-end;
-      padding-right: 3.0rem;
+      padding-right: 15rem;
     }
 
     .ai-check-btn {
@@ -361,7 +375,7 @@ import UeberUns from '../components/UeberUns.astro';
       }
 
       .ai-check-button-container {
-        justify-content: center;
+        justify-content: flex-start;
         padding-right: 0;
       }
 
@@ -474,6 +488,56 @@ import UeberUns from '../components/UeberUns.astro';
         min-width: 48px;
       }
     }
+
+    .always-blog-banner {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 9999;
+      background: #2563eb;
+      color: white;
+      padding: 1rem 3rem 1rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 16px #0003;
+      max-width: 350px;
+      transition: transform 0.4s cubic-bezier(.4,2,.6,1), opacity 0.4s;
+      font-size: 1.05rem;
+      white-space: normal;
+      word-break: break-word;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .always-blog-banner.hide {
+      display: none;
+    }
+    .always-blog-banner .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 0.3em;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .always-blog-banner .close-btn:hover {
+      opacity: 1;
+    }
+    @media (max-width: 600px) {
+      .always-blog-banner {
+        left: 0.5rem;
+        right: 0.5rem;
+        max-width: 95vw;
+        padding: 0.7rem 3rem 0.7rem 0.7rem;
+        font-size: 0.98rem;
+      }
+      .always-blog-banner .close-btn {
+        right: 1rem;
+      }
+    }
   </style>
 
   <section class="hero" id="home">
@@ -496,14 +560,33 @@ import UeberUns from '../components/UeberUns.astro';
     </div>
   </div>
 
+  <div id="always-blog-banner" class="always-blog-banner">
+    <span>
+      <strong>Neu:</strong> <a href={latest ? `/blog/${latest.slug}` : '#'} style="color:#fff;text-decoration:underline;">{latest ? latest.data.title : 'Blog'}</a> {latest ? `vom ${formatDate(latest.data.date)}` : ''}
+    </span>
+    <button class="close-btn" id="close-always-blog-banner" aria-label="Banner schließen">×</button>
+  </div>
+  <script is:inline>
+    if (typeof window !== 'undefined') {
+      document.addEventListener('DOMContentLoaded', function() {
+        var closeBtn = document.getElementById('close-always-blog-banner');
+        var banner = document.getElementById('always-blog-banner');
+        if (closeBtn && banner) {
+          closeBtn.onclick = function() {
+            banner.style.display = 'none';
+          };
+        }
+      });
+    }
+  </script>
+
   <main>
     <!-- AI Check Section -->
     <section class="ai-check-section">
       <div class="ai-check-container">
         <h2 class="ai-check-title">Starten Sie Ihren AI Check</h2>
         <p class="ai-check-description">
-          Wir definieren gemeinsam Ihre Anforderungen und entwickeln die erforderlichen Umsetzungsschritte. Wir begleiten Sie und Ihr Team Schritt für Schritt.<br><br>
-          Wir sind Ihr Ansprechpartner, auch wenn Sie noch keine klare Richtung haben. Sortieren Sie mit uns Ihre Gedanken und definieren Sie Ihre Ziele. Wir arbeiten von Anfang an transparent und auf Augenhöhe.
+          Wir definieren gemeinsam Ihre Anforderungen und entwickeln die erforderlichen Umsetzungsschritte. Wir begleiten Sie und Ihr Team Schritt für Schritt. Wir sind Ihr Ansprechpartner, auch wenn Sie noch keine klare Richtung haben. Sortieren Sie mit uns Ihre Gedanken und definieren Sie Ihre Ziele. Wir arbeiten von Anfang an transparent und auf Augenhöhe.
         </p>
         <div class="ai-check-content">
           <div class="ai-check-video">

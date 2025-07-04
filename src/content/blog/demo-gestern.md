@@ -1,5 +1,5 @@
 ---
-title: "Neuer KI-Trend"
+title: "Jukabo gerstern"
 date: "2025-07-03"
 ---
 <p>Wir berichten über die neuesten <strong>KI-Trends</strong> im Jahr 2024. <a href='https://example.com'>Mehr erfahren</a>.</p>
