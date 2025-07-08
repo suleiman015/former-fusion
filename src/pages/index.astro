@@ -7,9 +7,9 @@ import Comments from '../components/comments.astro';
 import UeberUns from '../components/UeberUns.astro';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
-const sorted = posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const sorted = posts.sort((a, b) => new Date(b.data.date as string).getTime() - new Date(a.data.date as string).getTime());
 const latest = sorted[0];
-function formatDate(dateStr) {
+function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
   const day = String(d.getDate()).padStart(2, '0');
   const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -538,20 +538,247 @@ function formatDate(dateStr) {
         right: 1rem;
       }
     }
+    /* Hero-Bereich Layout-Anpassung */
+    .hero-flex {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      justify-content: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: nowrap;
+      min-height: 350px;
+    }
+    .blog-list-preview {
+      background: #1e293b;
+      border-radius: 30px;
+      box-shadow: 0 2px 12px #0002;
+      padding: 2rem 3rem 2rem 3rem;
+      margin: 0.5rem auto 0 5vw;
+      max-width: 400px;
+      min-width: 0;
+    }
+    .blog-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+    }
+    .blog-list-header-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .blog-list-header-date {
+      font-size: 0.95rem;
+      color: #b6c6e3;
+      font-weight: 400;
+    }
+    .blog-list-preview ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.5rem 0;
+    }
+    .blog-list-item {
+      padding: 0.5rem 0 0.5rem 0;
+      border-bottom: 1px solid #3a5a8c;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .blog-list-item:last-child {
+      border-bottom: none;
+    }
+    .blog-list-title {
+      color: #fff;
+      font-size: 1.01rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .blog-list-title:hover {
+      color: #60a5fa;
+    }
+    .blog-list-date {
+      color: #b6c6e3;
+      font-size: 0.89rem;
+      font-weight: 400;
+    }
+    .blog-list-more-link {
+      display: block;
+      text-align: left;
+      color: #8cb4e7;
+      font-size: 0.93rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.2rem;
+      text-decoration: none;
+      font-weight: 400;
+      padding: 0.1rem 0;
+      opacity: 0.8;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: none;
+    }
+    .blog-list-more-link:hover {
+      color: #8cb4e7;
+      opacity: 1;
+      text-decoration: none;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1.5rem;
+      padding-right: 0;
+    }
+    .hero-content h1 {
+      color: white;
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      text-align: center;
+      white-space: normal;
+    }
+    .hero-content .hero-subtitle {
+      color: #cbd5e1;
+      font-size: 1.3rem;
+      margin: 0;
+      line-height: 1.4;
+      text-align: center;
+      white-space: normal;
+    }
+    .hero-btn {
+      align-self: center;
+      margin: 0;
+      white-space: nowrap;
+      
+    }
+    @media (max-width: 1024px) {
+      .hero-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        min-height: unset;
+      }
+      .hero-content {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .hero-content h1, .hero-content .hero-subtitle {
+        text-align: left;
+      }
+      .hero-btn {
+        align-self: flex-start;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero-flex {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0;
+      }
+      .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+      }
+      .hero-content h1, .hero-content .hero-subtitle {
+        text-align: center;
+        white-space: normal;
+      }
+      .hero-btn {
+        align-self: center;
+      }
+      .blog-list-preview {
+        padding: 0.3rem 0.2rem 0.5rem 0.2rem;
+        margin-bottom: 0.3rem;
+        border-radius: 10px;
+        margin: 0.5rem auto 0 auto;
+        max-width: 220px;
+      }
+      .blog-list-preview h3 {
+        font-size: 0.92rem;
+        margin-bottom: 0.2rem;
+        font-weight: 600;
+      }
+      .blog-list-preview ul {
+        flex-direction: column;
+        overflow-x: unset;
+        overflow-y: auto;
+        gap: 0.3rem;
+        padding-bottom: 0;
+        margin-bottom: 0.2rem;
+        max-height: 60px;
+      }
+      .blog-list-item {
+        min-width: unset;
+        max-width: 100%;
+        background: #1e293b;
+        border-radius: 6px;
+        padding: 0.15rem 0.3rem;
+        box-shadow: 0 1px 2px #0001;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        font-size: 0.88rem;
+        margin-right: 0;
+      }
+      .blog-list-item a {
+        font-size: 0.88rem;
+        margin-bottom: 0.05rem;
+      }
+      .blog-list-date {
+        font-size: 0.7rem;
+      }
+      .blog-list-more-btn {
+        min-width: 60px;
+        max-width: 80px;
+        font-size: 0.88rem;
+        padding: 0.15rem 0.5rem;
+      }
+    }
   </style>
 
   <section class="hero" id="home">
-    <h1>AI ready for business</h1>
-    <div class="hero-subtitle">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
-    <div id="blog-notice"></div>
-    <a id="ai-weg-btn" href="#" class="hero-btn">Ihr Weg mit AI beginnt hier →</a>
+    <div class="hero-flex">
+      <aside class="blog-list-preview">
+        <ul>
+          {sorted.slice(0, 4).map(post => (
+            <li class="blog-list-item">
+              <a href={`/blog/${post.slug}`} class="blog-list-title">{post.data.title}</a>
+              <span class="blog-list-date">{formatDate(post.data.date as string)}</span>
+            </li>
+          ))}
+        </ul>
+        {sorted.length > 4 && (
+          <a href="/blog" class="blog-list-more-link">+ {sorted.length - 4} weitere Blogs</a>
+        )}
+      </aside>
+      <div class="hero-content">
+        <h1>AI ready for business</h1>
+        <div class="hero-subtitle">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
+        <a id="ai-weg-btn" href="#" class="hero-btn">Ihr Weg mit AI beginnt hier →</a>
+      </div>
+    </div>
   </section>
 
   <div id="ai-modal" class="modal">
     <div class="modal-content">
       <button id="ai-modal-close" class="modal-close">&times;</button>
       <div class="modal-logo">
-        <img src="/images/logo.jpg" alt="AImpacts Logo" />
+        <img src="/images/logo.svg" alt="AImpacts Logo" />
       </div>
       <div class="modal-title">Sie möchten mehr wissen und haben Fragen dazu, wie sich AI für Ihr Unternehmen und Ihre Anwendungen nutzen lässt?</div>
       <div class="modal-subtitle">Dann vereinbaren Sie eine 30-minütigen kostenlosen AI Beratung.</div>
@@ -559,26 +786,6 @@ function formatDate(dateStr) {
       <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" target="_blank" rel="noopener noreferrer" class="modal-btn">Zur kostenlosen AI Beratung</a>
     </div>
   </div>
-
-  <div id="always-blog-banner" class="always-blog-banner">
-    <span>
-      <strong>Neu:</strong> <a href={latest ? `/blog/${latest.slug}` : '#'} style="color:#fff;text-decoration:underline;">{latest ? latest.data.title : 'Blog'}</a> {latest ? `vom ${formatDate(latest.data.date)}` : ''}
-    </span>
-    <button class="close-btn" id="close-always-blog-banner" aria-label="Banner schließen">×</button>
-  </div>
-  <script is:inline>
-    if (typeof window !== 'undefined') {
-      document.addEventListener('DOMContentLoaded', function() {
-        var closeBtn = document.getElementById('close-always-blog-banner');
-        var banner = document.getElementById('always-blog-banner');
-        if (closeBtn && banner) {
-          closeBtn.onclick = function() {
-            banner.style.display = 'none';
-          };
-        }
-      });
-    }
-  </script>
 
   <main>
     <!-- AI Check Section -->
@@ -647,7 +854,6 @@ function formatDate(dateStr) {
     }
   });
 </script>
-<script src="/src/scripts/blog-notice.js" type="module"></script>
 </BaseLayout>
 
 
