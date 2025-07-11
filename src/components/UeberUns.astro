@@ -43,10 +43,20 @@ const { url } = Astro;
   <div class="ki-aktion-container">
     <h2 class="ki-aktion-title">Erleben Sie KI in Aktion</h2>
     <div class="ki-aktion-video-wrapper">
-      <video controls poster="/images/logo2.jpg" class="ki-aktion-video">
+      <video id="ki-aktion-video" controls poster="/images/logo2.jpg" class="ki-aktion-video" muted>
         <source src="/videos/Stahleck.mp4" type="video/mp4" />
         Ihr Browser unterstützt das Video-Tag nicht.
       </video>
+    </div>
+    <div class="ki-aktion-description">
+      <p>
+        Frühzeitig haben wir mit unseren Kunden an einem unternehmenszentrierten Agenten-Framework gearbeitet. <strong>Quortex</strong> vereint beide Unternehmenssichten: <br/>
+        <b>Top-down</b> – ausgehend von der Konzernhierarchie oder der Geschäftsführung hin zu den einzelnen Detailprozessen,<br/>
+        und <b>bottom-up</b> – die Unterstützung einzelner Mitarbeiter mit Prozessautomatisierung oder künstlicher Intelligenz.<br/>
+        <br/>
+        Wir haben wieder einmal sehr früh damit begonnen, Lösungen zu implementieren, die der Markt erst in diesem Jahr 2025 tatsächlich massiv aufgreift.<br/>
+        <strong>Unser Vorsprung. Für Ihr Unternehmen. Software made in Germany.</strong>
+      </p>
     </div>
   </div>
 </section>
@@ -359,5 +369,25 @@ const { url } = Astro;
       };
       updateCount();
     });
+  });
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('ki-aktion-video');
+    let hasPlayed = false;
+    if (video) {
+      video.volume = 0.1;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasPlayed) {
+            video.play();
+            hasPlayed = true;
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(video);
+    }
   });
 </script>
