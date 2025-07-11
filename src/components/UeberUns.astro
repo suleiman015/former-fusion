@@ -64,7 +64,7 @@ const { url } = Astro;
 <style>
   /* Über uns Section Styles */
   .ueber-uns-section {
-    background: #000000;
+    background: var(--ueber-uns-bg, #000000);
     padding: 4rem 2rem;
   }
 
@@ -141,8 +141,8 @@ const { url } = Astro;
 
   /* Stats Section */
   .stats-section {
-    background: #000000;
-    margin: 3rem 0 0;
+    background: var(--ueber-uns-bg, #000000);
+    margin: 0;
     padding: 1rem 0;
     width: 100%;
   }
@@ -291,7 +291,7 @@ const { url } = Astro;
   }
 
   .ki-aktion-section {
-    background: #000;
+    background: var(--ueber-uns-bg, #000);
     padding: 4rem 2rem;
     color: white;
   }
