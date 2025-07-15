@@ -6,7 +6,7 @@ import CookieBanner from '../components/CookieBanner.astro';
 <html lang="de">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
     <!-- Primary Meta Tags -->  
     <title>AImpacts – AI Solutions & Services for Business Growth</title>
@@ -40,6 +40,15 @@ import CookieBanner from '../components/CookieBanner.astro';
     
     <!-- Global Mobile Styles -->
     <link rel="stylesheet" href="/src/assets/mobile.css">
+    
+    <!-- Image Preloading -->
+    <link rel="preload" href="/images/logo.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="/images/Ueber_uns_.jpg" as="image" type="image/jpeg">
+    
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     
     <style>
       /* Reset and Base Styles */
@@ -293,6 +302,10 @@ import CookieBanner from '../components/CookieBanner.astro';
         color: #a78bfa;
       }
 
+      .company-name {
+        color: white;
+      }
+
       .contact-links {
         display: flex;
         flex-direction: column;
@@ -393,6 +406,16 @@ import CookieBanner from '../components/CookieBanner.astro';
         }
       }
 
+      /* Performance optimizations */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
       /* Scroll to Top Button */
       .scroll-to-top-btn {
         position: fixed;
@@ -458,14 +481,18 @@ import CookieBanner from '../components/CookieBanner.astro';
     <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "JUKABO",
+      "@type": ["Organization", "LocalBusiness"],
+      "name": "AImpacts - JUKABO",
+      "alternateName": "JUKABO",
       "url": "https://aimpacts.de",
       "logo": "https://aimpacts.de/images/logo.jpg",
+      "image": "https://aimpacts.de/images/logo.jpg",
+      "description": "KI-Beratung für Unternehmen in Bonn und deutschlandweit. Professionelle KI-Lösungen und AI-Strategien.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Am Hauptbahnhof 6",
         "addressLocality": "Bonn",
+        "addressRegion": "NRW",
         "postalCode": "53111",
         "addressCountry": "DE"
       },
@@ -473,7 +500,49 @@ import CookieBanner from '../components/CookieBanner.astro';
         "@type": "ContactPoint",
         "telephone": "+49-228-6200033",
         "contactType": "customer service",
-        "email": "Kontakt@AImpacts.de"
+        "email": "Kontakt@AImpacts.de",
+        "availableLanguage": ["de", "en"]
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.7336",
+        "longitude": "7.0994"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "priceRange": "€€€",
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Deutschland"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "KI-Beratungsleistungen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "KI-Beratung",
+              "description": "Professionelle Beratung zur Implementierung von KI-Technologien"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "BPM-Beratung",
+              "description": "Optimierung von Geschäftsprozessen mit KI-Unterstützung"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "KI-Schulungen",
+              "description": "Professionelle Schulungen für KI-Technologien"
+            }
+          }
+        ]
       }
     }
     </script>
@@ -535,7 +604,7 @@ import CookieBanner from '../components/CookieBanner.astro';
       <div class="footer-container">
         <div class="footer-section">
           <p>
-            © 2025 AImpacts – powered by <b style="color:white;">JUKABO</b>
+            © 2025 AImpacts – powered by <b class="company-name">JUKABO</b>
           </p>
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>

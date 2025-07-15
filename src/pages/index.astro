@@ -9,6 +9,7 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
 const sorted = posts.sort((a, b) => new Date(b.data.date as string).getTime() - new Date(a.data.date as string).getTime());
 const latest = sorted[0];
+const latestTwo = sorted.slice(0, 2);
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
   const day = String(d.getDate()).padStart(2, '0');
@@ -47,7 +48,8 @@ function formatDate(dateStr: string): string {
       box-shadow: 0 6px 32px #0002;
       padding: 6rem 1rem 4rem 1rem;
       text-align: center;
-      min-height: 80vh;
+      min-height: 700px;
+      height: auto;
       display: flex;
       align-items: center;
     }
@@ -349,6 +351,7 @@ function formatDate(dateStr: string): string {
     @media (max-width: 768px) {
       .hero {
         padding: 4rem 1rem 3rem 1rem;
+        min-height: 450px;
       }
 
       .hero h1 {
@@ -450,6 +453,11 @@ function formatDate(dateStr: string): string {
     }
 
     @media (max-width: 480px) {
+      .hero {
+        min-height: 350px;
+        padding: 3rem 1rem 2rem 1rem;
+      }
+      
       .hero h1 {
         font-size: 2rem;
       }
@@ -584,7 +592,7 @@ function formatDate(dateStr: string): string {
       justify-content: center;
       text-align: center;
       gap: 1.5rem;
-      margin-top: 50px;
+      margin-top: -40px;
     }
     .hero-content h1 {
       color: white;
@@ -615,14 +623,16 @@ function formatDate(dateStr: string): string {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       padding: 0.8rem;
       margin: 0;
-      max-width: 220px;
-      min-width: 200px;
+      max-width: 280px;
+      min-width: 260px;
+      max-height: 320px;
+      overflow-y: auto;
       text-align: left;
-      opacity: 0.4;
+      opacity: 0.6;
       transition: all 0.3s ease;
       position: absolute;
-      top: 1px;
-      right: -250px;
+      top: -110px;
+      right: -100px;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       z-index: 10;
@@ -642,6 +652,7 @@ function formatDate(dateStr: string): string {
     .featured-blog {
       display: block;
       padding: 0.6rem;
+      margin-bottom: 0.5rem;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -688,6 +699,9 @@ function formatDate(dateStr: string): string {
       opacity: 0.8;
       text-decoration: none;
       transition: opacity 0.2s ease;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .featured-blog-more:hover {
       opacity: 1;
@@ -733,6 +747,8 @@ function formatDate(dateStr: string): string {
         opacity: 0.8;
         top: auto;
         right: auto;
+        max-height: 280px;
+        overflow-y: auto;
       }
       .blog-list-preview:hover {
         opacity: 1;
@@ -759,6 +775,9 @@ function formatDate(dateStr: string): string {
       }
       .featured-blog-more {
         font-size: 0.7rem;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
     }
     
@@ -815,15 +834,17 @@ function formatDate(dateStr: string): string {
     <div class="hero-flex">
       <aside class="blog-list-preview">
         <h3>Aktuelles</h3>
-        <div class="featured-blog">
-          <div class="featured-blog-content">
-            <span class="featured-blog-date">{formatDate(latest.data.date as string)}</span>
-            <a href={`/blog/${latest.slug}`} class="featured-blog-title-link">
-              <span class="featured-blog-title">{latest.data.title}</span>
-            </a>
+        {latestTwo.map((post) => (
+          <div class="featured-blog">
+            <div class="featured-blog-content">
+              <span class="featured-blog-date">{formatDate(post.data.date as string)}</span>
+              <a href={`/blog/${post.slug}`} class="featured-blog-title-link">
+                <span class="featured-blog-title">{post.data.title}</span>
+              </a>
+            </div>
           </div>
-          <a href="/blog" class="featured-blog-more">Alle Blogs ansehen →</a>
-        </div>
+        ))}
+        <a href="/blog" class="featured-blog-more">Alle Blogs ansehen →</a>
       </aside>
       <div class="hero-content">
         <h1>AI ready for business</h1>
