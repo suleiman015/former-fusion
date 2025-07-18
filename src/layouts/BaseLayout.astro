@@ -135,6 +135,9 @@ import CookieBanner from '../components/CookieBanner.astro';
         background: none;
         border-radius: 0;
         box-shadow: none;
+        display: inline-block;
+        min-width: 70px;
+        text-align: center;
       }
 
       .main-nav a:hover,
@@ -567,14 +570,14 @@ import CookieBanner from '../components/CookieBanner.astro';
       <div class="nav-container">
         <nav class="main-nav">
           <a href="/">Home</a>
-          <a href="/#ueber-uns">Über uns</a>
-          <a href="/#leistungen">Leistungen</a>
-          <a href="/#technologien">Technologien</a>
-          <a href="/#team">Team</a>
-          <a href="/#faq">FAQ</a>
-
+          <a href="/ueber-uns">Über uns</a>
+          <a href="/leistungen">Leistungen</a>
+          <a href="/blog">Blogs</a>
+          <a href="/technologien">Technologien</a>
+          <a href="/team">Team</a>
+          <a href="/faq">FAQ</a>
         </nav>
-      <!--
+  <!--
   <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" class="header-btn">Zur kostenlosen AI Beratung</a>-->
 
       </div>
@@ -587,12 +590,13 @@ import CookieBanner from '../components/CookieBanner.astro';
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
       <button class="mobile-menu-close" id="mobile-menu-close">×</button>
-      <a href="/#home" onclick="closeMobileMenu()">Home</a>
-      <a href="/#ueber-uns" onclick="closeMobileMenu()">Über uns</a>
-      <a href="/#leistungen" onclick="closeMobileMenu()">Leistungen</a>
-      <a href="/#technologien" onclick="closeMobileMenu()">Technologien</a>
-      <a href="/#team" onclick="closeMobileMenu()">Team</a>
-      <a href="/#faq" onclick="closeMobileMenu()">FAQ</a>
+      <a href="/" onclick="closeMobileMenu()">Home</a>
+      <a href="/ueber-uns" onclick="closeMobileMenu()">Über uns</a>
+      <a href="/leistungen" onclick="closeMobileMenu()">Leistungen</a>
+      <a href="/technologien" onclick="closeMobileMenu()">Technologien</a>
+      <a href="/team" onclick="closeMobileMenu()">Team</a>
+      <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
+      <a href="/blog" onclick="closeMobileMenu()">Blogs</a>
      <!-- <a href="https://calendly.com/julius-kaeck/30min?month=2025-06" onclick="closeMobileMenu()">Zur kostenlosen AI Beratung</a>-->
     </div>
 
@@ -677,19 +681,6 @@ import CookieBanner from '../components/CookieBanner.astro';
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') {
             closeMobileMenu();
-          }
-        });
-
-        // --- NEU: Menü-Anker-Links immer auf Startseite umleiten ---
-        document.querySelectorAll('.main-nav a').forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && href.startsWith('/#')) {
-            link.addEventListener('click', function(e) {
-              if (window.location.pathname !== '/') {
-                e.preventDefault();
-                window.location.href = href;
-              }
-            });
           }
         });
       });

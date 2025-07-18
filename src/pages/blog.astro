@@ -1,51 +1,140 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const posts = await getCollection("blog");
 const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<h1>Blogs</h1>
-<div class="blog-list">
-  {sorted.map(post => (
-    <article class="blog-item">
-      <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-      <div class="blog-date">{post.data.date}</div>
-    </article>
-  ))}
-</div>
+<BaseLayout>
+  <div class="blog-page">
+    <div class="blog-header">
+      <h1>Blogs</h1>
+      <p>Hier finden Sie unsere neuesten Artikel und Insights zum Thema AI und Business.</p>
+    </div>
+    
+    <div class="blog-list">
+      {sorted.map(post => (
+        <article class="blog-item">
+          <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+          <div class="blog-date">{post.data.date}</div>
+        </article>
+      ))}
+    </div>
+  </div>
 
-<style>
-.blog-list {
-  max-width: 700px;
-  margin: 2rem auto 0 auto;
-  padding: 0 1rem;
-}
-@media (max-width: 600px) {
-  .blog-list {
-    max-width: 100vw;
-    margin: 0;
-    padding: 0 0.3rem;
-  }
-}
-.blog-item {
-  border-bottom: 1px solid #eee;
-  padding: 1.2rem 0;
-}
-.blog-item h2 {
-  margin-bottom: 0.2em;
-  font-size: 1.3rem;
-}
-.blog-date {
-  color: #888;
-  font-size: 0.95em;
-  margin-bottom: 0.7em;
-}
-@media (max-width: 600px) {
-  .blog-item {
-    padding: 1rem 0;
-  }
-  .blog-item h2 {
-    font-size: 1.05rem;
-  }
-}
-</style> 
+  <style>
+    body {
+      background: linear-gradient(120deg, #0a1733 0%, #162447 100%);
+      min-height: 100vh;
+    }
+    
+    .blog-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+    }
+    
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .blog-header h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    
+    .blog-header p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .blog-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .blog-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .blog-item h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .blog-item h2 a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .blog-item h2 a:hover {
+      color: #60a5fa;
+    }
+    
+    .blog-date {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-page {
+        padding: 2rem 1rem;
+      }
+      
+      .blog-header h1 {
+        font-size: 2rem;
+      }
+      
+      .blog-header p {
+        font-size: 1rem;
+      }
+      
+      .blog-item {
+        padding: 1.5rem;
+      }
+      
+      .blog-item h2 {
+        font-size: 1.3rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .blog-page {
+        padding: 1rem 0.5rem;
+      }
+      
+      .blog-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .blog-item {
+        padding: 1rem;
+      }
+      
+      .blog-item h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</BaseLayout> 

@@ -1,22 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Lesitungen from '../components/Lesitungen.astro';
-import TechnologienUndInvestitionen from '../components/TechnologienUndInvestitionen.astro';
-import FAQ from '../components/FAQ.astro';
-import Comments from '../components/comments.astro';
-import UeberUns from '../components/UeberUns.astro';
-import { getCollection } from 'astro:content';
-const posts = await getCollection('blog');
-const sorted = posts.sort((a, b) => new Date(b.data.date as string).getTime() - new Date(a.data.date as string).getTime());
-const latest = sorted[0];
-const latestTwo = sorted.slice(0, 2);
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const year = d.getFullYear();
-  return `${day}.${month}.${year}`;
-}
 ---
 <BaseLayout>
   <style>
@@ -34,11 +17,6 @@ function formatDate(dateStr: string): string {
     :root {
       --hero-bg: linear-gradient(120deg, #0a1733 0%, #162447 100%);
       --ai-check-bg: #0f172a;        /* Dunkelblau (harmoniert mit Hero) */
-      --ueber-uns-bg: #1e293b;       /* Slate Blue */
-      --leistungen-bg: #334155;      /* Heller Slate (für Kontrast) */
-      --technologien-bg: #0f172a;    /* Dunkelblau (wie AI Check) */
-      --team-bg: #000000;            /* Slate Blue (wie Über uns) */
-      --faq-bg: #1e293b;             /* Schwarz (starker Abschluss) */
     }
     
   
@@ -277,76 +255,6 @@ function formatDate(dateStr: string): string {
       box-shadow: 0 4px 16px #2563eb66;
     }
 
-    /* AI Check Modal Specific Styles */
-    .ai-check-modal-content {
-      position: relative;
-      max-width: 800px;
-      width: 95vw;
-      min-height: 320px;
-      border-radius: 8px;
-      box-shadow: 0 4px 32px #0008;
-      overflow: hidden;
-      background: url('/images/ai.jpg') center center / cover no-repeat;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-
-    .ai-check-modal-inner {
-      background: rgba(255,255,255,0.85);
-      box-shadow: 0 4px 24px #0003;
-      border-radius: 8px;
-      padding: 1.5rem 1.2rem;
-      max-width: 340px;
-      width: 100%;
-      margin: 2.5rem 2.5rem 2.5rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .ai-check-modal-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .ai-check-modal-date {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 0.7rem;
-    }
-
-    .ai-check-modal-description {
-      font-size: 1rem;
-      color: #222;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-
-    .ai-check-modal-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #222;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      border-radius: 0.3rem;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      min-height: 44px;
-      width: auto;
-      white-space: nowrap;
-    }
-
-    .ai-check-modal-btn:hover {
-      background: #444;
-      transform: translateY(-1px);
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero {
@@ -434,22 +342,6 @@ function formatDate(dateStr: string): string {
         font-size: 1rem;
         width: 100%;
       }
-
-      .ai-check-modal-content {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 400px;
-      }
-
-      .ai-check-modal-inner {
-        margin: 1rem;
-        max-width: 90%;
-      }
-
-      .ai-check-modal-title {
-        font-size: 1.3rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -509,8 +401,7 @@ function formatDate(dateStr: string): string {
     @media (hover: none) and (pointer: coarse) {
       .hero-btn,
       .ai-check-btn,
-      .modal-btn,
-      .ai-check-modal-btn {
+      .modal-btn {
         min-height: 48px;
       }
 
@@ -520,55 +411,6 @@ function formatDate(dateStr: string): string {
       }
     }
 
-    .always-blog-banner {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9999;
-      background: #2563eb;
-      color: white;
-      padding: 1rem 3rem 1rem 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 16px #0003;
-      max-width: 350px;
-      transition: transform 0.4s cubic-bezier(.4,2,.6,1), opacity 0.4s;
-      font-size: 1.05rem;
-      white-space: normal;
-      word-break: break-word;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .always-blog-banner.hide {
-      display: none;
-    }
-    .always-blog-banner .close-btn {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 0 0.3em;
-      line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-    .always-blog-banner .close-btn:hover {
-      opacity: 1;
-    }
-    @media (max-width: 600px) {
-      .always-blog-banner {
-        left: 0.5rem;
-        right: 0.5rem;
-        max-width: 95vw;
-        padding: 0.7rem 3rem 0.7rem 0.7rem;
-        font-size: 0.98rem;
-      }
-      .always-blog-banner .close-btn {
-        right: 1rem;
-      }
-    }
     /* Hero-Bereich Layout-Anpassung */
     .hero-flex {
       display: flex;
@@ -617,95 +459,6 @@ function formatDate(dateStr: string): string {
       margin: 0;
       white-space: nowrap;
     }
-    .blog-list-preview {
-      background: rgba(30, 41, 59, 0.3);
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 0.8rem;
-      margin: 0;
-      max-width: 280px;
-      min-width: 260px;
-      max-height: 320px;
-      overflow-y: auto;
-      text-align: left;
-      opacity: 0.6;
-      transition: all 0.3s ease;
-      position: absolute;
-      top: -110px;
-      right: -100px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 10;
-    }
-    .blog-list-preview:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      background: rgba(30, 41, 59, 0.8);
-    }
-    .blog-list-preview h3 {
-      color: #cbd5e1;
-      font-size: 0.75rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    .featured-blog {
-      display: block;
-      padding: 0.6rem;
-      margin-bottom: 0.5rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    .featured-blog:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-1px);
-    }
-    .featured-blog-content {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .featured-blog-date {
-      display: block;
-      font-size: 0.65rem;
-      color: #60a5fa;
-      font-weight: 500;
-      margin-bottom: 0.3rem;
-    }
-    .featured-blog-title-link {
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .featured-blog-title-link:hover {
-      transform: translateY(-1px);
-    }
-    .featured-blog-title {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.2;
-      transition: color 0.2s ease;
-    }
-    .featured-blog-title-link:hover .featured-blog-title {
-      color: #60a5fa;
-    }
-    .featured-blog-more {
-      display: block;
-      font-size: 0.65rem;
-      color: #60a5fa;
-      font-weight: 500;
-      opacity: 0.8;
-      text-decoration: none;
-      transition: opacity 0.2s ease;
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .featured-blog-more:hover {
-      opacity: 1;
-    }
 
     @media (max-width: 1024px) {
       .hero-flex {
@@ -726,7 +479,6 @@ function formatDate(dateStr: string): string {
         align-items: center;
         text-align: center;
         gap: 1rem;
-        order: 2;
       }
       .hero-content h1, .hero-content .hero-subtitle {
         text-align: center;
@@ -735,117 +487,11 @@ function formatDate(dateStr: string): string {
       .hero-btn {
         align-self: center;
       }
-      .blog-list-preview {
-        position: static;
-        padding: 0.8rem;
-        margin: 0 0 1rem 0;
-        border-radius: 8px;
-        max-width: 100%;
-        min-width: unset;
-        background: rgba(30, 41, 59, 0.6);
-        order: 1;
-        opacity: 0.8;
-        top: auto;
-        right: auto;
-        max-height: 280px;
-        overflow-y: auto;
-      }
-      .blog-list-preview:hover {
-        opacity: 1;
-        background: rgba(30, 41, 59, 0.9);
-      }
-      .blog-list-preview h3 {
-        font-size: 0.8rem;
-        margin-bottom: 0.6rem;
-        font-weight: 600;
-        color: #cbd5e1;
-      }
-      .featured-blog {
-        padding: 0.6rem;
-      }
-      .featured-blog-content {
-        margin-bottom: 0.4rem;
-      }
-      .featured-blog-date {
-        font-size: 0.7rem;
-        margin-bottom: 0.3rem;
-      }
-      .featured-blog-title {
-        font-size: 0.85rem;
-      }
-      .featured-blog-more {
-        font-size: 0.7rem;
-        margin-top: 0.5rem;
-        padding-top: 0.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-    }
-    
-    /* Individual Section Backgrounds */
-    #ueber-uns {
-      background: var(--ueber-uns-bg);
-      padding: 4rem 0;
-      margin: 0;
-      border: none;
-    }
-    
-    #leistungen {
-      background: var(--leistungen-bg);
-      padding: 4rem 0;
-      margin: 0;
-      border: none;
-    }
-    
-    #technologien {
-      background: var(--technologien-bg);
-      padding: 4rem 0;
-      margin: 0;
-      border: none;
-    }
-    
-    #team {
-      background: var(--team-bg);
-      padding: 4rem 0;
-      margin: 0;
-      border: none;
-    }
-    
-    #faq {
-      background: var(--faq-bg);
-      padding: 4rem 0;
-      margin: 0;
-      border: none;
-    }
-    
-    /* Remove any borders or margins from main sections */
-    main {
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-    
-    main section {
-      margin: 0;
-      border: none;
     }
   </style>
 
   <section class="hero" id="home">
     <div class="hero-flex">
-      <aside class="blog-list-preview">
-        <h3>Aktuelles</h3>
-        {latestTwo.map((post) => (
-          <div class="featured-blog">
-            <div class="featured-blog-content">
-              <span class="featured-blog-date">{formatDate(post.data.date as string)}</span>
-              <a href={`/blog/${post.slug}`} class="featured-blog-title-link">
-                <span class="featured-blog-title">{post.data.title}</span>
-              </a>
-            </div>
-          </div>
-        ))}
-        <a href="/blog" class="featured-blog-more">Alle Blogs ansehen →</a>
-      </aside>
       <div class="hero-content">
         <h1>AI ready for business</h1>
         <div class="hero-subtitle">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
@@ -885,12 +531,6 @@ function formatDate(dateStr: string): string {
         </div>
       </div>
     </section>
-
-      <section id="ueber-uns"><UeberUns /></section>
-<section id="leistungen"><Lesitungen /></section>
-<section id="technologien"><TechnologienUndInvestitionen /></section>
-<section id="team"><Comments /></section>
-<section id="faq"><FAQ /></section>
   </main>
 
 <script is:inline>
