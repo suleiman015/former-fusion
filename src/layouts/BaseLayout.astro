@@ -479,6 +479,71 @@ import CookieBanner from '../components/CookieBanner.astro';
           font-size: 1.2rem;
         }
       }
+      /* Blog Post Styles */
+      .blog-post-wrapper {
+        background-color: #f9fafb; /* A light gray background */
+        padding: 2rem 1rem;
+      }
+
+      .blog-header {
+        max-width: 800px;
+        margin: 0 auto 2rem auto;
+      }
+
+      .blog-header h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #4b5563; /* A mid-gray color */
+      }
+
+      .blog-header a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+
+      .blog-header a:hover {
+        color: #1d4ed8; /* Blue color on hover */
+      }
+
+      .blog-post-container {
+        text-align: left;
+        max-width: 800px;
+        width: 95%;
+        margin: 0 auto;
+        background: #fff;
+        padding: 3rem 4rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+
+      .blog-post-container h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      .blog-post-container .post-date {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        display: block;
+      }
+
+      .blog-post-container .prose {
+        text-align: left;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #374151;
+      }
+
+      .blog-post-container .prose img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+      }
     </style>
 
     <script type="application/ld+json" is:inline>

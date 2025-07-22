@@ -5,7 +5,7 @@ description: 'Gedanken zur aktuellen Diskussion über fortgeschrittene LLM-Archi
 ---
 
 
-<img src="/public/images/Math.png" alt="Mathematik und KI" style="width: auto; max-width: 600px; height: auto; border-radius: 8px; margin: 2rem 0;" />
+<img src="/images/20250722_gemini_mathmatics.png" alt="Mathematik und KI" loading="lazy" style="width: auto; max-width: 600px; height: auto; border-radius: 8px; margin: 2rem 0;" />
 
 In der Tech-Welt überschlagen sich derzeit die Diskussionen über die neuesten Large Language Models. Jeder Entwicklungssprung wird gefeiert, jede neue Architektur analysiert, und oft steht dabei eine Frage im Mittelpunkt: Welche mathematischen Modelle sind die ausgeklügeltsten?
 

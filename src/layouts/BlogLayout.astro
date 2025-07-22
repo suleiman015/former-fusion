@@ -1,0 +1,57 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout>
+  <div class="blog-layout">
+    <main class="blog-main">
+      <div class="content-container">
+        <slot />
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-layout {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f9fafb;
+  }
+
+  .blog-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: 
+      [full-start] minmax(1rem, 1fr)
+      [content-start] min(65ch, 100%)
+      [content-end] minmax(1rem, 1fr)
+      [full-end];
+  }
+
+  .content-container {
+    grid-column: content-start / content-end;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .blog-main {
+      padding: 1rem;
+    }
+  }
+</style>

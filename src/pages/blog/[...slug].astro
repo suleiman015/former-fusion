@@ -1,25 +1,137 @@
 ---
 import { getCollection, getEntryBySlug } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-// Diese Funktion gibt alle möglichen Slugs für Blogposts zurück
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map(post => ({
-    params: { slug: post.slug }
-  }));
+  return posts.map(post => ({ params: { slug: post.slug } }));
 }
 
 const { slug } = Astro.params;
-const post = await getEntryBySlug("blog", slug) as unknown as CollectionEntry<"blog"> | null;
-if (!post) throw new Error("Not found");
+if (typeof slug !== 'string') {
+  throw new Error(`Slug should be a string, but got ${typeof slug}`);
+}
+
+const post = await getEntryBySlug("blog", slug) as CollectionEntry<'blog'>;
+
+if (!post) {
+  throw new Error(`Post not found: ${slug}`);
+}
+
 const { Content } = await post.render();
 ---
 
+<BlogLayout title={post.data.title}>
+  <article class="blog-post">
+    <header class="blog-header">
+      <nav class="blog-nav">
+        <a href="/blog" class="back-to-blog">← Blog</a>
+      </nav>
+      <h1>{post.data.title}</h1>
+      <time datetime={post.data.date instanceof Date ? post.data.date.toISOString() : post.data.date}>
+        {post.data.date instanceof Date ? 
+          post.data.date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) : 
+          post.data.date
+        }
+      </time>
+    </header>
+    <div class="blog-content">
+      <Content />
+    </div>
+  </article>
+</BlogLayout>
 
-<article>
-  <meta charset="UTF-8">  
-  <h1>{post.data.title}</h1>
-  <p>{post.data.date}</p>
-  <Content />
-</article>
+<style>
+  .blog-post {
+    padding: 2rem 3rem;
+  }
+
+  .blog-header {
+    margin-bottom: 2rem;
+  }
+
+  .blog-nav {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-to-blog {
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .back-to-blog:hover {
+    color: #1d4ed8;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  time {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+
+  .blog-content {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #374151;
+  }
+
+  .blog-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .blog-content :global(h2) {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  .blog-content :global(h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 2rem 0 1rem;
+  }
+
+  .blog-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-content :global(ul), .blog-content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .blog-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+    }
+
+    .blog-content {
+      font-size: 1rem;
+    }
+  }
+</style>
