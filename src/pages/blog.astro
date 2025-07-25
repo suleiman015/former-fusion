@@ -1,26 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import BlogCard from "../components/BlogCard.astro";
+
 const posts = await getCollection("blog");
 const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Find featured posts
+const featuredPosts = sorted.filter(post => post.data.featured);
+const regularPosts = sorted.filter(post => !post.data.featured);
+
+// Combine posts with featured posts first
+const orderedPosts = [...featuredPosts, ...regularPosts];
 ---
 
 <BaseLayout>
-  <div class="blog-page">
+  <section class="blog-section">
     <div class="blog-header">
-      <h1>Blogs</h1>
-      <p>Hier finden Sie unsere neuesten Artikel und Insights zum Thema AI und Business.</p>
+      <h1 id="blog-heading">Insights & Innovation</h1>
+      <p>Entdecken Sie unsere neuesten Erkenntnisse und Strategien im Bereich KI und Business</p>
     </div>
     
-    <div class="blog-list">
-      {sorted.map(post => (
-        <article class="blog-item">
-          <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-          <div class="blog-date">{post.data.date}</div>
-        </article>
+    <div class="blog-grid" role="list" aria-labelledby="blog-heading">
+      {orderedPosts.map((post, index) => (
+        <BlogCard 
+          title={post.data.title}
+          excerpt={post.data.excerpt || post.data.description}
+          date={post.data.date}
+          tag={post.data.tag}
+          featured={post.data.featured}
+          slug={post.slug}
+        />
       ))}
     </div>
-  </div>
+  </section>
 
   <style>
     body {
@@ -28,22 +41,27 @@ const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a
       min-height: 100vh;
     }
     
-    .blog-page {
-      max-width: 800px;
+    .blog-section {
+      max-width: 1200px;
       margin: 0 auto;
       padding: 4rem 1rem;
     }
     
     .blog-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
+      position: relative;
     }
     
     .blog-header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #ffffff;
       margin-bottom: 1rem;
       font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .blog-header p {
@@ -53,53 +71,25 @@ const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a
       margin: 0 auto;
     }
     
-    .blog-list {
-      display: flex;
-      flex-direction: column;
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
+      will-change: transform;
+      transform: translateZ(0);
     }
     
-    .blog-item {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      padding: 2rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      backdrop-filter: blur(10px);
-    }
-    
-    .blog-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      background: rgba(255, 255, 255, 0.08);
-    }
-    
-    .blog-item h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .blog-item h2 a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    
-    .blog-item h2 a:hover {
-      color: #60a5fa;
-    }
-    
-    .blog-date {
-      color: #cbd5e1;
-      font-size: 0.9rem;
-      font-weight: 500;
+    .featured-card {
+      grid-column: 1 / -1;
     }
     
     @media (max-width: 768px) {
-      .blog-page {
+      .blog-section {
         padding: 2rem 1rem;
+      }
+      
+      .blog-grid {
+        grid-template-columns: 1fr;
       }
       
       .blog-header h1 {
@@ -110,30 +100,18 @@ const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a
         font-size: 1rem;
       }
       
-      .blog-item {
-        padding: 1.5rem;
-      }
-      
-      .blog-item h2 {
-        font-size: 1.3rem;
+      .featured-card {
+        grid-column: 1;
       }
     }
     
     @media (max-width: 480px) {
-      .blog-page {
-        padding: 1rem 0.5rem;
+      .blog-section {
+        padding: 1.5rem 0.75rem;
       }
       
       .blog-header h1 {
         font-size: 1.8rem;
-      }
-      
-      .blog-item {
-        padding: 1rem;
-      }
-      
-      .blog-item h2 {
-        font-size: 1.2rem;
       }
     }
   </style>

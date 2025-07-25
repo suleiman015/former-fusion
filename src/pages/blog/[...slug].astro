@@ -24,28 +24,41 @@ const { Content } = await post.render();
 ---
 
 <BlogLayout title={post.data.title}>
-  <article class="blog-post">
-    <header class="blog-header">
-      <nav class="blog-nav">
-        <a href="/blog" class="back-to-blog">← Blog</a>
-      </nav>
-      <h1>{post.data.title}</h1>
-      <time datetime={post.data.date instanceof Date ? post.data.date.toISOString() : post.data.date}>
-        {post.data.date instanceof Date ? 
-          post.data.date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) : 
-          post.data.date
-        }
-      </time>
-    </header>
-    <div class="blog-content">
-      <Content />
-    </div>
-  </article>
+  <div class="blog-container">
+    <article class="blog-post">
+      <header class="blog-header">
+        <nav class="blog-nav">
+          <a href="/blog" class="back-to-blog">← Blog</a>
+        </nav>
+        <h1>{post.data.title}</h1>
+        <time datetime={post.data.date instanceof Date ? post.data.date.toISOString() : post.data.date}>
+          {post.data.date instanceof Date ? 
+            post.data.date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) : 
+            post.data.date
+          }
+        </time>
+      </header>
+      <div class="blog-content">
+        <Content />
+      </div>
+    </article>
+  </div>
 </BlogLayout>
 
 <style>
+  .blog-container {
+    width: 100%;
+    max-width: 1800px; /* Much wider container to use more browser width */
+    margin: 0 auto;
+    padding: 0;
+  }
+  
   .blog-post {
-    padding: 2rem 3rem;
+    width: 100%;
+    background: #fff;
+    padding: 2rem 4rem; /* Increased horizontal padding */
+    border-radius: 0; /* Remove border radius for full-width feel */
+    box-shadow: none; /* Remove shadow for cleaner look */
   }
 
   .blog-header {
@@ -82,16 +95,21 @@ const { Content } = await post.render();
   }
 
   .blog-content {
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 1.25rem;
+    line-height: 1.8;
     color: #374151;
+    max-width: 1600px; /* Control the text width for readability */
+    margin: 0 auto;
   }
 
   .blog-content :global(img) {
+    display: block;
     max-width: 100%;
+    width: auto; /* Let image maintain its aspect ratio */
     height: auto;
     border-radius: 8px;
-    margin: 2rem 0;
+    margin: 2rem auto;
+    object-fit: contain;
   }
 
   .blog-content :global(h2) {
@@ -121,7 +139,24 @@ const { Content } = await post.render();
     margin-bottom: 0.5rem;
   }
 
+  @media (max-width: 1600px) {
+    .blog-container {
+      max-width: 1400px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .blog-container {
+      max-width: 1100px;
+    }
+  }
+
   @media (max-width: 768px) {
+    .blog-container {
+      max-width: 100%;
+      padding: 0 0.5rem;
+    }
+    
     .blog-post {
       padding: 1.5rem;
     }
@@ -132,6 +167,12 @@ const { Content } = await post.render();
 
     .blog-content {
       font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .blog-post {
+      padding: 1rem;
     }
   }
 </style>

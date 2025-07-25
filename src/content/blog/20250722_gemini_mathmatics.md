@@ -2,10 +2,15 @@
 title: 'Warum die beste KI mehr ist als die komplexeste Mathematik' 
 date: '2025-07-22' 
 description: 'Gedanken zur aktuellen Diskussion über fortgeschrittene LLM-Architekturen und den bemerkenswerten Durchbruch von Gemini Deep Think bei der Internationalen Mathematikolympiade 2025.'
+excerpt: 'Tauchen Sie ein in die faszinierende Welt der KI-Mathematik und erfahren Sie, warum die wahre Stärke moderner Sprachmodelle nicht in komplexen Gleichungen, sondern in der intelligenten Integration verschiedener Fähigkeiten liegt.'
+tag: 'AI Strategy'
+featured: true
 ---
 
 
-<img src="/images/20250722_gemini_mathmatics.png" alt="Mathematik und KI" loading="lazy" style="width: auto; max-width: 600px; height: auto; border-radius: 8px; margin: 2rem 0;" />
+<div style="text-align: center;">
+  <img src="/images/20250722_gemini_mathmatics.png" alt="Mathematik und KI" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem auto; display: inline-block;" />
+</div>
 
 In der Tech-Welt überschlagen sich derzeit die Diskussionen über die neuesten Large Language Models. Jeder Entwicklungssprung wird gefeiert, jede neue Architektur analysiert, und oft steht dabei eine Frage im Mittelpunkt: Welche mathematischen Modelle sind die ausgeklügeltsten?
 
