@@ -75,6 +75,12 @@
   - Trends: Verbesserung/Verschlechterung
   - Export als PNG/PDF
 
+### 8. **Algorithmus-Veröffentlichung**
+- **Aufmerksamkeits-Index Berechnung:** Der proprietäre Algorithmus zur Berechnung des Aufmerksamkeits-Index muss veröffentlicht werden
+- **Transparenz:** Wissenschaftliche Nachvollziehbarkeit der Bewertungslogik
+- **Open Source:** Algorithmus soll für Forschung und Validierung zugänglich sein
+- **Dokumentation:** Mathematische Grundlagen und Gewichtungsfaktoren offenlegen
+
 ---
 
 ## 🔧 **Technische Details**
@@ -175,6 +181,34 @@
 2. **Heute:** Ergebnisanzeige-Bug analysieren und fixen
 3. **Diese Woche:** Button-Beschriftungen überarbeiten
 4. **Nächste Woche:** Diagramm-Prototyp erstellen
+
+---
+
+## 🤖 **AI-Entwicklungsprozess**
+
+### **Blog-Erstellung:**
+1. **ChatGPT:** Diskussion, Recherche und Fokussierung der Themen
+2. **Claude AI:** Reinschrift, Formatierung und finale Textgestaltung
+
+### **Code-Entwicklung:**
+1. **Claude AI Pro:** Prototyp-Erstellung (typischerweise in Minuten)
+2. **Windsurf + Cloud AI:** Weiterentwicklung und Verfeinerung
+3. **Gemini/andere Modelle:** Spezielle Optimierungen
+
+### **Entwicklungs-Herausforderungen:**
+- ✅ **Prototyping:** Sehr schnell (Minuten bis Stunden)
+- ⚠️ **Feinarbeit:** Zeitaufwändig, besonders bei:
+  - Dateiberechtigungen
+  - Ordner-Erstellung
+  - Browser-Kompatibilität
+  - Debug-Funktionalität
+- 🔍 **Code-Einsicht:** Detailanalyse erforderlich für komplexe Bugs
+
+### **Lessons Learned:**
+- **Rapid Prototyping** mit AI ist sehr effektiv
+- **Edge Cases** und **Berechtigungen** benötigen manuelle Nacharbeit
+- **Multi-Model-Ansatz** (verschiedene AIs für verschiedene Aufgaben) ist optimal
+- **Iterative Verbesserung** durch AI-Code-Review funktioniert gut
 
 ---
 

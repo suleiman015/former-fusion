@@ -7,17 +7,22 @@ Created by Suleiman Odeh
 
 
 ## Run the website
+Damit du auf lokal host testen kannst, falls du was änderst:
+1- npm install
+2- npm run dev
+ 
+nachdem du fertig dann die sachen commiten und pushen.
+Dann :
+1- npm run build
+so wird ein dist folder erstellet, welche alle Dateien enthält die auf Ionos hochgeladen werden sollten.
+ 
 
-To run this project locally, follow these two simple steps:
+Filezilla, dort mit AImpacts verbinden.
+ 
+dann:
+	1- webspache: Webspace nutzen
+	2- auf das Verzeichnis clickandbuilds/ImportAIMPACTSNET 
+	3- alle Dateien im dist folder hochladen
+	4- Images und videos müssen nicht nochmal hochgeladen werden
+	5- AImapcts.de öffnen
 
-1. Install dependencies:
-```sh
-npm install
-```
-
-2. Start the development server:
-```sh
-npm run dev
-```
-
-The website will be available at `localhost:port`
