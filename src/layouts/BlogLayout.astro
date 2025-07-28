@@ -29,9 +29,9 @@ const { title } = Astro.props;
 
   .blog-main {
     width: 100%;
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 2rem; /* Erhöhtes seitliches Padding */
+    padding: 2rem;
   }
 
   .content-container {
@@ -39,9 +39,9 @@ const { title } = Astro.props;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     overflow: hidden;
-    padding: 2rem 3rem; /* Mehr Innenabstand */
+    padding: 2rem 3rem;
     width: 100%;
-    max-width: 1120px;
+    max-width: 800px;
     margin: 0 auto;
     box-sizing: border-box;
   }
@@ -80,17 +80,6 @@ const { title } = Astro.props;
   }
 
   /* Responsive Design */
-  @media (max-width: 1600px) {
-    .blog-main {
-      max-width: 1280px; /* Reduced by 20% from 1600px */
-    }
-  }
-  
-  @media (max-width: 1200px) {
-    .blog-main {
-      max-width: 960px; /* Reduced by 20% from 1200px */
-    }
-  }
   
   @media (max-width: 1024px) {
     .blog-main {

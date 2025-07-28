@@ -26,7 +26,14 @@
 
 ## 🟡 **Funktionale Verbesserungen**
 
-### 3. **Button-Funktionalität unklar definiert**
+### 3. **Blog-Layout Problem**
+- **Problem:** D2-Test Blog-Beitrag ist "am Anschlag rechts" positioniert
+- **Symptom:** Text oder Layout-Elemente sind nicht korrekt ausgerichtet
+- **Auswirkung:** Schlechte Lesbarkeit und unprofessionelles Erscheinungsbild
+- **Priorität:** MITTEL
+- **Lösung:** CSS-Layout und Responsive Design überprüfen
+
+### 4. **Button-Funktionalität unklar definiert**
 - **Problem:** Benutzer verstehen nicht, welche Buttons was tun
 - **Bedarf:**
   - Klarere Beschriftung der Buttons
@@ -34,7 +41,37 @@
   - Gruppierung verwandter Funktionen
   - Bestätigungsdialoge vor kritischen Aktionen
 
-### 4. **Datenlöschung nicht transparent**
+### 5. **Fehlende Benutzerführung vor Teststart**
+- **Problem:** Unklar, was vor dem Test ausgefüllt werden muss
+- **Bedarf:**
+  - Klare Anweisungen welche Felder Pflicht sind
+  - Erklärung des User-Codes (Format, Zweck)
+  - Hinweise zur optimalen Testumgebung
+  - Schritt-für-Schritt Anleitung
+- **Priorität:** HOCH
+- **Lösung:** Erweiterte Hilfe-Texte und Validierung
+
+### 6. **Datenschutz und Cookie-Information fehlt**
+- **Problem:** Nutzer wissen nicht, was mit ihren Daten passiert
+- **Bedarf:**
+  - Transparente Information über Cookie-Speicherung
+  - Erklärung der Datenverwendung
+  - Hinweis auf lokale Speicherung (keine Server-Übertragung)
+  - DSGVO-konforme Aufklärung
+- **Priorität:** HOCH (Rechtlich erforderlich)
+- **Lösung:** Datenschutz-Hinweise und Einverständnis-Dialog
+
+### 7. **Datenformat nicht benutzerfreundlich**
+- **Problem:** Cookie-Daten und Downloads sind nicht visuell auswertbar
+- **Bedarf:**
+  - Strukturierte, lesbare JSON-Formate
+  - CSV-Export für Excel/Tabellenkalkulation
+  - Grafische Darstellung der Ergebnisse
+  - Vergleichbare Zeitstempel und Kennwerte
+- **Priorität:** MITTEL
+- **Lösung:** Verbesserte Export-Formate und Visualisierung
+
+### 8. **Datenlöschung nicht transparent**
 - **Problem:** Unklar, welche Daten wann wo gelöscht werden
 - **Bedarf:**
   - Dokumentation der Lösch-Logik
@@ -49,7 +86,7 @@
 
 ## 🟢 **Neue Features (Roadmap)**
 
-### 5. **Vollständige Entwicklungsverfolgung**
+### 9. **Vollständige Entwicklungsverfolgung**
 - **Ziel:** Komplette Historie aller Tests speichern
 - **Anforderungen:**
   - Alle Testdurchläufe dauerhaft speichern
@@ -58,7 +95,7 @@
   - Geräteinformationen
   - Umgebungsbedingungen
 
-### 6. **Cookie-basierte Langzeitspeicherung**
+### 10. **Cookie-basierte Langzeitspeicherung**
 - **Ziel:** Daten auch nach Browser-Neustart verfügbar
 - **Anforderungen:**
   - Robuste Cookie-Struktur
@@ -66,16 +103,17 @@
   - Backup/Restore-Funktionalität
   - Export/Import von Testdaten
 
-### 7. **Diagramm-Auswertung über zeitlichen Verlauf**
+### 11. **Diagramm-Auswertung über zeitlichen Verlauf**
 - **Ziel:** Visuelle Darstellung der Entwicklung
 - **Features:**
-  - Liniendiagramm: Genauigkeit über Zeit
-  - Balkendiagramm: Geschwindigkeit pro Test
-  - Vergleich: Mit/ohne Medikation
-  - Trends: Verbesserung/Verschlechterung
+  1. Liniendiagramm: Genauigkeit über Zeit
+  2. Balkendiagramm: Geschwindigkeit pro Test
+  3. Vergleich: Mit/ohne Medikation
+  4. Trends: Verbesserung/Verschlechterung
+  5. Export als PNG/PDF
   - Export als PNG/PDF
 
-### 8. **Algorithmus-Veröffentlichung**
+### 12. **Algorithmus-Veröffentlichung**
 - **Aufmerksamkeits-Index Berechnung:** Der proprietäre Algorithmus zur Berechnung des Aufmerksamkeits-Index muss veröffentlicht werden
 - **Transparenz:** Wissenschaftliche Nachvollziehbarkeit der Bewertungslogik
 - **Open Source:** Algorithmus soll für Forschung und Validierung zugänglich sein
@@ -136,22 +174,26 @@
 ### **Phase 1 - Bugfixes (Sofort)**
 1. ✅ Debug-Dialog Flackern beheben
 2. ✅ Ergebnisanzeige reparieren
-3. ✅ Button-Beschriftungen verbessern
+3. ✅ Blog-Layout Problem beheben ("am Anschlag rechts")
+4. ✅ Button-Beschriftungen verbessern
+5. ✅ Benutzerführung vor Teststart hinzufügen
+6. ✅ Datenschutz und Cookie-Information implementieren
 
 ### **Phase 2 - UX-Verbesserungen (Kurzfristig)**
-4. ✅ Datenlöschung transparenter machen
-5. ✅ Bestätigungsdialoge hinzufügen
-6. ✅ Hilfe-Texte und Tooltips
+7. ✅ Datenformat benutzerfreundlicher gestalten
+8. ✅ Datenlöschung transparenter machen
+9. ✅ Bestätigungsdialoge hinzufügen
+10. ✅ Hilfe-Texte und Tooltips
 
 ### **Phase 3 - Neue Features (Mittelfristig)**
-7. ✅ Vollständige Testverlauf-Speicherung
-8. ✅ Cookie-basierte Persistierung
-9. ✅ Basis-Diagramme implementieren
+11. ✅ Vollständige Testverlauf-Speicherung
+12. ✅ Cookie-basierte Persistierung
+13. ✅ Basis-Diagramme implementieren
 
 ### **Phase 4 - Advanced Features (Langfristig)**
-10. ✅ Erweiterte Statistiken
-11. ✅ Trend-Analyse
-12. ✅ Export/Import-Funktionalität
+14. ✅ Erweiterte Statistiken
+15. ✅ Trend-Analyse
+16. ✅ Export/Import-Funktionalität
 
 ---
 
