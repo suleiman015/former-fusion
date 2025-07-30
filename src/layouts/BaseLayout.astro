@@ -622,6 +622,105 @@ import CookieBanner from '../components/CookieBanner.astro';
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-SR0P6X737M');
+      
+      // Enhanced User Journey Tracking
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          // Track entry point and referrer
+          const referrer = document.referrer;
+          const currentPage = window.location.pathname;
+          const isFirstVisit = !sessionStorage.getItem('user_journey');
+        
+        // Initialize or update user journey
+        let userJourney = JSON.parse(sessionStorage.getItem('user_journey') || '[]');
+        const timestamp = new Date().toISOString();
+        
+        // Add current page to journey
+        userJourney.push({
+          page: currentPage,
+          timestamp: timestamp,
+          referrer: referrer,
+          isEntryPoint: isFirstVisit
+        });
+        
+        // Keep only last 10 pages to avoid storage bloat
+        if (userJourney.length > 10) {
+          userJourney = userJourney.slice(-10);
+        }
+        
+        sessionStorage.setItem('user_journey', JSON.stringify(userJourney));
+        
+        // Track entry point
+        if (isFirstVisit) {
+          let entrySource = 'direct';
+          let entryDetail = currentPage;
+          
+          if (referrer) {
+            if (referrer.includes('linkedin.com')) {
+              entrySource = 'linkedin';
+            } else if (referrer.includes('google.com')) {
+              entrySource = 'google';
+            } else if (referrer.includes('facebook.com')) {
+              entrySource = 'facebook';
+            } else if (!referrer.includes(window.location.hostname)) {
+              entrySource = 'external';
+            } else {
+              entrySource = 'internal';
+            }
+          }
+          
+          gtag('event', 'session_start', {
+            'event_category': 'User Journey',
+            'entry_point': currentPage,
+            'entry_source': entrySource,
+            'referrer_url': referrer || 'direct',
+            'custom_parameter_1': entryDetail
+          });
+        }
+        
+        // Track page in journey context
+        gtag('event', 'page_navigation', {
+          'event_category': 'User Journey',
+          'event_label': currentPage,
+          'journey_step': userJourney.length,
+          'is_entry_point': isFirstVisit,
+          'previous_page': userJourney.length > 1 ? userJourney[userJourney.length - 2].page : 'none'
+        });
+        
+        // Track navigation clicks
+        document.addEventListener('click', function(e) {
+          const link = e.target.closest('a');
+          if (link && link.href && link.href.includes(window.location.hostname)) {
+            const targetPage = new URL(link.href).pathname;
+            
+            gtag('event', 'internal_navigation', {
+              'event_category': 'User Journey',
+              'event_label': `${currentPage} → ${targetPage}`,
+              'from_page': currentPage,
+              'to_page': targetPage,
+              'link_text': link.textContent?.trim() || 'unknown'
+            });
+          }
+        });
+        
+        // Track exit intent (when user leaves)
+        window.addEventListener('beforeunload', function() {
+          const journey = JSON.parse(sessionStorage.getItem('user_journey') || '[]');
+          const sessionDuration = journey.length > 0 ? 
+            (new Date().getTime() - new Date(journey[0].timestamp).getTime()) / 1000 : 0;
+          
+          gtag('event', 'session_end', {
+            'event_category': 'User Journey',
+            'session_duration': Math.round(sessionDuration),
+            'pages_visited': journey.length,
+            'entry_point': journey[0]?.page || 'unknown',
+            'exit_page': currentPage
+          });
+        });
+      } catch (error) {
+        console.error('Analytics error:', error);
+      }
+      });
     </script>
   </head>
   <body>

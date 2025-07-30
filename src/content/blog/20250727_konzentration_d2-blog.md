@@ -26,6 +26,8 @@ Ein zentraler Test zur Messung von Konzentrationsleistung ist der sogenannte D2-
 
 Deshalb habe ich einen digitalen D2-Test entwickelt – innerhalb weniger Stunden mithilfe von Künstlicher Intelligenz programmiert. Der Test dient zur eigenen Wahrnehmung von Aufmerksamkeit und Erschöpfungszustand, beispielsweise in Abhängigkeit von Medikamenteneinnahme, Tageszeit oder Biorhythmus.
 
+<div id="d2-test-section"></div>
+
 ### 🎯 ** Hier geht es zum D2-Test (zur Selbsteinschätzung):**
 **➡️ [D2-Aufmerksamkeitstest starten](/d2_test_complete.html) ⬅️**
 

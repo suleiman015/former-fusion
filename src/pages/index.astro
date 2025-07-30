@@ -532,12 +532,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     .hero-content {
       flex: 1;
-      max-width: 600px;
+      max-width: 780px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      text-align: center;
+      text-align: left;
       gap: 1.5rem;
       margin-top: -40px;
     }
@@ -546,21 +546,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       font-size: 3.2rem;
       font-weight: 800;
       margin: 0;
-      letter-spacing: -2px;
+      letter-spacing: 0.05em;
       line-height: 1.1;
-      text-align: center;
+      text-align: left;
       white-space: normal;
+      position: relative;
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-title-animated {
+      background: linear-gradient(45deg, #ffffff, #f1f5f9, #e2e8f0, #cbd5e1);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 12s ease-in-out infinite;
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+      opacity: 0.95;
+      width: 100%;
+      display: block;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
     .hero-content .hero-subtitle {
       color: #cbd5e1;
       font-size: 1.3rem;
       margin: 0;
       line-height: 1.4;
-      text-align: center;
+      text-align: left;
+      letter-spacing: 0.03em;
       white-space: normal;
     }
     .hero-btn {
-      align-self: center;
+      align-self: flex-start;
       margin: 0;
       white-space: nowrap;
     }
@@ -581,16 +606,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
       .hero-content {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         gap: 1rem;
+        max-width: 100%;
       }
-      .hero-content h1, .hero-content .hero-subtitle {
-        text-align: center;
+      .hero-content h1 {
+        text-align: left;
         white-space: normal;
+        font-size: 2.5rem;
+        height: 150px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
       }
-      .hero-btn {
-        align-self: center;
+      .hero-content .hero-subtitle {
+        text-align: left;
+        white-space: normal;
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -598,7 +631,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="hero" id="home">
     <div class="hero-flex">
       <div class="hero-content">
-        <h1>AI ready for business</h1>
+        <h1 id="hero-title" class="hero-title-animated">Gemeinsam entfalten wir die Kraft Ihrer Daten – mit KI, die Menschen stärkt.</h1>
         <div class="hero-subtitle">AImpacts – Ihre Experten rund um AI für Unternehmen!</div>
         <a id="ai-weg-btn" href="#" class="hero-btn">Ihr Weg mit AI beginnt hier →</a>
       </div>
@@ -640,6 +673,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
+    // Hero title rotation - Isolated execution
+    try {
+      const heroTitles = [
+        'Ihre KI-Transformation beginnt hier.',
+        'Wir entwickeln KI, die Menschen stärkt.',
+        'AI ist da. Die Frage ist: Nutzen Sie sie richtig?'
+      ];
+      
+      let currentTitleIndex = 0;
+      const heroTitleElement = document.getElementById('hero-title');
+      
+      if (heroTitleElement) {
+        console.log('Hero title element found, starting rotation');
+        
+        function changeHeroTitle() {
+          if (heroTitleElement) {
+            // Fade out
+            heroTitleElement.style.opacity = '0';
+            heroTitleElement.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+              // Change text
+              currentTitleIndex = (currentTitleIndex + 1) % heroTitles.length;
+              heroTitleElement.textContent = heroTitles[currentTitleIndex];
+              console.log('Hero title changed to:', heroTitles[currentTitleIndex]);
+              
+              // Fade in
+              heroTitleElement.style.opacity = '1';
+              heroTitleElement.style.transform = 'translateY(0)';
+            }, 600);
+          }
+        }
+        
+        // Start alternating titles every 5.5 seconds
+        const heroInterval = setInterval(changeHeroTitle, 5500);
+        console.log('Hero title rotation started with interval:', heroInterval);
+      } else {
+        console.error('Hero title element not found!');
+      }
+    } catch (error) {
+      console.error('Error in hero title rotation:', error);
+    }
     // Erstes Modal (AI Weg)
     var btn = document.getElementById('ai-weg-btn');
     var modal = document.getElementById('ai-modal');
@@ -676,6 +751,73 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           }
         });
       }
+    }
+    
+    // Enhanced CTA and Conversion Tracking
+    if (typeof window.gtag !== 'undefined') {
+      const gtag = window.gtag;
+      
+      // Track CTA button clicks
+      document.querySelectorAll('[href*="/blog/"], [id*="-btn"], .cta-button, [href*="d2"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const buttonText = this.textContent?.trim() || 'unknown';
+          const buttonId = this.id || 'no-id';
+          const targetUrl = this.href || 'no-url';
+          const currentPage = window.location.pathname;
+          
+          let actionType = 'unknown';
+          if (targetUrl.includes('/blog/')) {
+            actionType = 'blog_navigation';
+          } else if (targetUrl.includes('d2')) {
+            actionType = 'd2_test_access';
+          } else if (buttonId.includes('modal') || buttonId.includes('btn')) {
+            actionType = 'modal_open';
+          }
+          
+          gtag('event', 'cta_click', {
+            'event_category': 'Conversion Funnel',
+            'event_label': buttonText,
+            'button_id': buttonId,
+            'button_text': buttonText,
+            'target_url': targetUrl,
+            'source_page': currentPage,
+            'action_type': actionType
+          });
+        });
+      });
+      
+      // Track form interactions (if any)
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+          gtag('event', 'form_submit', {
+            'event_category': 'Conversion Funnel',
+            'event_label': 'Form Submission',
+            'form_id': this.id || 'unknown',
+            'source_page': window.location.pathname
+          });
+        });
+      });
+      
+      // Track modal interactions
+      document.querySelectorAll('[id*="modal"]').forEach(modal => {
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+              const target = mutation.target;
+              if (target.style.display === 'flex' || target.style.display === 'block') {
+                gtag('event', 'modal_view', {
+                  'event_category': 'User Engagement',
+                  'event_label': target.id,
+                  'modal_id': target.id,
+                  'source_page': window.location.pathname
+                });
+              }
+            }
+          });
+        });
+        
+        observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
+      });
     }
     
     // Video code removed

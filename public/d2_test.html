@@ -6,6 +6,22 @@
     <title>D2 Aufmerksamkeitstest | AImpacts</title>
     <style>
         /*
+         * ===== Modern Medical Theme Variables =====
+         */
+        :root {
+          --primary: #0b6efd;         /* Calm diagnostic blue */
+          --primary-dark: #0953c6;
+          --accent: #198754;          /* subtle green accents */
+          --danger: #d63384;          /* for incorrect/missed */
+          --warning: #ffc107;
+          --dark-text: #212529;
+          --light-bg: #f5f7fa;
+          --container-bg: #ffffff;
+          --container-shadow: 0 8px 20px rgba(0,0,0,0.04);
+          --radius: 8px;
+        }
+
+        /*
          * Global Styles and Utility Classes
          */
         * {
@@ -15,10 +31,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-text);
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,12 +43,12 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--container-shadow);
             overflow: hidden;
         }
 
@@ -39,10 +56,11 @@
          * Header Section
          */
         .header {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            padding: 30px;
+            background: var(--container-bg);
+            color: var(--primary);
+            padding: 32px 24px;
             text-align: center;
+            border-bottom: 4px solid var(--primary);
         }
 
         .header h1 {
@@ -114,29 +132,29 @@
          * Buttons
          */
         .btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
+            background: var(--primary);
+            color: #fff;
             border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 10px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin: 8px;
             display: inline-block;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(11,110,253,0.25);
         }
 
         .btn:disabled {
-            background: #ccc;
+            background: #adb5bd;
             cursor: not-allowed;
-            transform: none;
             box-shadow: none;
+            transform: none;
         }
 
         /*
@@ -516,15 +534,15 @@
          * Button Variants
          */
         .btn-secondary {
-            background: linear-gradient(45deg, #6c757d, #5a6268);
+            background: #6c757d;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #007bff, #0056b3);
+            background: var(--primary);
         }
 
         .btn:disabled {
-            background: #e9ecef;
+            background: #adb5bd;
             color: #6c757d;
             cursor: not-allowed;
             transform: none;
@@ -580,6 +598,9 @@
 <body>
     <div class="container">
         <div class="header">
+            <div id="debugModeIndicator" style="display: none; background: #ff6b6b; color: white; padding: 8px; text-align: center; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">
+                🔧 DEBUG MODE AKTIV
+            </div>
             <h1>🧠 d2-Aufmerksamkeitstest</h1>
             <p>Konzentrations- und Aufmerksamkeitsmessung</p>
         </div>
@@ -657,8 +678,18 @@
                 <button class="btn" onclick="showResults()">Eigene Ergebnisse anzeigen</button>
                 <button class="btn" onclick="deleteData()">Daten löschen</button>
                 <button class="btn" onclick="importData()">📁 Daten importieren</button>
-                <button class="btn" onclick="createTestData()" style="background: #2196F3;">🎯 Test-Daten erstellen</button>
-                <button class="btn" onclick="testStorage()" style="background: #ff9800;">🔧 Speicher testen</button>
+            </div>
+            
+            <!-- Debug Mode Buttons (only visible when debug=1 URL parameter is set) -->
+            <div id="debugButtons" style="display: none; margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 5px solid #ffc107;">
+                <h4>🔧 Debug-Modus aktiviert</h4>
+                <p>Zusätzliche Funktionen für Entwicklung und Debugging:</p>
+                <button class="btn btn-secondary" onclick="showCookieData()">🍪 Cookie-Daten anzeigen</button>
+                <button class="btn btn-secondary" onclick="downloadCookieData()">📥 Cookie-Daten herunterladen</button>
+                <button class="btn btn-secondary" onclick="showAllStorageData()">📊 Alle Speicherdaten anzeigen</button>
+                <button class="btn btn-secondary" onclick="clearAllDebugData()">🗑️ Alle Debug-Daten löschen</button>
+                <button class="btn btn-secondary" onclick="createTestData()" style="background: #2196F3; color: white;">🎯 Test-Daten erstellen</button>
+                <button class="btn btn-secondary" onclick="testStorage()" style="background: #ff9800; color: white;">🔧 Speicher testen</button>
             </div>
         </div>
 
@@ -686,16 +717,6 @@
                 <button class="btn" onclick="syncData()">🔄 Daten synchronisieren</button>
                 <button class="btn" onclick="createFullBackup()">💾 Vollständiges Backup</button>
                 <button class="btn" onclick="runComprehensiveStorageTest()">🧪 Speicher-Test</button>
-            
-            <!-- Debug Mode Buttons (only visible when debug=1 URL parameter is set) -->
-            <div id="debugButtons" style="display: none; margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 5px solid #ffc107;">
-                <h4>🔧 Debug-Modus aktiviert</h4>
-                <p>Zusätzliche Funktionen für Entwicklung und Debugging:</p>
-                <button class="btn btn-secondary" onclick="showCookieData()">🍪 Cookie-Daten anzeigen</button>
-                <button class="btn btn-secondary" onclick="downloadCookieData()">📥 Cookie-Daten herunterladen</button>
-                <button class="btn btn-secondary" onclick="showAllStorageData()">📊 Alle Speicherdaten anzeigen</button>
-                <button class="btn btn-secondary" onclick="clearAllDebugData()">🗑️ Alle Debug-Daten löschen</button>
-            </div>
             </div>
 
             <div class="data-management">
@@ -758,9 +779,26 @@
             currentTest.deviceInfo = getDeviceInfo();
             
             // Show debug buttons if debug mode is enabled
+            console.log('🔍 Checking debug mode...', window.location.search);
             if (isDebugMode()) {
-                document.getElementById('debugButtons').style.display = 'block';
-                console.log('🔧 Debug-Modus aktiviert! Zusätzliche Funktionen verfügbar.');
+                console.log('✅ Debug mode detected!');
+                
+                // Show debug indicator in header
+                const debugIndicator = document.getElementById('debugModeIndicator');
+                if (debugIndicator) {
+                    debugIndicator.style.display = 'block';
+                }
+                
+                // Show debug buttons section
+                const debugElement = document.getElementById('debugButtons');
+                if (debugElement) {
+                    debugElement.style.display = 'block';
+                    console.log('🔧 Debug-Modus aktiviert! Debug-Sektion angezeigt.');
+                } else {
+                    console.error('❌ Debug-Element nicht gefunden!');
+                }
+            } else {
+                console.log('❌ Debug mode NOT detected');
             }
             
             // Input method detection
@@ -2199,8 +2237,10 @@ Tipp:
                 });
             }
             
-            // Create modal dialog
+            // Create modal dialog with unique ID
+            const modalId = 'cookieModal_' + Date.now();
             const modal = document.createElement('div');
+            modal.id = modalId;
             modal.style.cssText = `
                 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                 background: rgba(0,0,0,0.8); z-index: 10000;
@@ -2216,15 +2256,53 @@ Tipp:
             
             content.innerHTML = `
                 <h3>🍪 Cookie-Daten für ${userCode}</h3>
-                <textarea readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 11px;">${output}</textarea>
+                <textarea readonly id="cookieOutput_${modalId}" style="width: 100%; height: 400px; font-family: monospace; font-size: 11px;">${output}</textarea>
                 <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="this.closest('div[style*=\"fixed\"]').remove()" class="btn">Schließen</button>
-                    <button onclick="navigator.clipboard.writeText('${output.replace(/'/g, "\\'")}'').then(() => alert('In Zwischenablage kopiert!'))" class="btn btn-primary">In Zwischenablage kopieren</button>
+                    <button onclick="closeModal('${modalId}')" class="btn">Schließen</button>
+                    <button onclick="copyToClipboard('cookieOutput_${modalId}')" class="btn btn-primary">In Zwischenablage kopieren</button>
                 </div>
             `;
             
             modal.appendChild(content);
             document.body.appendChild(modal);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function copyToClipboard(textareaId) {
+            const textarea = document.getElementById(textareaId);
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // For mobile devices
+                
+                // Try modern clipboard API first
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(textarea.value).then(() => {
+                        alert('📋 In Zwischenablage kopiert!');
+                    }).catch(err => {
+                        console.error('Clipboard API failed:', err);
+                        fallbackCopy(textarea);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    fallbackCopy(textarea);
+                }
+            }
+        }
+
+        function fallbackCopy(textarea) {
+            try {
+                document.execCommand('copy');
+                alert('📋 In Zwischenablage kopiert!');
+            } catch (err) {
+                console.error('Copy failed:', err);
+                alert('⚠️ Kopieren fehlgeschlagen. Bitte manuell markieren und kopieren.');
+            }
         }
 
         function downloadCookieData() {
@@ -2309,8 +2387,10 @@ Tipp:
                 });
             }
             
-            // Create modal
+            // Create modal with unique ID
+            const modalId = 'storageModal_' + Date.now();
             const modal = document.createElement('div');
+            modal.id = modalId;
             modal.style.cssText = `
                 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                 background: rgba(0,0,0,0.8); z-index: 10000;
@@ -2327,7 +2407,7 @@ Tipp:
                 <h3>📊 Alle Speicherdaten</h3>
                 <textarea readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 11px;">${output}</textarea>
                 <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="this.closest('div[style*=\"fixed\"]').remove()" class="btn">Schließen</button>
+                    <button onclick="closeModal('${modalId}')" class="btn">Schließen</button>
                 </div>
             `;
             

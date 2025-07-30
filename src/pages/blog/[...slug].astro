@@ -38,6 +38,28 @@ const { Content } = await post.render();
           }
         </time>
       </header>
+      
+      {/* Show prominent CTA for D2-test related posts */}
+      {post.slug === '20250727_konzentration_d2-blog' && (
+        <div class="d2-test-cta">
+          <div class="cta-background-image"></div>
+          <div class="cta-content">
+            <h2>🎯 Testen Sie Ihre Konzentration!</h2>
+            <p>Probieren Sie den digitalen D2-Aufmerksamkeitstest aus, der in diesem Artikel vorgestellt wird.</p>
+            <div class="cta-buttons">
+              <button type="button" onclick="scrollToTestSection()" class="btn-primary">
+                <span class="btn-icon">📖</span>
+                <span class="btn-text">Mehr erfahren</span>
+              </button>
+              <a href="/d2_test_complete.html" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <span class="btn-icon">🚀</span>
+                <span class="btn-text">Test jetzt starten</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div class="blog-content">
         <Content />
       </div>
@@ -56,8 +78,8 @@ const { Content } = await post.render();
   .blog-post {
     width: 100%;
     background: #fff;
-    padding: 2rem 3rem;
-    margin: 0 1.5rem; /* Abstand zum content-container */
+    padding: 1rem 1rem;
+    margin: 0 0.25rem; /* Abstand zum content-container */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-sizing: border-box;
@@ -141,17 +163,131 @@ const { Content } = await post.render();
     margin-bottom: 0.5rem;
   }
 
+  /* D2-Test CTA Styles */
+  .d2-test-cta {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(30, 64, 175, 0.3);
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-image: url('/images/2025-07-30_11-42-18_d2_test.png');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    mask: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    opacity: 0.3;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .d2-test-cta h2 {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .d2-test-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 180px;
+  }
+
+  .btn-icon {
+    display: inline-block;
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  .btn-text {
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    background: #ffffff;
+    color: #1e40af;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    color: #1e3a8a;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
   @media (max-width: 1024px) {
     .blog-post {
       margin: 0 1rem; /* Reduzierter Margin für Tablets */
-      padding: 2rem 1.5rem;
+      padding: 0.5rem 0.5rem;
     }
   }
 
   @media (max-width: 768px) {
     .blog-post {
       margin: 0 0.75rem; /* Kleinerer Margin für mobile Geräte */
-      padding: 1.5rem 1rem;
+      padding: 0.5rem 0.5rem;
     }
 
     h1 {
@@ -162,12 +298,120 @@ const { Content } = await post.render();
       font-size: 1rem;
       max-width: 100%;
     }
+
+    /* Mobile CTA adjustments */
+    .d2-test-cta {
+      padding: 1.5rem 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .d2-test-cta h2 {
+      font-size: 1.5rem;
+    }
+
+    .d2-test-cta p {
+      font-size: 1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+      text-align: center;
+      margin: 0 auto;
+    }
   }
   
   @media (max-width: 480px) {
     .blog-post {
       margin: 0 0.5rem; /* Minimaler Margin für sehr kleine Bildschirme */
-      padding: 1rem 0.75rem;
+      padding: 0.25rem 0.25rem;
     }
   }
 </style>
+
+<script>
+  // Make function globally available
+  (window as any).scrollToTestSection = function() {
+    console.log('scrollToTestSection called'); // Debug log
+    // Wait a bit for the page to be fully rendered
+    setTimeout(() => {
+      // Try multiple approaches to find the test section
+      let testSection = null;
+      
+      // Method 1: Try to find by ID
+      testSection = document.getElementById('d2-test-section');
+      
+      // Method 2: Look for the heading with the test link
+      if (!testSection) {
+        const headings = document.querySelectorAll('h3');
+        for (const heading of headings) {
+          if (heading.textContent && heading.textContent.includes('D2-Test')) {
+            testSection = heading;
+            break;
+          }
+        }
+      }
+      
+      // Method 3: Look for the actual test link
+      if (!testSection) {
+        const links = document.querySelectorAll('a');
+        for (const link of links) {
+          if (link.href && link.href.includes('d2_test_complete.html')) {
+            testSection = link.parentElement || link;
+            break;
+          }
+        }
+      }
+      
+      // Method 4: Search for text content
+      if (!testSection) {
+        const allElements = document.querySelectorAll('*');
+        for (const element of allElements) {
+          if (element.textContent && element.textContent.includes('D2-Aufmerksamkeitstest starten')) {
+            testSection = element;
+            break;
+          }
+        }
+      }
+      
+      if (testSection) {
+        // Scroll to the element
+        testSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center',
+          inline: 'nearest'
+        });
+        
+        // Add highlight effect
+        setTimeout(() => {
+          if (testSection instanceof HTMLElement) {
+            testSection.style.transition = 'background-color 0.8s ease, box-shadow 0.3s ease';
+            testSection.style.backgroundColor = '#dbeafe';
+            testSection.style.boxShadow = '0 0 0 4px rgba(59, 130, 246, 0.3)';
+            testSection.style.borderRadius = '8px';
+            testSection.style.padding = '0.5rem';
+            
+            setTimeout(() => {
+              testSection.style.backgroundColor = 'transparent';
+              testSection.style.boxShadow = 'none';
+              testSection.style.padding = '0';
+            }, 3000);
+          }
+        }, 300);
+      } else {
+        // Fallback: scroll down to where the test link likely is
+        const scrollTarget = Math.max(document.body.scrollHeight * 0.4, 800);
+        window.scrollTo({ 
+          top: scrollTarget, 
+          behavior: 'smooth' 
+        });
+      }
+    }, 100);
+  };
+</script>

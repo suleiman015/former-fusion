@@ -6,7 +6,23 @@
     <title>D2 Aufmerksamkeitstest | AImpacts</title>
     <style>
         /*
-         * Global Styles and Utility Classes
+         * ===== Modern Medical Theme Variables =====
+         */
+        :root {
+          --primary: #0b6efd;         /* Calm diagnostic blue */
+          --primary-dark: #0953c6;
+          --accent: #198754;          /* subtle green accents */
+          --danger: #d63384;          /* for incorrect/missed */
+          --warning: #ffc107;
+          --dark-text: #212529;
+          --light-bg: #f5f7fa;
+          --container-bg: #ffffff;
+          --container-shadow: 0 8px 20px rgba(0,0,0,0.04);
+          --radius: 8px;
+        }
+
+        /*
+          * Global Styles and Utility Classes
          */
         * {
             box-sizing: border-box;
@@ -15,10 +31,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-text);
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,12 +43,12 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--container-shadow);
             overflow: hidden;
         }
 
@@ -39,10 +56,11 @@
          * Header Section
          */
         .header {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            padding: 30px;
+            background: var(--container-bg);
+            color: var(--primary);
+            padding: 32px 24px;
             text-align: center;
+            border-bottom: 4px solid var(--primary);
         }
 
         .header h1 {
@@ -76,6 +94,7 @@
 
         .form-group input, select {
             width: 100%;
+            max-width: 320px;
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
@@ -83,9 +102,38 @@
             transition: border-color 0.3s;
         }
 
+        .input-hint {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 4px;
+            max-width: 320px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .form-column {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .general-info {
+            background: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
         .form-group input:focus, select:focus {
             outline: none;
-            border-color: #4CAF50;
+            border-color: var(--primary);
         }
 
         .instructions {
@@ -114,29 +162,67 @@
          * Buttons
          */
         .btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
+            background: var(--primary);
+            color: #fff;
             border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 10px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin: 8px;
             display: inline-block;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(11,110,253,0.25);
         }
 
         .btn:disabled {
-            background: #ccc;
+            background: #adb5bd;
             cursor: not-allowed;
-            transform: none;
             box-shadow: none;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #adb5bd;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin: 8px;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #d2d6da;
+            box-shadow: 0 4px 12px rgba(210,214,218,0.25);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            margin: 8px;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(11,110,253,0.25);
         }
 
         /*
@@ -516,15 +602,15 @@
          * Button Variants
          */
         .btn-secondary {
-            background: linear-gradient(45deg, #6c757d, #5a6268);
+            background: #6c757d;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #007bff, #0056b3);
+            background: var(--primary);
         }
 
         .btn:disabled {
-            background: #e9ecef;
+            background: #adb5bd;
             color: #6c757d;
             cursor: not-allowed;
             transform: none;
@@ -583,70 +669,60 @@
             <div id="debugModeIndicator" style="display: none; background: #ff6b6b; color: white; padding: 8px; text-align: center; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">
                 🔧 DEBUG MODE AKTIV
             </div>
-            <h1>🧠 d2-Aufmerksamkeitstest</h1>
+            <h1>d2-Aufmerksamkeitstest</h1>
             <p>Konzentrations- und Aufmerksamkeitsmessung</p>
         </div>
 
         <div id="setupPanel" class="setup-panel">
-            <div class="form-group">
-                <label for="userCode">Ihr Code (z.B. Michael271274):</label>
-                <input type="text" id="userCode" placeholder="Name + Geburtsdatum">
-            </div>
-
-            <div class="form-group">
-                <label for="medication">Medikation:</label>
-                <select id="medication">
-                    <option value="ohne">Ohne Medikation</option>
-                    <option value="mit">Mit Medikation</option>
-                </select>
-            </div>
-
             <div class="instructions">
-                <h3>📋 D2-Aufmerksamkeitstest: Anleitung</h3>
+                <h3>D2-Aufmerksamkeitstest: Anleitung</h3>
                 
                 <div class="instruction-card">
                     <div class="card-header">
-                        <span class="icon">🎯</span>
-                        <h4>Ihre Aufgabe</h4>
+
+                        <h4>Deine Aufgabe</h4>
                     </div>
-                    <p>Markieren Sie <strong>alle "d" mit genau 2 Strichen/Punkten</strong> (oben und/oder unten).</p>
+                    <p>Markiere <strong>alle "d" mit genau 2 Strichen/Punkten</strong> (oben und/oder unten).</p>
                     <p>Ein Strich (—) entspricht 2 Punkten (..) • Kombinationen sind möglich</p>
+                    
+                    <div class="examples-section">
+                        <div class="examples-grid">
+                            <div class="example-group correct">
+                                <h5><span class="icon">✓</span> RICHTIG - Markiere diese:</h5>
+                                <div class="symbol-examples" id="correctExamples"></div>
+                            </div>
+                            
+                            <div class="example-group incorrect">
+                                <h5><span class="icon">✗</span> FALSCH - Nicht markieren:</h5>
+                                <div class="symbol-examples" id="incorrectExamples"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="examples-section">
-                    <div class="examples-grid">
-                        <div class="example-group correct">
-                            <h5><span class="icon">✓</span> RICHTIG - Markieren Sie diese:</h5>
-                            <div class="symbol-examples" id="correctExamples"></div>
+                <div class="practice-section" style="background: #e8f4fd; border: 2px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+                        <!-- Linke Seite: Titel und Beschreibung -->
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: #007bff; margin: 0 0 10px 0; font-size: 1.2em;">Übung vorab - Probe vor dem echten Test</h4>
+                            <p style="margin: 0 0 10px 0; font-size: 0.9em; color: #495057;">Teste dein Verständnis mit 7 Beispiel-Symbolen:</p>
                         </div>
                         
-                        <div class="example-group incorrect">
-                            <h5><span class="icon">✗</span> FALSCH - Nicht markieren:</h5>
-                            <div class="symbol-examples" id="incorrectExamples"></div>
+                        <!-- Rechte Seite: Übungsbereich und Buttons -->
+                        <div style="flex: 1; min-width: 300px;">
+                            <div id="practiceArea" class="practice-symbols" style="margin-bottom: 10px; min-height: 60px; background: white; border-radius: 4px; padding: 10px;"></div>
+                            <div class="practice-controls" style="display: flex; gap: 8px; justify-content: center;">
+                                <button class="btn btn-secondary" onclick="generatePractice()" style="font-size: 0.85em; padding: 6px 12px;">🔄 Neue Übung</button>
+                                <button class="btn btn-primary" onclick="checkPractice()" id="checkPracticeBtn" disabled style="font-size: 0.85em; padding: 6px 12px;">✅ Lösung prüfen</button>
+                            </div>
+                            <div id="practiceResult" class="practice-result" style="margin-top: 8px; font-size: 0.85em;"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="practice-section">
-                    <div class="card-header">
-                        <span class="icon">🎓</span>
-                        <h4>Übungstest</h4>
-                    </div>
-                    <p>Testen Sie Ihr Verständnis mit 5 Beispiel-Symbolen:</p>
-                    <div id="practiceArea" class="practice-symbols"></div>
-                    <div class="practice-controls">
-                        <button class="btn btn-secondary" onclick="generatePractice()">Neue Übung</button>
-                        <button class="btn btn-primary" onclick="checkPractice()" id="checkPracticeBtn" disabled>Lösung prüfen</button>
-                    </div>
-                    <div id="practiceResult" class="practice-result"></div>
-                </div>
-
-                <div class="rules-card">
-                    <div class="card-header">
-                        <span class="icon">⚡</span>
-                        <h4>Testregeln</h4>
-                    </div>
-                    <ul>
+                <div class="rules-card" style="background: #f8f9fa; border-radius: 6px; padding: 12px;">
+                    <h4 style="color: #495057; margin: 0 0 8px 0; font-size: 1.1em;">Testregeln</h4>
+                    <ul style="margin: 0; padding-left: 18px; font-size: 0.9em; line-height: 1.4;">
                         <li><strong>Geschwindigkeit:</strong> 20 Sekunden pro Zeile (14 Zeilen)</li>
                         <li><strong>Eingabe:</strong> Maus, Finger oder Stift</li>
                         <li><strong>Feedback:</strong> Markierte Zeichen werden grün hervorgehoben</li>
@@ -655,23 +731,66 @@
                 </div>
             </div>
 
-            <div style="text-align: center;">
-                <button class="btn" onclick="startTest()">Test starten</button>
-                <button class="btn" onclick="showResults()">Eigene Ergebnisse anzeigen</button>
-                <button class="btn" onclick="deleteData()">Daten löschen</button>
-                <button class="btn" onclick="importData()">📁 Daten importieren</button>
+            <!-- Eingabefelder vor Test-Start -->
+            <div class="form-row" style="margin: 20px 0;">
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="userCode">Dein Code (z.B. Michael271274):</label>
+                        <input type="text" id="userCode" placeholder="Name + Geburtsdatum">
+                        <p class="input-hint">Verwende Name + Geburtsdatum als Code – leicht merkbar und wiederverwendbar. Alle Angaben bleiben nur lokal in deinem Browser, lassen sich aber exportieren für andere Geräte.</p>
+                    </div>
+                </div>
+                
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="medication">Medikation:</label>
+                        <select id="medication">
+                            <option value="ohne">Ohne Medikation</option>
+                            <option value="mit">Mit Medikation</option>
+                        </select>
+                        <p class="input-hint">Wähle "Mit Medikation", um den Einfluss von Medikamenten auf deine Aufmerksamkeit zu verfolgen und zu vergleichen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <!-- Hauptaktionen -->
+                <div style="margin-bottom: 15px;">
+                    <button class="btn" onclick="startTest()" style="background: #28a745; color: white; font-weight: bold; padding: 12px 24px;" title="Starte einen neuen D2-Aufmerksamkeitstest">🚀 Test starten</button>
+                </div>
+                
+                <!-- Ergebnisse anzeigen -->
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn" onclick="showResults()" title="Zeige deine gespeicherten Testergebnisse an">📊 Meine Ergebnisse</button>
+                </div>
             </div>
             
             <!-- Debug Mode Buttons (only visible when debug=1 URL parameter is set) -->
             <div id="debugButtons" style="display: none; margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 5px solid #ffc107;">
-                <h4>🔧 Debug-Modus aktiviert</h4>
-                <p>Zusätzliche Funktionen für Entwicklung und Debugging:</p>
-                <button class="btn btn-secondary" onclick="showCookieData()">🍪 Cookie-Daten anzeigen</button>
-                <button class="btn btn-secondary" onclick="downloadCookieData()">📥 Cookie-Daten herunterladen</button>
-                <button class="btn btn-secondary" onclick="showAllStorageData()">📊 Alle Speicherdaten anzeigen</button>
-                <button class="btn btn-secondary" onclick="clearAllDebugData()">🗑️ Alle Debug-Daten löschen</button>
-                <button class="btn btn-secondary" onclick="createTestData()" style="background: #2196F3; color: white;">🎯 Test-Daten erstellen</button>
-                <button class="btn btn-secondary" onclick="testStorage()" style="background: #ff9800; color: white;">🔧 Speicher testen</button>
+                <h4>🔧 Debug-Modus (Entwickler)</h4>
+                <p style="margin-bottom: 15px; color: #856404;">Funktionen für Entwicklung, Tests und Debugging:</p>
+                
+                <!-- Test-Simulation -->
+                <div style="margin-bottom: 15px;">
+                    <h5 style="color: #856404; margin-bottom: 8px;">🎯 Test-Simulation:</h5>
+                    <button class="btn btn-secondary" onclick="runSingleRowTest()" style="background: #9C27B0; color: white;" title="Führt nur eine Testzeile aus - ideal zum Debuggen">📝 Schnelltest (1 Zeile)</button>
+                    <button class="btn btn-secondary" onclick="createTestData()" style="background: #2196F3; color: white;" title="Erstellt Dummy-Testdaten zum Testen der Anzeige">🎲 Dummy-Daten erstellen</button>
+                </div>
+                
+                <!-- Datenanalyse -->
+                <div style="margin-bottom: 15px;">
+                    <h5 style="color: #856404; margin-bottom: 8px;">📊 Datenanalyse:</h5>
+                    <button class="btn btn-secondary" onclick="showCookieData()" title="Zeigt alle Cookie-Daten in lesbarer Form">🍪 Cookie-Details anzeigen</button>
+                    <button class="btn btn-secondary" onclick="showAllStorageData()" title="Zeigt alle Speicherdaten (Cookies + LocalStorage)">📊 Alle Speicherdaten</button>
+                    <button class="btn btn-secondary" onclick="testStorage()" style="background: #ff9800; color: white;" title="Testet die Funktionsfähigkeit von Cookies und LocalStorage">🧪 Speicher-Funktionstest</button>
+                </div>
+                
+                <!-- Entwicklung -->
+                <div>
+                    <h5 style="color: #856404; margin-bottom: 8px;">🔧 Entwicklung:</h5>
+                    <button class="btn btn-secondary" onclick="deleteAllCookies()" style="background: #dc3545; color: white;" title="Löscht alle D2-Test Cookies und LocalStorage Daten">🗑️ Alle Cookies löschen</button>
+                    <button class="btn btn-secondary" onclick="clearAllDebugData()" style="background: #6c757d; color: white;" title="Löscht alle Debug- und Testdaten">🧹 Debug-Reset</button>
+                </div>
             </div>
         </div>
 
@@ -689,16 +808,15 @@
         </div>
 
         <div id="results" class="results">
-            <h2>🎯 Testergebnisse</h2>
+            <h2>Testergebnisse</h2>
             <div id="scoreCard" class="score-card"></div>
             <div class="chart-container">
                 <canvas id="progressChart" width="800" height="400"></canvas>
             </div>
             <div style="text-align: center;">
-                <button class="btn" onclick="createTestData()">🎯 Dummy-Daten erstellen</button>
-                <button class="btn" onclick="syncData()">🔄 Daten synchronisieren</button>
-                <button class="btn" onclick="createFullBackup()">💾 Vollständiges Backup</button>
-                <button class="btn" onclick="runComprehensiveStorageTest()">🧪 Speicher-Test</button>
+                <button class="btn" onclick="syncData()" title="Repariert deine Daten zwischen Cookies und LocalStorage">🔄 Meine Daten reparieren</button>
+                <button class="btn" onclick="createBackup()" style="background: #6f42c1; color: white;" title="Exportiert alle User-Daten als vollständiges System-Backup">💾 Alle Daten exportieren</button>
+                <button class="btn" onclick="runComprehensiveStorageTest()" title="Testet die Speicher-Funktionalität des Systems">🧪 Speicher-Test</button>
             </div>
 
             <div class="data-management">
@@ -720,9 +838,33 @@
                 </div>
                 
                 <div id="dataStatus"></div>
-                <div style="margin-top: 15px;">
-                    <button class="btn" onclick="syncData()">🔄 Daten synchronisieren</button>
-                    <button class="btn" onclick="showStorageInfo()">ℹ️ Speicher-Info</button>
+                
+                <!-- Hauptaktionen auf der Ergebnis-Seite -->
+                <div style="margin-top: 20px; text-align: center;">
+                    <div style="margin-bottom: 15px;">
+                        <button class="btn" onclick="resetTest()" style="background: #28a745; color: white; font-weight: bold; padding: 12px 24px;" title="Zurück zur Startseite">🏠 Zurück zur Startseite</button>
+                    </div>
+                    
+                    <!-- Datenverwaltung -->
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="color: #495057; margin-bottom: 10px;">📁 Datenverwaltung</h4>
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn" onclick="saveCookieDataToFile()" style="background: #007bff; color: white;" title="Exportiere deine Testergebnisse als JSON-Datei">💾 Meine Daten exportieren</button>
+                            <button class="btn" onclick="importData()" title="Importiere Testergebnisse aus JSON-Datei">📁 Daten importieren</button>
+                            <button class="btn" onclick="syncData()" title="Repariert deine Daten zwischen Cookies und LocalStorage">🔄 Meine Daten reparieren</button>
+                            <button class="btn" onclick="deleteDataWithConfirmation()" style="background: #dc3545; color: white;" title="Lösche deine Testergebnisse mit detaillierter Bestätigung">🗑️ Meine Daten löschen</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Debug-Funktionen (Ergebnis-Seite) -->
+                <div id="debugButtonsResults" style="display: none; background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-bottom: 10px;">🔧 Debug-Funktionen (Ergebnis-Seite)</h4>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn" onclick="showCookieData()" style="background: #17a2b8; color: white;" title="Zeigt Cookie-Details für diese Ergebnis-Seite">🍪 Cookie-Details</button>
+                        <button class="btn" onclick="showStorageInfo()" style="background: #6c757d; color: white;" title="Zeigt detaillierte Speicher-Informationen">ℹ️ Speicher-Info</button>
+                        <button class="btn" onclick="testStorage()" style="background: #28a745; color: white;" title="Testet Speicher-Funktionalität">🧪 Speicher-Test</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -778,6 +920,13 @@
                     console.log('🔧 Debug-Modus aktiviert! Debug-Sektion angezeigt.');
                 } else {
                     console.error('❌ Debug-Element nicht gefunden!');
+                }
+                
+                // Also show debug buttons in results section
+                const debugResultsElement = document.getElementById('debugButtonsResults');
+                if (debugResultsElement) {
+                    debugResultsElement.style.display = 'block';
+                    console.log('🔧 Debug-Buttons auch in Ergebnis-Sektion aktiviert.');
                 }
             } else {
                 console.log('❌ Debug mode NOT detected');
@@ -984,32 +1133,49 @@
             practiceSymbols = [];
             practiceSelections = [];
             
-            // Generate 5 practice symbols with mix of targets and non-targets
-            const practiceConfigs = [
-                { base: 'd', top: 2, bottom: 0, isTarget: true },
-                { base: 'b', top: 0, bottom: 0, isTarget: false },
-                { base: 'd', top: 0, bottom: 0, isTarget: false },
-                { base: 'd', top: 1, bottom: 1, isTarget: true },
-                { base: 'd', top: 1, bottom: 0, isTarget: false }
+            // Definiere die 4 Pflicht-Symbole (genau einmal)
+            const requiredConfigs = [
+                // 3 richtige Targets (d mit genau 2 effektiven Strichen)
+                { base: 'd', topValue: 1, bottomValue: 1, description: 'd mit 1 Punkt oben + 1 Punkt unten' },
+                { base: 'd', topValue: 2, bottomValue: 0, description: 'd mit 2 Punkten oben' },
+                { base: 'd', topValue: 0, bottomValue: 2, description: 'd mit 1 Strich unten' },
+                // 1 falsches Symbol (d mit 4 effektiven Strichen)
+                { base: 'd', topValue: 2, bottomValue: 2, description: 'd mit 1 Strich oben + 1 Strich unten (FALSCH)' }
             ];
-
-            // Shuffle the array
-            for (let i = practiceConfigs.length - 1; i > 0; i--) {
+            
+            // 3 zusätzliche zufällige Symbole
+            const additionalConfigs = [
+                { base: 'b', topValue: 0, bottomValue: 0, description: 'b ohne Striche' },
+                { base: 'd', topValue: 0, bottomValue: 0, description: 'd ohne Striche' },
+                { base: 'd', topValue: 1, bottomValue: 0, description: 'd mit 1 Punkt oben' }
+            ];
+            
+            // Kombiniere alle Konfigurationen
+            const allConfigs = [...requiredConfigs, ...additionalConfigs];
+            
+            // Mische die Reihenfolge
+            for (let i = allConfigs.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [practiceConfigs[i], practiceConfigs[j]] = [practiceConfigs[j], practiceConfigs[i]];
+                [allConfigs[i], allConfigs[j]] = [allConfigs[j], allConfigs[i]];
             }
 
-            practiceConfigs.forEach((config, index) => {
-                const topConfig = getRandomStrokeConfig(true, config.top);
-                const bottomConfig = getRandomStrokeConfig(true, config.bottom);
+            allConfigs.forEach((config, index) => {
+                const topConfig = getRandomStrokeConfig(true, config.topValue);
+                const bottomConfig = getRandomStrokeConfig(true, config.bottomValue);
+                
+                // Berechne effektive Striche wie im Test
+                const effectiveStrokes = calculateEffectiveStrokes(topConfig, bottomConfig);
+                const isTarget = (config.base === 'd' && effectiveStrokes === 2);
                 
                 practiceSymbols.push({
                     base: config.base,
                     topStrokes: topConfig,
                     bottomStrokes: bottomConfig,
-                    isTarget: config.isTarget,
+                    effectiveStrokes: effectiveStrokes,
+                    isTarget: isTarget,
                     id: index,
-                    selected: false
+                    selected: false,
+                    description: config.description
                 });
                 practiceSelections.push(false);
             });
@@ -1073,13 +1239,13 @@
             
             if (correct === total) {
                 resultDiv.className = 'practice-result success';
-                resultDiv.innerHTML = `🎉 Perfekt! ${correct}/${total} richtig. Sie haben das Prinzip verstanden!`;
+                resultDiv.innerHTML = `Perfekt! ${correct}/${total} richtig. Du hast das Prinzip verstanden!`;
             } else {
                 resultDiv.className = 'practice-result error';
                 resultDiv.innerHTML = `
-                    ❌ ${correct}/${total} richtig. Bitte beachten Sie:<br>
+                    ❌ ${correct}/${total} richtig. Bitte beachte:<br>
                     <small>${errors.join('<br>')}</small><br><br>
-                    💡 <strong>Merksatz:</strong> Nur "d" mit genau 2 Strichen/Punkten markieren!
+                    <strong>Merksatz:</strong> Nur "d" mit genau 2 Strichen/Punkten markieren!
                 `;
             }
 
@@ -1121,8 +1287,24 @@
             currentTest.currentRowIndex = 0;
             testRunning = true;
 
-            document.getElementById('setupPanel').style.display = 'none';
-            document.getElementById('testArea').style.display = 'block';
+            // Defensive null checks for DOM elements
+            const setupPanel = document.getElementById('setupPanel');
+            const testArea = document.getElementById('testArea');
+            
+            if (!setupPanel) {
+                console.error('❌ setupPanel element not found!');
+                alert('Fehler: Setup-Panel nicht gefunden. Seite neu laden.');
+                return;
+            }
+            
+            if (!testArea) {
+                console.error('❌ testArea element not found!');
+                alert('Fehler: Test-Bereich nicht gefunden. Seite neu laden.');
+                return;
+            }
+
+            setupPanel.style.display = 'none';
+            testArea.style.display = 'block';
             
             renderCurrentRow();
             startRowTimer();
@@ -1134,7 +1316,20 @@
             
             const symbolsHtml = row.map(symbol => renderSymbol(symbol)).join('');
             
-            document.getElementById('testContent').innerHTML = `
+            // Defensive null checks for DOM elements
+            const testContent = document.getElementById('testContent');
+            const currentRowEl = document.getElementById('currentRow');
+            const nextBtn = document.getElementById('nextBtn');
+            const finishBtn = document.getElementById('finishBtn');
+            
+            if (!testContent) {
+                console.error('❌ testContent element not found!');
+                const error = new Error('Cannot read properties of null (reading \'style\')');
+                console.error('Error in renderCurrentRow:', error);
+                return;
+            }
+            
+            testContent.innerHTML = `
                 <div class="test-row">
                     <div class="row-header">
                         <span class="row-number">Zeile ${rowNumber}</span>
@@ -1144,15 +1339,28 @@
                 </div>
             `;
             
-            document.getElementById('currentRow').textContent = rowNumber;
-            document.getElementById('nextBtn').disabled = false;
-            
-            if (currentTest.currentRowIndex === currentTest.rows.length - 1) {
-                document.getElementById('nextBtn').style.display = 'none';
-                document.getElementById('finishBtn').style.display = 'inline-block';
+            if (currentRowEl) {
+                currentRowEl.textContent = rowNumber;
             } else {
-                document.getElementById('nextBtn').style.display = 'inline-block';
-                document.getElementById('finishBtn').style.display = 'none';
+                console.warn('⚠️ currentRow element not found, but continuing...');
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                
+                if (currentTest.currentRowIndex === currentTest.rows.length - 1) {
+                    nextBtn.style.display = 'none';
+                    if (finishBtn) {
+                        finishBtn.style.display = 'inline-block';
+                    }
+                } else {
+                    nextBtn.style.display = 'inline-block';
+                    if (finishBtn) {
+                        finishBtn.style.display = 'none';
+                    }
+                }
+            } else {
+                console.error('❌ nextBtn element not found!');
             }
 
             document.querySelectorAll('.symbol').forEach((symbolEl, idx) => {
@@ -1212,6 +1420,14 @@
             
             setTimeout(() => {
                 currentTest.currentRowIndex++;
+                
+                // Debug: Single row test - finish after first row
+                if (window.debugSingleRow) {
+                    console.log('🔧 Debug: Single row test completed, finishing...');
+                    finishTest();
+                    window.debugSingleRow = false; // Reset flag
+                    return;
+                }
                 
                 if (currentTest.currentRowIndex < currentTest.rows.length) {
                     renderCurrentRow();
@@ -1283,8 +1499,29 @@
             
             saveTestResult(totalResult);
             
-            document.getElementById('testArea').style.display = 'none';
-            document.getElementById('results').style.display = 'block';
+            // Defensive null checks for DOM elements
+            const testArea = document.getElementById('testArea');
+            const results = document.getElementById('results');
+            
+            if (testArea) {
+                testArea.style.display = 'none';
+            } else {
+                console.error('❌ testArea element not found in finishTest!');
+            }
+            
+            if (results) {
+                results.style.display = 'block';
+            } else {
+                console.error('❌ results element not found in finishTest!');
+            }
+            
+            // Show debug buttons in results if debug mode is active
+            if (isDebugMode()) {
+                const debugResultsElement = document.getElementById('debugButtonsResults');
+                if (debugResultsElement) {
+                    debugResultsElement.style.display = 'block';
+                }
+            }
             
             displayResults(totalResult);
         }
@@ -1301,7 +1538,7 @@
             const processingSpeed = (totalProcessed / (totalTime / 60)).toFixed(1);
             
             return {
-                timestamp: new Date().toISOString(),
+                timestamp: currentTest.startTime ? currentTest.startTime.toISOString() : new Date().toISOString(),
                 userCode: currentTest.userCode,
                 medication: currentTest.medication,
                 inputMethod: currentTest.inputMethod,
@@ -1377,7 +1614,7 @@
                     `;
                 } else {
                     statusDiv.innerHTML = `
-                        <div class="error">❌ Speichern fehlgeschlagen! Bitte versuchen Sie es erneut.</div>
+                        <div class="error">❌ Speichern fehlgeschlagen! Bitte versuche es erneut.</div>
                     `;
                 }
             }
@@ -1411,34 +1648,114 @@
         }
 
         function displayResults(result) {
+    // Defensive handling of potentially missing values
+    const totalCorrect = result.totalCorrect || 0;
+    const totalIncorrect = result.totalIncorrect || 0;
+    const overallAccuracy = result.overallAccuracy || 0;
+    const processingSpeed = result.processingSpeed || 0;
+    const concentrationIndex = result.concentrationIndex !== undefined ? result.concentrationIndex : (totalCorrect - totalIncorrect);
+    const inputMethod = result.inputMethod || 'unbekannt';
+    const errorRate = result.errorRate || 0;
+    const totalProcessed = result.totalProcessed || 0;
+    const totalTime = result.totalTime || 0;
+    
+    // Format timestamp properly
+    const testDate = result.timestamp ? new Date(result.timestamp) : new Date();
+    const dateStr = testDate.toLocaleDateString('de-DE', {
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit'
+    });
+    const timeStr = testDate.toLocaleTimeString('de-DE', {
+        hour: '2-digit', 
+        minute: '2-digit'
+    });
+    
+    document.getElementById('scoreCard').innerHTML = `
+        <div class="score-item">
+            <span class="score-value">${totalCorrect}</span>
+            <span class="score-label">Richtige Treffer</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${totalIncorrect}</span>
+            <span class="score-label">Fehler</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${overallAccuracy.toFixed(1)}%</span>
+            <span class="score-label">Genauigkeit</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${processingSpeed.toFixed(1)}</span>
+            <span class="score-label">Items/Min</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${concentrationIndex}</span>
+            <span class="score-label">Aufmerksamkeits-Index</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${errorRate}%</span>
+            <span class="score-label">Fehlerrate</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${totalProcessed}</span>
+            <span class="score-label">Bearbeitete Items</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${Math.round(totalTime/1000)}s</span>
+            <span class="score-label">Testdauer</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${inputMethod}</span>
+            <span class="score-label">Eingabemethode</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${dateStr}</span>
+            <span class="score-label">Testdatum</span>
+        </div>
+        <div class="score-item">
+            <span class="score-value">${timeStr}</span>
+            <span class="score-label">Uhrzeit</span>
+        </div>
+    `;
+    
+    drawProgressChart(result);
+}
+
+        function displayEmptyResults(userCode) {
+            // Show empty state in the score card area
             document.getElementById('scoreCard').innerHTML = `
-                <div class="score-item">
-                    <span class="score-value">${result.totalCorrect}</span>
-                    <span class="score-label">Richtige Treffer</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-value">${result.totalIncorrect}</span>
-                    <span class="score-label">Fehler</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-value">${result.overallAccuracy}%</span>
-                    <span class="score-label">Genauigkeit</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-value">${result.processingSpeed}</span>
-                    <span class="score-label">Items/Min</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-value">${result.concentrationIndex}</span>
-                    <span class="score-label">Konzentrations-Index</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-value">${result.inputMethod}</span>
-                    <span class="score-label">Eingabemethode</span>
+                <div style="text-align: center; padding: 40px 20px;">
+                    <h3 style="color: #666; margin-bottom: 20px;">📭 Keine Daten vorhanden</h3>
+                    <p style="color: #888; margin-bottom: 30px;">Für den Code "${userCode}" wurden noch keine Testergebnisse gefunden.</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn" onclick="goToSetup()" style="background: #28a745; color: white; padding: 12px 24px;">
+                            🚀 Ersten Test starten
+                        </button>
+                        <button class="btn" onclick="importData()" style="background: #007bff; color: white; padding: 12px 24px;">
+                            📁 Daten importieren
+                        </button>
+                    </div>
                 </div>
             `;
             
-            drawProgressChart(result);
+            // Clear the chart area
+            const chartContainer = document.getElementById('chartContainer');
+            if (chartContainer) {
+                chartContainer.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Keine Daten zum Anzeigen</p>';
+            }
+        }
+
+        function goToSetup() {
+            // Hide results and show setup panel
+            const setupPanel = document.getElementById('setupPanel');
+            const results = document.getElementById('results');
+            
+            if (setupPanel) {
+                setupPanel.style.display = 'block';
+            }
+            if (results) {
+                results.style.display = 'none';
+            }
         }
 
         function drawProgressChart(result) {
@@ -1528,19 +1845,45 @@
             
             console.log('Final filtered data for user:', userData.length, 'entries');
             
-            if (userData.length === 0) {
-                alert(`Keine Daten für Code "${userCode}" gefunden!\n\nTipp: Stellen Sie sicher, dass Sie mindestens einen Test abgeschlossen haben.`);
+            let hasData = userData.length > 0;
+            
+            // Defensive null checks for DOM elements
+            const setupPanel = document.getElementById('setupPanel');
+            const results = document.getElementById('results');
+            
+            if (setupPanel) {
+                setupPanel.style.display = 'none';
+            } else {
+                console.error('❌ setupPanel element not found in showResults!');
+            }
+            
+            if (results) {
+                results.style.display = 'block';
+            } else {
+                console.error('❌ results element not found in showResults!');
+                alert('Fehler: Ergebnis-Bereich nicht gefunden. Seite neu laden.');
                 return;
             }
             
-            document.getElementById('setupPanel').style.display = 'none';
-            document.getElementById('results').style.display = 'block';
+            // Show debug buttons in results if debug mode is active
+            if (isDebugMode()) {
+                const debugResultsElement = document.getElementById('debugButtonsResults');
+                if (debugResultsElement) {
+                    debugResultsElement.style.display = 'block';
+                }
+            }
             
-            const latestResult = userData[userData.length - 1];
-            displayResults(latestResult);
+            // Show different content based on whether data exists
+            if (hasData) {
+                const latestResult = userData[userData.length - 1];
+                displayResults(latestResult);
+            } else {
+                // Show empty state with import options
+                displayEmptyResults(userCode);
+            }
             
-            const stats = calculateTestStatistics(userData);
-            document.getElementById('dataStatus').innerHTML = `
+            const stats = hasData ? calculateTestStatistics(userData) : null;
+            document.getElementById('dataStatus').innerHTML = hasData ? `
                 <h4>📈 Ihre bisherigen Tests (${userData.length} Durchgänge):</h4>
                 ${stats ? `
                 <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
@@ -1551,18 +1894,51 @@
                     stats.improvement < 0 ? `❌ Verschlechterung: ${stats.improvement}%` : '➖ Keine Änderung'}
                 </div>
                 ` : ''}
-                <div style="max-height: 200px; overflow-y: auto; margin-top: 10px;">
-                    ${userData.map((result, i) => `
-                        <div style="padding: 10px; margin: 5px 0; background: white; border-radius: 5px; border-left: 4px solid ${result.medication === 'mit' ? '#4CAF50' : '#2196F3'};">
-                            <strong>Test ${i + 1}</strong> (${new Date(result.timestamp).toLocaleDateString('de-DE', {
-                                year: 'numeric', month: '2-digit', day: '2-digit', 
-                                hour: '2-digit', minute: '2-digit'
-                            })})
-                            - ${result.medication === 'mit' ? '💊 Mit' : '🚫 Ohne'} Medikation
-                            - ${result.overallAccuracy}% Genauigkeit
-                            - ${result.inputMethod}
-                        </div>
-                    `).join('')}
+                <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">
+                    ${userData.map((result, i) => {
+                        const testDate = result.timestamp ? new Date(result.timestamp) : new Date();
+                        const dateStr = testDate.toLocaleDateString('de-DE', {
+                            year: 'numeric', month: '2-digit', day: '2-digit'
+                        });
+                        const timeStr = testDate.toLocaleTimeString('de-DE', {
+                            hour: '2-digit', minute: '2-digit'
+                        });
+                        
+                        const accuracy = result.overallAccuracy || 0;
+                        const totalCorrect = result.totalCorrect || 0;
+                        const totalIncorrect = result.totalIncorrect || 0;
+                        const concentrationIndex = result.concentrationIndex !== undefined ? result.concentrationIndex : (totalCorrect - totalIncorrect);
+                        const processingSpeed = result.processingSpeed || 0;
+                        
+                        return `
+                        <div style="padding: 12px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid ${result.medication === 'mit' ? '#4CAF50' : '#2196F3'}; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <strong style="color: #333;">Test ${i + 1}</strong>
+                                <span style="color: #666; font-size: 0.9em;">${dateStr}, ${timeStr}</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9em;">
+                                <div>${result.medication === 'mit' ? '💊 Mit' : '🚫 Ohne'} Medikation</div>
+                                <div>🎯 ${accuracy.toFixed(1)}% Genauigkeit</div>
+                                <div>✅ ${totalCorrect} Richtige</div>
+                                <div>❌ ${totalIncorrect} Fehler</div>
+                                <div>🧠 Index: ${concentrationIndex}</div>
+                                <div>⏱️ ${processingSpeed.toFixed(1)} Items/Min</div>
+                            </div>
+                            <div style="margin-top: 6px; font-size: 0.8em; color: #666;">
+                                Eingabe: ${result.inputMethod || 'unbekannt'}
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            ` : `
+                <h4>📭 Keine Daten für Code "${userCode}" gefunden</h4>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 10px 0; text-align: center;">
+                    <p style="margin-bottom: 15px;">🔍 Es wurden noch keine Testergebnisse für diesen Code gefunden.</p>
+                    <p style="margin-bottom: 20px;">Sie können:</p>
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn" onclick="goToSetup()" style="background: #28a745; color: white;">🚀 Ersten Test starten</button>
+                        <button class="btn" onclick="importData()" style="background: #007bff; color: white;">📁 Daten importieren</button>
+                    </div>
                 </div>
             `;
         }
@@ -1586,6 +1962,75 @@
                 document.getElementById('dataStatus').innerHTML = `
                     <div class="success">✅ Alle Daten für "${userCode}" wurden aus Cookies und LocalStorage gelöscht!</div>
                 `;
+            }
+        }
+
+        // Detaillierte Lösch-Bestätigung mit genauer Erklärung
+        function deleteDataWithConfirmation() {
+            const userCode = document.getElementById('userCode').value.trim();
+            if (!userCode) {
+                alert('Bitte geben Sie Ihren Code ein!');
+                return;
+            }
+            
+            // Prüfe, welche Daten vorhanden sind
+            const localData = JSON.parse(localStorage.getItem('d2TestData') || '[]');
+            const userLocalData = localData.filter(result => result.userCode === userCode);
+            const cookieName = `d2_${userCode}`;
+            const cookieExists = document.cookie.includes(cookieName);
+            
+            if (userLocalData.length === 0 && !cookieExists) {
+                alert(`Keine Daten für User "${userCode}" gefunden.`);
+                return;
+            }
+            
+            // Detaillierte Bestätigungsmeldung
+            let confirmMessage = `⚠️ DATEN LÖSCHEN - Bestätigung erforderlich\n\n`;
+            confirmMessage += `User-Code: "${userCode}"\n\n`;
+            confirmMessage += `Folgende Daten werden PERMANENT gelöscht:\n\n`;
+            
+            if (userLocalData.length > 0) {
+                confirmMessage += `📊 LocalStorage (Browser-Speicher):\n`;
+                confirmMessage += `   • ${userLocalData.length} Testergebnis(se)\n`;
+                confirmMessage += `   • Alle Statistiken und Verlaufsdaten\n\n`;
+            }
+            
+            if (cookieExists) {
+                confirmMessage += `🍪 Browser-Cookies:\n`;
+                confirmMessage += `   • Cookie "${cookieName}"\n`;
+                confirmMessage += `   • Gespeicherte Test-Einstellungen\n\n`;
+            }
+            
+            confirmMessage += `⚠️ ACHTUNG: Diese Aktion kann NICHT rückgängig gemacht werden!\n\n`;
+            confirmMessage += `💾 EMPFEHLUNG: Erstellen Sie vorher ein Backup über\n`;
+            confirmMessage += `   "💾 Cookie-Daten speichern" um die Daten später\n`;
+            confirmMessage += `   über "📁 Daten importieren" wiederherstellen zu können.\n\n`;
+            confirmMessage += `Betroffen: NUR der aktuelle User "${userCode}"\n`;
+            confirmMessage += `Andere User-Daten bleiben unberührt.\n\n`;
+            confirmMessage += `Wirklich fortfahren?`;
+            
+            if (confirm(confirmMessage)) {
+                // Lösche LocalStorage-Daten
+                const updatedLocalData = localData.filter(result => result.userCode !== userCode);
+                localStorage.setItem('d2TestData', JSON.stringify(updatedLocalData));
+                
+                // Lösche Cookie
+                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                
+                // Erfolgsmeldung
+                const deletedItems = [];
+                if (userLocalData.length > 0) deletedItems.push(`${userLocalData.length} Testergebnis(se) aus LocalStorage`);
+                if (cookieExists) deletedItems.push(`Cookie "${cookieName}"`);
+                
+                alert(`✅ Erfolgreich gelöscht:\n\n${deletedItems.join('\n')}\n\nAlle Daten für User "${userCode}" wurden permanent entfernt.`);
+                
+                // Status-Update
+                const statusElement = document.getElementById('dataStatus');
+                if (statusElement) {
+                    statusElement.innerHTML = `
+                        <div class="success">✅ Alle Daten für User "${userCode}" wurden permanent gelöscht!</div>
+                    `;
+                }
             }
         }
 
@@ -1686,32 +2131,77 @@ Tipp:
                 reader.onload = function(e) {
                     try {
                         const importedData = JSON.parse(e.target.result);
+                        let userCode, testResults, exportDate;
                         
-                        if (!importedData.userCode || !importedData.results || !Array.isArray(importedData.results)) {
-                            throw new Error('Ungültiges Datenformat');
+                        // Handle new export format (from saveCookieDataToFile)
+                        if (importedData.exportInfo && importedData.cookieData) {
+                            userCode = importedData.exportInfo.userCode;
+                            exportDate = importedData.exportInfo.exportDate;
+                            testResults = [];
+                            
+                            // Extract test results from localStorage data
+                            if (importedData.cookieData.localStorage_d2TestData && Array.isArray(importedData.cookieData.localStorage_d2TestData)) {
+                                testResults = importedData.cookieData.localStorage_d2TestData.filter(result => result.userCode === userCode);
+                            }
+                            
+                            // Also check cookie data for additional results
+                            Object.keys(importedData.cookieData).forEach(cookieName => {
+                                if (cookieName.startsWith('d2_') && cookieName !== 'localStorage_d2TestData') {
+                                    const cookieData = importedData.cookieData[cookieName];
+                                    if (Array.isArray(cookieData)) {
+                                        testResults.push(...cookieData.filter(result => result.userCode === userCode));
+                                    } else if (cookieData && cookieData.userCode === userCode) {
+                                        testResults.push(cookieData);
+                                    }
+                                }
+                            });
+                        }
+                        // Handle old format (legacy)
+                        else if (importedData.userCode && importedData.results && Array.isArray(importedData.results)) {
+                            userCode = importedData.userCode;
+                            testResults = importedData.results;
+                            exportDate = importedData.exportDate;
+                        }
+                        else {
+                            throw new Error('Ungültiges Datenformat. Erwartet wird eine D2-Test Export-Datei.');
                         }
                         
+                        if (!userCode || !Array.isArray(testResults)) {
+                            throw new Error('Keine gültigen Testdaten gefunden.');
+                        }
+                        
+                        // Remove duplicates and merge with existing data
                         let localData = JSON.parse(localStorage.getItem('d2TestData') || '[]');
+                        localData = localData.filter(result => result.userCode !== userCode);
                         
-                        localData = localData.filter(result => result.userCode !== importedData.userCode);
+                        // Remove duplicates within imported data (by timestamp)
+                        const uniqueResults = [];
+                        const seenTimestamps = new Set();
+                        testResults.forEach(result => {
+                            if (result.timestamp && !seenTimestamps.has(result.timestamp)) {
+                                seenTimestamps.add(result.timestamp);
+                                uniqueResults.push(result);
+                            }
+                        });
                         
-                        localData.push(...importedData.results);
-                        
+                        localData.push(...uniqueResults);
                         localStorage.setItem('d2TestData', JSON.stringify(localData));
                         
-                        importedData.results.forEach(result => {
+                        // Save to cookies
+                        uniqueResults.forEach(result => {
                             saveToCookies(result);
                         });
                         
-                        alert(`✅ ${importedData.results.length} Tests für "${importedData.userCode}" erfolgreich importiert!`);
+                        alert(`✅ ${uniqueResults.length} Tests für "${userCode}" erfolgreich importiert!`);
                         
-                        document.getElementById('userCode').value = importedData.userCode;
+                        document.getElementById('userCode').value = userCode;
                         
+                        const exportDateStr = exportDate ? new Date(exportDate).toLocaleDateString('de-DE') : 'Unbekannt';
                         document.getElementById('dataStatus').innerHTML = `
                             <div class="success">
                                 ✅ Import erfolgreich!<br>
-                                ${importedData.results.length} Tests für "${importedData.userCode}" wurden importiert.<br>
-                                Exportdatum: ${new Date(importedData.exportDate).toLocaleDateString('de-DE')}
+                                ${uniqueResults.length} Tests für "${userCode}" wurden importiert.<br>
+                                Exportdatum: ${exportDateStr}
                             </div>
                         `;
                         
@@ -1956,10 +2446,37 @@ Tipp:
             const totalResult = calculateTotalResult();
             saveTestResult(totalResult);
 
-            alert(`🎯 Dummy-Daten für "${dummyUserCode}" erstellt und gespeichert. Sie können jetzt "Eigene Ergebnisse anzeigen" verwenden.`);
+            alert(`Dummy-Daten für "${dummyUserCode}" erstellt und gespeichert. Du kannst jetzt "Eigene Ergebnisse anzeigen" verwenden.`);
             document.getElementById('userCode').value = dummyUserCode;
             document.getElementById('medication').value = dummyMedication;
         }
+
+
+        
+        // 📝 Single Row Test - limits test to just 1 row for debugging
+        function runSingleRowTest() {
+            const userCode = document.getElementById('userCode').value.trim() || 'SingleTest' + Date.now();
+            const medication = document.getElementById('medication').value || 'ohne';
+            
+            console.log('📝 Starting single row test...');
+            
+            // Temporarily modify test to only run 1 row
+            window.debugSingleRow = true;
+            
+            currentTest.userCode = userCode;
+            currentTest.medication = medication;
+            currentTest.deviceInfo = getDeviceInfo();
+            currentTest.inputMethod = 'mouse';
+            currentTest.startTime = new Date();
+            currentTest.results = [];
+            
+            alert('🔧 Debug: Test läuft nur 1 Zeile. Nach 20 Sekunden wird automatisch beendet.');
+            
+            // Start normal test
+            startTest();
+        }
+        
+
 
         function syncData() {
             const userCode = document.getElementById('userCode').value.trim();
@@ -2417,6 +2934,124 @@ Tipp:
             // Reload page to reflect changes
             if (confirm('Seite neu laden, um Änderungen zu sehen?')) {
                 window.location.reload();
+            }
+        }
+
+        function deleteAllCookies() {
+            if (!confirm('⚠️ Wirklich ALLE D2-Test Cookies löschen?\n\nDies löscht alle gespeicherten Testergebnisse!\nDieser Vorgang kann nicht rückgängig gemacht werden!')) {
+                return;
+            }
+            
+            let deletedCount = 0;
+            
+            // Find all D2 cookies
+            const allCookies = document.cookie.split(';');
+            const d2Cookies = allCookies.filter(cookie => {
+                const cookieName = cookie.trim().split('=')[0];
+                return cookieName.startsWith('d2_');
+            });
+            
+            // Delete each D2 cookie
+            d2Cookies.forEach(cookie => {
+                const cookieName = cookie.trim().split('=')[0];
+                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+                deletedCount++;
+                console.log(`🗑️ Deleted cookie: ${cookieName}`);
+            });
+            
+            // Also clear localStorage D2 data
+            localStorage.removeItem('d2TestData');
+            
+            alert(`🗑️ ${deletedCount} D2-Test Cookies wurden gelöscht!\n\nLocalStorage wurde ebenfalls geleert.`);
+            
+            // Reload page to reflect changes
+            if (confirm('Seite neu laden, um Änderungen zu sehen?')) {
+                window.location.reload();
+            }
+        }
+
+        function saveCookieDataToFile() {
+            try {
+                // Get current user code for filename
+                const userCodeInput = document.getElementById('userCode');
+                const currentUserCode = userCodeInput ? userCodeInput.value.trim() : 'UnknownUser';
+                
+                // Create ISO date and time string (YYYY-MM-DD_HHMM)
+                const now = new Date();
+                const isoDate = now.toISOString().split('T')[0]; // Gets YYYY-MM-DD
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const timeString = `${hours}${minutes}`;
+        
+                // Create filename: ISO-Date_HHMM_D2Test_UserCode.json
+                const filename = `${isoDate}_${timeString}_D2Test_${currentUserCode}.json`;
+                
+                // Collect all D2 cookie data
+                const allCookies = document.cookie.split(';');
+                const cookieData = {};
+                let totalEntries = 0;
+                
+                allCookies.forEach(cookie => {
+                    const [name, value] = cookie.trim().split('=');
+                    if (name && name.startsWith('d2_')) {
+                        try {
+                            const decodedValue = decodeURIComponent(value || '');
+                            const parsedData = JSON.parse(decodedValue);
+                            cookieData[name] = parsedData;
+                            totalEntries += Array.isArray(parsedData) ? parsedData.length : 1;
+                        } catch (e) {
+                            console.warn(`⚠️ Could not parse cookie ${name}:`, e);
+                            cookieData[name] = { error: 'Could not parse', rawValue: value };
+                        }
+                    }
+                });
+                
+                // Add localStorage data if available
+                const localStorageData = localStorage.getItem('d2TestData');
+                if (localStorageData) {
+                    try {
+                        cookieData['localStorage_d2TestData'] = JSON.parse(localStorageData);
+                    } catch (e) {
+                        cookieData['localStorage_d2TestData'] = { error: 'Could not parse', rawValue: localStorageData };
+                    }
+                }
+                
+                // Create export object with metadata
+                const exportData = {
+                    exportInfo: {
+                        application: 'D2 Aufmerksamkeitstest',
+                        exportDate: now.toISOString(),
+                        userCode: currentUserCode,
+                        totalCookieEntries: Object.keys(cookieData).length,
+                        totalTestResults: totalEntries
+                    },
+                    cookieData: cookieData
+                };
+                
+                // Convert to JSON string
+                const jsonString = JSON.stringify(exportData, null, 2);
+                
+                // Create and download file
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                link.style.display = 'none';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Clean up
+                URL.revokeObjectURL(url);
+                
+                alert(`💾 Cookie-Daten erfolgreich gespeichert!\n\nDatei: ${filename}\nSpeicherort: Downloads-Ordner\nEinträge: ${totalEntries} Testergebnisse`);
+                
+            } catch (error) {
+                console.error('❌ Error saving cookie data:', error);
+                alert(`❌ Fehler beim Speichern der Cookie-Daten:\n${error.message}`);
             }
         }
 
